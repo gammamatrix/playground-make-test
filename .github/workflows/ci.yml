@@ -1,0 +1,255 @@
+name: 'CI'
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - review_requested
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
+    steps:
+    - name: Preparing timer
+      id: timer_start
+      run: |
+        echo "DATE_START=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+        echo "TIMESTAMP_START=$(date +'%s')" >> $GITHUB_OUTPUT
+    - name: "Slack notification: IN PROGRESS"
+      id: slack
+      uses: slackapi/slack-github-action@v1.25.0
+      with:
+        channel-id: 'C068A06PV43'
+        payload: |
+          {
+            "text": "CI Build Status for playground-make-test: IN PROGRESS\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": ":runner: CI Build Status for playground-make-test"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Start:*\n${{ steps.timer_start.outputs.DATE_START }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*End:*\n--"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Status:* IN PROGRESS"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": ":timer_clock: --"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*PR:* ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Build:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+    - uses: actions/checkout@v4
+    - name: Run php-actions/composer@v6
+      uses: php-actions/composer@v6
+      with:
+        php_version: "8.2"
+        php_extensions: intl
+        version: 2.x
+    - uses: php-actions/phpunit@v3
+      env:
+        XDEBUG_MODE: coverage
+      with:
+        version: "11.0"
+        php_version: "8.2"
+        php_extensions: intl xdebug
+        coverage_clover: clover.xml
+        coverage_text: true
+    - name: Make code coverage badge
+      uses: timkrase/phpunit-coverage-badge@v1.2.1
+      with:
+        coverage_badge_path: output/coverage.svg
+        push_badge: false
+    - name: Git push to testing/develop branch
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_dir: ./output
+        publish_branch: testing/develop
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+    - uses: php-actions/phpstan@v3
+      with:
+        level: 9
+        php_version: "8.2"
+        path: config/ lang/ src/ tests/Feature/
+        args: --verbose --debug
+    - name: Stopping timer
+      if: ${{ !cancelled() }}
+      id: timer_end
+      env:
+        TIMESTAMP_START: ${{ steps.timer_start.outputs.TIMESTAMP_START }}
+      run: |
+        echo "DATE_END=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+        echo "DURATION_PHRASE=$(($(date +'%s')-$TIMESTAMP_START)) seconds" >> $GITHUB_OUTPUT
+    - name: "Slack notification: Done"
+      uses: slackapi/slack-github-action@v1.25.0
+      with:
+        channel-id: 'C068A06PV43'
+        update-ts: ${{ steps.slack.outputs.ts }}
+        payload: |
+          {
+            "text": "CI Build Status for playground-make-test: DONE\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": ":white_check_mark: CI Build Status for playground-make-test"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Start:*\n${{ steps.timer_start.outputs.DATE_START }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*End:*\n${{ steps.timer_end.outputs.DATE_END }}"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Status:* Success"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": ":timer_clock: ${{ steps.timer_end.outputs.DURATION_PHRASE }}"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*PR:* ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Build:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+    - name: "Send a notification for failures"
+      if: ${{ failure() }}
+      uses: slackapi/slack-github-action@v1.25.0
+      with:
+        channel-id: 'C068A06PV43'
+        update-ts: ${{ steps.slack.outputs.ts }}
+        payload: |
+          {
+            "text": "CI Build Status for playground-make-test: FAILED\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": ":warning: CI Build Status for playground-make-test"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Start:*\n${{ steps.timer_start.outputs.DATE_START }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*End:*\n${{ steps.timer_end.outputs.DATE_END }}"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Status:* FAILED"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": ":timer_clock: ${{ steps.timer_end.outputs.DURATION_PHRASE }}"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*PR:* ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Build:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+

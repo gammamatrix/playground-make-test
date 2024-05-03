@@ -1,0 +1,68 @@
+{
+    "name": "gammamatrix/playground-make-test",
+    "description": "Playground: This package provides the playground:make:test command.",
+    "keywords": [
+        "gammamatrix",
+        "laravel",
+        "playground",
+        "playground:make"
+    ],
+    "homepage": "https://github.com/gammamatrix/playground-make-test",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeremy Postlethwaite",
+            "email": "jeremy.postlethwaite@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:gammamatrix/playground-make.git"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "gammamatrix/playground-make": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
+    },
+    "require-dev": {
+        "gammamatrix/playground-test": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Playground\\Make\\Test\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Feature\\Playground\\Make\\Test\\": "tests/Feature/",
+            "Tests\\Unit\\Playground\\Make\\Test\\": "tests/Unit/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": {
+            "gammamatrix/*": "source",
+            "*": "dist"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "73.x-dev",
+            "dev-master": "73.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Playground\\Make\\Test\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/testbench package:test",
+        "format": "vendor/bin/php-cs-fixer fix",
+        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max"
+    }
+}
