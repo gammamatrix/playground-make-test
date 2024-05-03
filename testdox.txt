@@ -1,0 +1,3 @@
+Command (Tests\Feature\Playground\Make\Test\Console\Commands\About\Command)
+ [x] Command about displays package information and succeed with code 0
+

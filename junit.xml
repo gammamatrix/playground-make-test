@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/app/phpunit.xml.dist" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.360676">
+    <testsuite name="Feature" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.360676">
+      <testsuite name="Tests\Feature\Playground\Make\Test\Console\Commands\About\CommandTest" file="/app/tests/Feature/Console/Commands/About/CommandTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.360676">
+        <testcase name="test_command_about_displays_package_information_and_succeed_with_code_0" file="/app/tests/Feature/Console/Commands/About/CommandTest.php" line="27" class="Tests\Feature\Playground\Make\Test\Console\Commands\About\CommandTest" classname="Tests.Feature.Playground.Make.Test.Console.Commands.About.CommandTest" assertions="2" time="0.360676"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

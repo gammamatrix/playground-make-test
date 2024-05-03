@@ -1,0 +1,18 @@
+
+##teamcity[testCount count='1' flowId='1']
+
+##teamcity[testSuiteStarted name='/app/phpunit.xml.dist' flowId='1']
+
+##teamcity[testSuiteStarted name='Feature' flowId='1']
+
+##teamcity[testSuiteStarted name='Tests\Feature\Playground\Make\Test\Console\Commands\About\CommandTest' locationHint='php_qn:///app/tests/Feature/Console/Commands/About/CommandTest.php::\Tests\Feature\Playground\Make\Test\Console\Commands\About\CommandTest' flowId='1']
+
+##teamcity[testStarted name='test_command_about_displays_package_information_and_succeed_with_code_0' locationHint='php_qn:///app/tests/Feature/Console/Commands/About/CommandTest.php::\Tests\Feature\Playground\Make\Test\Console\Commands\About\CommandTest::test_command_about_displays_package_information_and_succeed_with_code_0' flowId='1']
+
+##teamcity[testFinished name='test_command_about_displays_package_information_and_succeed_with_code_0' duration='281' flowId='1']
+
+##teamcity[testSuiteFinished name='Tests\Feature\Playground\Make\Test\Console\Commands\About\CommandTest' flowId='1']
+
+##teamcity[testSuiteFinished name='Feature' flowId='1']
+
+##teamcity[testSuiteFinished name='/app/phpunit.xml.dist' flowId='1']

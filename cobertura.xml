@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage line-rate="1" branch-rate="0" lines-covered="33" lines-valid="33" branches-covered="0" branches-valid="0" complexity="16" version="0.4" timestamp="1714714367">
+  <sources>
+    <source>/app/src</source>
+  </sources>
+  <packages>
+    <package name="ServiceProvider.php" line-rate="1" branch-rate="0" complexity="16">
+      <classes>
+        <class name="Playground\Make\Test\ServiceProvider" filename="ServiceProvider.php" line-rate="1" branch-rate="0" complexity="16">
+          <methods>
+            <method name="boot" signature="" line-rate="1" branch-rate="0" complexity="7">
+              <lines>
+                <line number="33" hits="1"/>
+                <line number="35" hits="1"/>
+                <line number="37" hits="1"/>
+                <line number="38" hits="1"/>
+                <line number="41" hits="1"/>
+                <line number="42" hits="1"/>
+                <line number="43" hits="1"/>
+                <line number="44" hits="1"/>
+                <line number="45" hits="1"/>
+                <line number="48" hits="1"/>
+                <line number="50" hits="1"/>
+                <line number="51" hits="1"/>
+                <line number="52" hits="1"/>
+                <line number="56" hits="1"/>
+                <line number="57" hits="1"/>
+              </lines>
+            </method>
+            <method name="boot_commands" signature="" line-rate="1" branch-rate="0" complexity="1">
+              <lines>
+                <line number="66" hits="1"/>
+                <line number="70" hits="1"/>
+                <line number="72" hits="1"/>
+              </lines>
+            </method>
+            <method name="register" signature="" line-rate="1" branch-rate="0" complexity="1">
+              <lines>
+                <line number="80" hits="1"/>
+                <line number="81" hits="1"/>
+                <line number="82" hits="1"/>
+                <line number="83" hits="1"/>
+              </lines>
+            </method>
+            <method name="about" signature="" line-rate="1" branch-rate="0" complexity="6">
+              <lines>
+                <line number="88" hits="1"/>
+                <line number="89" hits="1"/>
+                <line number="91" hits="1"/>
+                <line number="93" hits="1"/>
+                <line number="95" hits="1"/>
+                <line number="96" hits="1"/>
+                <line number="97" hits="1"/>
+                <line number="98" hits="1"/>
+                <line number="99" hits="1"/>
+                <line number="100" hits="1"/>
+              </lines>
+            </method>
+            <method name="version" signature="" line-rate="1" branch-rate="0" complexity="1">
+              <lines>
+                <line number="105" hits="1"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="33" hits="1"/>
+            <line number="35" hits="1"/>
+            <line number="37" hits="1"/>
+            <line number="38" hits="1"/>
+            <line number="41" hits="1"/>
+            <line number="42" hits="1"/>
+            <line number="43" hits="1"/>
+            <line number="44" hits="1"/>
+            <line number="45" hits="1"/>
+            <line number="48" hits="1"/>
+            <line number="50" hits="1"/>
+            <line number="51" hits="1"/>
+            <line number="52" hits="1"/>
+            <line number="56" hits="1"/>
+            <line number="57" hits="1"/>
+            <line number="66" hits="1"/>
+            <line number="70" hits="1"/>
+            <line number="72" hits="1"/>
+            <line number="80" hits="1"/>
+            <line number="81" hits="1"/>
+            <line number="82" hits="1"/>
+            <line number="83" hits="1"/>
+            <line number="88" hits="1"/>
+            <line number="89" hits="1"/>
+            <line number="91" hits="1"/>
+            <line number="93" hits="1"/>
+            <line number="95" hits="1"/>
+            <line number="96" hits="1"/>
+            <line number="97" hits="1"/>
+            <line number="98" hits="1"/>
+            <line number="99" hits="1"/>
+            <line number="100" hits="1"/>
+            <line number="105" hits="1"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
