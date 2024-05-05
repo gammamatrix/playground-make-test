@@ -1,3 +1,32 @@
+Api (Tests\Feature\Playground\Make\Test\Console\Commands\TestMakeCommand\Api)
+ [x] Command make playground api tests without model file and fail
+ [x] Command make playground api tests with force without skeleton
+ [x] Command make playground api tests without force with file without skeleton
+ [x] Command make playground api tests with force with file with skeleton
+ [x] Command make playground api tests with force with model in file with skeleton
+
 Command (Tests\Feature\Playground\Make\Test\Console\Commands\About\Command)
  [x] Command about displays package information and succeed with code 0
+
+Command (Tests\Feature\Playground\Make\Test\Console\Commands\TestMakeCommand\Command)
+ [x] Command without options or arguments
+ [x] Command skeleton
+
+Instance (Tests\Unit\Playground\Make\Test\Configuration\Test\Instance)
+ [x] Instance
+ [x] Instance apply without options
+ [x] Folder is empty by default
+ [x] Test with file and skeleton
+
+Model (Tests\Feature\Playground\Make\Test\Console\Commands\TestMakeCommand\Model)
+ [x] Command make test with force and without skeleton
+ [x] Command make test with force and with skeleton
+ [x] Command make playground model api with force
+ [x] Command make playground model resource with force
+
+Resource (Tests\Feature\Playground\Make\Test\Console\Commands\TestMakeCommand\Resource)
+ [x] Command make playground resource tests without model file and fail
+ [x] Command make playground resource tests with force without skeleton
+ [x] Command make playground resource tests without force with file without skeleton
+ [x] Command make playground resource tests with force with file with skeleton
 
