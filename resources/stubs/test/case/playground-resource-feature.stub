@@ -1,0 +1,48 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace Tests\Feature\{{ namespace }};
+
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Playground\Test\OrchestraTestCase;
+use Tests\Unit\{{ namespace }}\TestTrait;
+{{ use }}
+/**
+ * \Tests\Feature\{{ namespace }}\{{ class }}
+ */
+class {{ class }} extends OrchestraTestCase
+{
+    use DatabaseTransactions;
+    use TestTrait;
+
+    // protected bool $load_migrations_laravel = false;
+
+    protected bool $load_migrations_package = true;
+
+    protected bool $load_migrations_playground = true;
+
+    /**
+     * Define database migrations.
+     *
+     * @api
+     *
+     * @return void
+     */
+    protected function defineDatabaseMigrations()
+    {
+        if (! empty(env('TEST_DB_MIGRATIONS'))) {
+            // if ($this->load_migrations_laravel) {
+            //     $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-laravel');
+            // }
+            if ($this->load_migrations_package) {
+                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations');
+            }
+            if ($this->load_migrations_playground) {
+                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-playground');
+            }
+        }
+    }
+}

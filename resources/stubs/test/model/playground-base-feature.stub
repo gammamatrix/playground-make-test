@@ -1,0 +1,56 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace {{ namespace }};
+
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Carbon;
+use Playground\ServiceProvider as PlaygroundServiceProvider;
+use Playground\Test\Feature\Models\ModelCase as BaseModelCase;
+{{ use }}
+/**
+ * \{{ namespace }}\{{ class }}
+ */
+class {{ class }} extends BaseModelCase
+{
+    use DatabaseTransactions;
+
+    protected bool $load_migrations_{{ module_slug }} = true;
+
+    protected bool $load_migrations_laravel = false;
+
+    protected bool $load_migrations_playground = true;
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            PlaygroundServiceProvider::class,
+            ServiceProvider::class,
+        ];
+    }
+
+    /**
+     * Setup the test environment.
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Carbon::setTestNow(Carbon::now());
+
+        if (! empty(env('TEST_DB_MIGRATIONS'))) {
+            if ($this->load_migrations_{{ module_slug }}) {
+                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations');
+            }
+            // if ($this->load_migrations_laravel) {
+            //     $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-laravel');
+            // }
+            if ($this->load_migrations_playground) {
+                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-playground');
+            }
+        }
+    }
+}

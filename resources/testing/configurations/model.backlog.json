@@ -1,0 +1,1731 @@
+{
+    "organization": "Playground",
+    "package": "playground-matrix",
+    "module": "Matrix",
+    "module_slug": "matrix",
+    "fqdn": "Playground/Matrix/Models/Backlog",
+    "namespace": "Playground/Matrix",
+    "model": "Playground/Matrix/Models/Backlog",
+    "name": "Backlog",
+    "class": "Backlog",
+    "type": "playground-model",
+    "table": "matrix_backlogs",
+    "extends": "AbstractModel",
+    "implements": [],
+    "factory": false,
+    "migration": false,
+    "playground": true,
+    "policy": false,
+    "seed": false,
+    "test": false,
+    "HasOne": {
+        "board": {
+            "comment": "The board of the backlog.",
+            "related": "Board",
+            "foreignKey": "id",
+            "localKey": "board_id"
+        },
+        "epic": {
+            "comment": "The epic of the backlog.",
+            "related": "Epic",
+            "foreignKey": "id",
+            "localKey": "epic_id"
+        },
+        "flow": {
+            "comment": "The flow of the backlog.",
+            "related": "Flow",
+            "foreignKey": "id",
+            "localKey": "flow_id"
+        },
+        "milestone": {
+            "comment": "The milestone of the backlog.",
+            "related": "Milestone",
+            "foreignKey": "id",
+            "localKey": "milestone_id"
+        },
+        "note": {
+            "comment": "The note of the backlog.",
+            "related": "Note",
+            "foreignKey": "id",
+            "localKey": "note_id"
+        },
+        "project": {
+            "comment": "The project of the backlog.",
+            "related": "Project",
+            "foreignKey": "id",
+            "localKey": "project_id"
+        },
+        "release": {
+            "comment": "The release of the backlog.",
+            "related": "Release",
+            "foreignKey": "id",
+            "localKey": "release_id"
+        },
+        "roadmap": {
+            "comment": "The roadmap of the backlog.",
+            "related": "Roadmap",
+            "foreignKey": "id",
+            "localKey": "roadmap_id"
+        },
+        "source": {
+            "comment": "The source of the backlog.",
+            "related": "Source",
+            "foreignKey": "id",
+            "localKey": "source_id"
+        },
+        "sprint": {
+            "comment": "The sprint of the backlog.",
+            "related": "Sprint",
+            "foreignKey": "id",
+            "localKey": "sprint_id"
+        },
+        "tag": {
+            "comment": "The tag of the backlog.",
+            "related": "Tag",
+            "foreignKey": "id",
+            "localKey": "tag_id"
+        },
+        "team": {
+            "comment": "The team of the backlog.",
+            "related": "Team",
+            "foreignKey": "id",
+            "localKey": "team_id"
+        },
+        "ticket": {
+            "comment": "The ticket of the backlog.",
+            "related": "Ticket",
+            "foreignKey": "id",
+            "localKey": "ticket_id"
+        },
+        "version": {
+            "comment": "",
+            "related": "",
+            "foreignKey": "",
+            "localKey": ""
+        }
+    },
+    "HasMany": {
+        "sprints": {
+            "comment": "",
+            "related": "",
+            "foreignKey": "",
+            "localKey": ""
+        },
+        "tickets": {
+            "comment": "The tickets of the backlog.",
+            "related": "Ticket",
+            "foreignKey": "ticket_id",
+            "localKey": "id"
+        }
+    },
+    "scopes": {
+        "sort": {
+            "include": "minus",
+            "builder": null
+        }
+    },
+    "attributes": {
+        "created_by_id": null,
+        "modified_by_id": null,
+        "owned_by_id": null,
+        "parent_id": null,
+        "backlog_type": null,
+        "board_id": null,
+        "epic_id": null,
+        "flow_id": null,
+        "milestone_id": null,
+        "note_id": null,
+        "project_id": null,
+        "release_id": null,
+        "roadmap_id": null,
+        "source_id": null,
+        "sprint_id": null,
+        "tag_id": null,
+        "team_id": null,
+        "ticket_id": null,
+        "version_id": null,
+        "active": true,
+        "canceled": false,
+        "closed": false,
+        "completed": false,
+        "duplicate": false,
+        "fixed": false,
+        "flagged": false,
+        "internal": false,
+        "locked": false,
+        "pending": false,
+        "planned": false,
+        "problem": false,
+        "published": false,
+        "released": false,
+        "retired": false,
+        "resolved": false,
+        "suspended": false,
+        "unknown": false,
+        "label": "",
+        "title": "",
+        "byline": "",
+        "slug": null,
+        "url": "",
+        "description": "",
+        "introduction": "",
+        "content": null,
+        "summary": null,
+        "icon": "",
+        "image": "",
+        "avatar": "",
+        "ui": "{}",
+        "assets": "{}",
+        "backlog": "{}",
+        "board": "{}",
+        "flow": "{}",
+        "meta": "{}",
+        "notes": "[]",
+        "options": "{}",
+        "roadmap": "{}",
+        "sources": "{}"
+    },
+    "casts": {
+        "created_at": "datetime",
+        "updated_at": "datetime",
+        "deleted_at": "datetime",
+        "start_at": "datetime",
+        "planned_start_at": "datetime",
+        "end_at": "datetime",
+        "planned_end_at": "datetime",
+        "canceled_at": "datetime",
+        "closed_at": "datetime",
+        "embargo_at": "datetime",
+        "fixed_at": "datetime",
+        "postponed_at": "datetime",
+        "published_at": "datetime",
+        "released_at": "datetime",
+        "resumed_at": "datetime",
+        "resolved_at": "datetime",
+        "suspended_at": "datetime",
+        "gids": "integer",
+        "po": "integer",
+        "pg": "integer",
+        "pw": "integer",
+        "only_admin": "boolean",
+        "only_user": "boolean",
+        "only_guest": "boolean",
+        "allow_public": "boolean",
+        "status": "integer",
+        "rank": "integer",
+        "size": "integer",
+        "active": "boolean",
+        "canceled": "boolean",
+        "closed": "boolean",
+        "completed": "boolean",
+        "duplicate": "boolean",
+        "fixed": "boolean",
+        "flagged": "boolean",
+        "internal": "boolean",
+        "locked": "boolean",
+        "pending": "boolean",
+        "planned": "boolean",
+        "problem": "boolean",
+        "published": "boolean",
+        "released": "boolean",
+        "retired": "boolean",
+        "resolved": "boolean",
+        "suspended": "boolean",
+        "unknown": "boolean",
+        "label": "string",
+        "title": "string",
+        "byline": "string",
+        "slug": "string",
+        "url": "string",
+        "description": "string",
+        "introduction": "string",
+        "content": "string",
+        "summary": "string",
+        "icon": "string",
+        "image": "string",
+        "avatar": "string",
+        "ui": "array",
+        "assets": "array",
+        "backlog": "array",
+        "board": "array",
+        "flow": "array",
+        "meta": "array",
+        "notes": "array",
+        "options": "array",
+        "roadmap": "array",
+        "sources": "array"
+    },
+    "fillable": [
+        "owned_by_id",
+        "parent_id",
+        "backlog_type",
+        "board_id",
+        "epic_id",
+        "flow_id",
+        "milestone_id",
+        "note_id",
+        "project_id",
+        "release_id",
+        "roadmap_id",
+        "source_id",
+        "sprint_id",
+        "tag_id",
+        "team_id",
+        "ticket_id",
+        "version_id",
+        "start_at",
+        "planned_start_at",
+        "end_at",
+        "planned_end_at",
+        "canceled_at",
+        "closed_at",
+        "embargo_at",
+        "fixed_at",
+        "postponed_at",
+        "published_at",
+        "released_at",
+        "resumed_at",
+        "resolved_at",
+        "suspended_at",
+        "gids",
+        "po",
+        "pg",
+        "pw",
+        "only_admin",
+        "only_user",
+        "only_guest",
+        "allow_public",
+        "status",
+        "rank",
+        "size",
+        "active",
+        "canceled",
+        "closed",
+        "completed",
+        "duplicate",
+        "fixed",
+        "flagged",
+        "internal",
+        "locked",
+        "pending",
+        "planned",
+        "problem",
+        "published",
+        "released",
+        "retired",
+        "resolved",
+        "suspended",
+        "unknown",
+        "label",
+        "title",
+        "byline",
+        "slug",
+        "url",
+        "description",
+        "introduction",
+        "content",
+        "summary",
+        "icon",
+        "image",
+        "avatar",
+        "ui",
+        "assets",
+        "backlog",
+        "board",
+        "flow",
+        "meta",
+        "options",
+        "roadmap",
+        "sources"
+    ],
+    "filters": {
+        "builder": null,
+        "ids": [
+            {
+                "column": "id",
+                "type": "uuid",
+                "nullable": false
+            },
+            {
+                "column": "created_by_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "modified_by_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "owned_by_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "parent_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "backlog_type",
+                "type": "string",
+                "nullable": true
+            },
+            {
+                "column": "board_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "epic_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "flow_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "milestone_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "note_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "project_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "release_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "roadmap_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "source_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "sprint_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "tag_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "team_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "ticket_id",
+                "type": "uuid",
+                "nullable": true
+            },
+            {
+                "column": "version_id",
+                "type": "uuid",
+                "nullable": true
+            }
+        ],
+        "dates": [
+            {
+                "column": "created_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "updated_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "deleted_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "start_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "planned_start_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "end_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "planned_end_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "canceled_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "closed_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "embargo_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "fixed_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "postponed_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "published_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "released_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "resumed_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "resolved_at",
+                "type": "datetime",
+                "nullable": true
+            },
+            {
+                "column": "suspended_at",
+                "type": "datetime",
+                "nullable": true
+            }
+        ],
+        "flags": [
+            {
+                "column": "active",
+                "label": "Active",
+                "icon": "fa-solid fa-person-running"
+            },
+            {
+                "column": "canceled",
+                "label": "Canceled",
+                "icon": "fa-solid fa-ban text-warning"
+            },
+            {
+                "column": "closed",
+                "label": "Closed",
+                "icon": "fa-solid fa-xmark"
+            },
+            {
+                "column": "completed",
+                "label": "Completed",
+                "icon": "fa-solid fa-check"
+            },
+            {
+                "column": "duplicate",
+                "label": "Duplicate",
+                "icon": "fa-solid fa-clone"
+            },
+            {
+                "column": "fixed",
+                "label": "Fixed",
+                "icon": "fa-solid fa-wrench"
+            },
+            {
+                "column": "flagged",
+                "label": "Flagged",
+                "icon": "fa-solid fa-flag"
+            },
+            {
+                "column": "internal",
+                "label": "Internal",
+                "icon": "fa-solid fa-server"
+            },
+            {
+                "column": "locked",
+                "label": "Locked",
+                "icon": "fa-solid fa-lock text-warning"
+            },
+            {
+                "column": "pending",
+                "label": "Pending",
+                "icon": "fa-solid fa-circle-pause text-warning"
+            },
+            {
+                "column": "planned",
+                "label": "Planned",
+                "icon": "fa-solid fa-circle-pause text-success"
+            },
+            {
+                "column": "problem",
+                "label": "Problem",
+                "icon": "fa-solid fa-triangle-exclamation text-danger"
+            },
+            {
+                "column": "published",
+                "label": "Published",
+                "icon": "fa-solid fa-book"
+            },
+            {
+                "column": "released",
+                "label": "Released",
+                "icon": "fa-solid fa-dove"
+            },
+            {
+                "column": "retired",
+                "label": "Retired",
+                "icon": "fa-solid fa-chair text-success"
+            },
+            {
+                "column": "resolved",
+                "label": "Resolved",
+                "icon": "fa-solid fa-check-double text-success"
+            },
+            {
+                "column": "suspended",
+                "label": "Suspended",
+                "icon": "fa-solid fa-hand text-danger"
+            },
+            {
+                "column": "unknown",
+                "label": "Unknown",
+                "icon": "fa-solid fa-question text-warning"
+            }
+        ],
+        "trash": {
+            "hide": true,
+            "only": true,
+            "with": true
+        },
+        "columns": [
+            {
+                "column": "label",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "title",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "byline",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "slug",
+                "type": "string",
+                "nullable": true
+            },
+            {
+                "column": "url",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "description",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "introduction",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "content",
+                "type": "mediumText",
+                "nullable": true
+            },
+            {
+                "column": "summary",
+                "type": "mediumText",
+                "nullable": true
+            }
+        ],
+        "permissions": [
+            {
+                "column": "gids",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true
+            },
+            {
+                "column": "po",
+                "type": "tinyInteger",
+                "nullable": false,
+                "unsigned": true
+            },
+            {
+                "column": "pg",
+                "type": "tinyInteger",
+                "nullable": false,
+                "unsigned": true
+            },
+            {
+                "column": "pw",
+                "type": "tinyInteger",
+                "nullable": false,
+                "unsigned": true
+            },
+            {
+                "column": "only_admin",
+                "type": "boolean",
+                "nullable": false,
+                "unsigned": false,
+                "icon": "fa-solid fa-user-gear",
+                "label": "Only Admin"
+            },
+            {
+                "column": "only_user",
+                "type": "boolean",
+                "nullable": false,
+                "unsigned": false,
+                "icon": "fa-solid fa-user",
+                "label": "Only User"
+            },
+            {
+                "column": "only_guest",
+                "type": "boolean",
+                "nullable": false,
+                "unsigned": false,
+                "icon": "fa-solid fa-person-rays",
+                "label": "Only Guest"
+            },
+            {
+                "column": "allow_public",
+                "type": "boolean",
+                "nullable": false,
+                "unsigned": false,
+                "icon": "fa-solid fa-users-line",
+                "label": "Allow Public"
+            }
+        ],
+        "status": [
+            {
+                "column": "status",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": true
+            },
+            {
+                "column": "rank",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": false
+            },
+            {
+                "column": "size",
+                "type": "bigInteger",
+                "nullable": false,
+                "unsigned": false
+            }
+        ],
+        "ui": [
+            {
+                "column": "icon",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "image",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "avatar",
+                "type": "string",
+                "nullable": false
+            },
+            {
+                "column": "ui",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            }
+        ],
+        "json": [
+            {
+                "column": "assets",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            },
+            {
+                "column": "backlog",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            },
+            {
+                "column": "board",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            },
+            {
+                "column": "flow",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            },
+            {
+                "column": "meta",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            },
+            {
+                "column": "notes",
+                "type": "JSON_ARRAY",
+                "nullable": true
+            },
+            {
+                "column": "options",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            },
+            {
+                "column": "roadmap",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            },
+            {
+                "column": "sources",
+                "type": "JSON_OBJECT",
+                "nullable": true
+            }
+        ]
+    },
+    "models": {
+        "Backlog": "tmp-testing-model.backlog.json"
+    },
+    "sortable": [
+        {
+            "column": "id",
+            "type": "uuid",
+            "nullable": false
+        },
+        {
+            "column": "created_by_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "modified_by_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "owned_by_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "parent_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "backlog_type",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "board_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "epic_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "flow_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "milestone_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "note_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "project_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "release_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "roadmap_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "source_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "sprint_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "tag_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "team_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "ticket_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "version_id",
+            "type": "uuid",
+            "nullable": true
+        },
+        {
+            "column": "created_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "updated_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "deleted_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "start_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "planned_start_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "end_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "planned_end_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "canceled_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "closed_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "embargo_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "fixed_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "postponed_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "published_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "released_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "resumed_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "resolved_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "suspended_at",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "gids",
+            "type": "bigInteger",
+            "nullable": false
+        },
+        {
+            "column": "po",
+            "type": "tinyInteger",
+            "nullable": false
+        },
+        {
+            "column": "pg",
+            "type": "tinyInteger",
+            "nullable": false
+        },
+        {
+            "column": "pw",
+            "type": "tinyInteger",
+            "nullable": false
+        },
+        {
+            "column": "only_admin",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "only_user",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "only_guest",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "allow_public",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "status",
+            "type": "bigInteger",
+            "nullable": false
+        },
+        {
+            "column": "rank",
+            "type": "bigInteger",
+            "nullable": false
+        },
+        {
+            "column": "size",
+            "type": "bigInteger",
+            "nullable": false
+        },
+        {
+            "column": "active",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "canceled",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "closed",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "completed",
+            "type": "boolean",
+            "nullable": false,
+            "label": "Completed",
+            "icon": "fa-solid fa-check"
+        },
+        {
+            "column": "duplicate",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "fixed",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "flagged",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "internal",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "locked",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "pending",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "planned",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "problem",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "published",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "released",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "retired",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "resolved",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "suspended",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "unknown",
+            "type": "boolean",
+            "nullable": false
+        },
+        {
+            "column": "label",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "title",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "byline",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "slug",
+            "type": "string",
+            "nullable": true
+        },
+        {
+            "column": "url",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "description",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "introduction",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "content",
+            "type": "mediumText",
+            "nullable": true
+        },
+        {
+            "column": "summary",
+            "type": "mediumText",
+            "nullable": true
+        },
+        {
+            "column": "icon",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "image",
+            "type": "string",
+            "nullable": false
+        },
+        {
+            "column": "avatar",
+            "type": "string",
+            "nullable": false
+        }
+    ],
+    "create": {
+        "migration": "2020_01_02_100001_create_matrix_backlogs_table",
+        "class": "2020_01_02_100001_create_matrix_backlogs_table",
+        "primary": "uuid",
+        "ids": {
+            "created_by_id": {
+                "type": "uuid",
+                "readOnly": true,
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "users"
+                }
+            },
+            "modified_by_id": {
+                "type": "uuid",
+                "readOnly": true,
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "users"
+                }
+            },
+            "owned_by_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "users"
+                }
+            },
+            "parent_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_backlogs"
+                }
+            },
+            "backlog_type": {
+                "type": "string",
+                "nullable": true,
+                "index": true
+            },
+            "board_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_boards"
+                }
+            },
+            "epic_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_epics"
+                }
+            },
+            "flow_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_flows"
+                }
+            },
+            "milestone_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_milestones"
+                }
+            },
+            "note_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_notes"
+                }
+            },
+            "project_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_projects"
+                }
+            },
+            "release_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_releases"
+                }
+            },
+            "roadmap_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_roadmaps"
+                }
+            },
+            "source_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_sources"
+                }
+            },
+            "sprint_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_sprints"
+                }
+            },
+            "tag_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_tags"
+                }
+            },
+            "team_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_teams"
+                }
+            },
+            "ticket_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_tickets"
+                }
+            },
+            "version_id": {
+                "type": "uuid",
+                "nullable": true,
+                "index": true,
+                "foreign": {
+                    "references": "id",
+                    "on": "matrix_versions"
+                }
+            }
+        },
+        "unique": [
+            {
+                "keys": [
+                    "slug",
+                    "parent_id"
+                ]
+            }
+        ],
+        "timestamps": true,
+        "softDeletes": true,
+        "dates": {
+            "start_at": {
+                "nullable": true,
+                "index": true
+            },
+            "planned_start_at": {
+                "nullable": true,
+                "index": false
+            },
+            "end_at": {
+                "nullable": true,
+                "index": true
+            },
+            "planned_end_at": {
+                "nullable": true,
+                "index": false
+            },
+            "canceled_at": {
+                "nullable": true,
+                "index": false
+            },
+            "closed_at": {
+                "nullable": true,
+                "index": true
+            },
+            "embargo_at": {
+                "nullable": true,
+                "index": false
+            },
+            "fixed_at": {
+                "nullable": true,
+                "index": false
+            },
+            "postponed_at": {
+                "nullable": true,
+                "index": false
+            },
+            "published_at": {
+                "nullable": true,
+                "index": false
+            },
+            "released_at": {
+                "nullable": true,
+                "index": false
+            },
+            "resumed_at": {
+                "nullable": true,
+                "index": false
+            },
+            "resolved_at": {
+                "nullable": true,
+                "index": true
+            },
+            "suspended_at": {
+                "nullable": true,
+                "index": false
+            }
+        },
+        "permissions": {
+            "gids": {
+                "type": "bigInteger",
+                "default": 0,
+                "unsigned": true
+            },
+            "po": {
+                "type": "tinyInteger",
+                "default": 0,
+                "unsigned": true
+            },
+            "pg": {
+                "type": "tinyInteger",
+                "default": 0,
+                "unsigned": true
+            },
+            "pw": {
+                "type": "tinyInteger",
+                "default": 0,
+                "unsigned": true
+            },
+            "only_admin": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-user-gear"
+            },
+            "only_user": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-user"
+            },
+            "only_guest": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-person-rays"
+            },
+            "allow_public": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-users-line"
+            }
+        },
+        "status": {
+            "status": {
+                "type": "bigInteger",
+                "default": 0,
+                "unsigned": true
+            },
+            "rank": {
+                "type": "bigInteger",
+                "default": 0,
+                "unsigned": false
+            },
+            "size": {
+                "type": "bigInteger",
+                "default": 0,
+                "unsigned": false
+            }
+        },
+        "flags": {
+            "active": {
+                "type": "boolean",
+                "default": true,
+                "index": true,
+                "icon": "fa-solid fa-person-running"
+            },
+            "canceled": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-ban text-warning"
+            },
+            "closed": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-xmark"
+            },
+            "completed": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-check"
+            },
+            "duplicate": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-clone"
+            },
+            "fixed": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-wrench"
+            },
+            "flagged": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-flag"
+            },
+            "internal": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-server"
+            },
+            "locked": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-lock text-warning"
+            },
+            "pending": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-circle-pause text-warning"
+            },
+            "planned": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-circle-pause text-success"
+            },
+            "problem": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-triangle-exclamation text-danger"
+            },
+            "published": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-book"
+            },
+            "released": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-dove"
+            },
+            "retired": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-chair text-success"
+            },
+            "resolved": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-check-double text-success"
+            },
+            "suspended": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-hand text-danger"
+            },
+            "unknown": {
+                "type": "boolean",
+                "default": false,
+                "icon": "fa-solid fa-question text-warning"
+            }
+        },
+        "columns": {
+            "label": {
+                "type": "string",
+                "default": "",
+                "size": 128
+            },
+            "title": {
+                "type": "string",
+                "default": "",
+                "size": 255
+            },
+            "byline": {
+                "type": "string",
+                "default": "",
+                "size": 255
+            },
+            "slug": {
+                "type": "string",
+                "default": null,
+                "size": 128,
+                "index": true,
+                "nullable": true,
+                "slug": true
+            },
+            "url": {
+                "type": "string",
+                "default": "",
+                "size": 512
+            },
+            "description": {
+                "type": "string",
+                "default": "",
+                "size": 512
+            },
+            "introduction": {
+                "type": "string",
+                "default": "",
+                "size": 512
+            },
+            "content": {
+                "type": "mediumText",
+                "nullable": true,
+                "html": true
+            },
+            "summary": {
+                "type": "mediumText",
+                "nullable": true,
+                "html": true
+            }
+        },
+        "ui": {
+            "icon": {
+                "type": "string",
+                "size": 128,
+                "default": ""
+            },
+            "image": {
+                "type": "string",
+                "default": "",
+                "size": 512
+            },
+            "avatar": {
+                "type": "string",
+                "default": "",
+                "size": 512
+            },
+            "ui": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            }
+        },
+        "json": {
+            "assets": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            },
+            "backlog": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            },
+            "board": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            },
+            "flow": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            },
+            "meta": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            },
+            "notes": {
+                "readOnly": true,
+                "nullable": true,
+                "type": "JSON_ARRAY",
+                "comment": "Array of note objects"
+            },
+            "options": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            },
+            "roadmap": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            },
+            "sources": {
+                "nullable": true,
+                "type": "JSON_OBJECT"
+            }
+        }
+    },
+    "uses": [
+        "Illuminate\\Database\\Eloquent\\Relations\\HasOne"
+    ]
+}
