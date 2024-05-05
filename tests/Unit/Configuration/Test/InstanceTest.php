@@ -81,12 +81,6 @@ class InstanceTest extends TestCase
         if (is_array($options)) {
             $options['suite'] = 'unit';
         }
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$file' => $file,
-        //     '$content' => $content,
-        //     '$options' => $options,
-        // ]);
 
         $instance = new Test(
             is_array($options) ? $options : [],
@@ -94,14 +88,7 @@ class InstanceTest extends TestCase
         );
 
         $instance->apply();
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$file' => $file,
-        //     '$instance' => $instance,
-        //     // 'json_encode($instance)' => json_encode($instance, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
-        //     // '$options' => $options,
-        // ]);
-        // echo(json_encode($instance, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+
         $this->assertEmpty($instance->folder());
         $this->assertTrue($instance->skeleton());
 

@@ -83,13 +83,6 @@ trait BuildModelRelationships
     protected array \$hasMany = [$hasMany_properties];
 PHP_CODE;
 
-        // $this->searches['hasMany_properties'] = sprintf(
-        //     '%3$s%3$s%1$sprotected array $hasMany = [%2$s];',
-        //     str_repeat(' ', 4),
-        //     $hasMany_properties,
-        //     PHP_EOL
-        // );
-
         $this->searches['hasRelationships'] = 'true';
     }
 
@@ -234,13 +227,6 @@ PHP_CODE;
      */
     protected array \$hasOne = [$hasOne_properties];
 PHP_CODE;
-
-        // $this->searches['hasOne_properties'] = sprintf(
-        //     '%3$s%3$s%1$sprotected array $hasOne = [%2$s];',
-        //     str_repeat(' ', 4),
-        //     $hasOne_properties,
-        //     PHP_EOL
-        // );
 
         $this->searches['hasRelationships'] = 'true';
         // dump([
