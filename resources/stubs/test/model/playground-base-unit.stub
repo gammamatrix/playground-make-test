@@ -1,0 +1,24 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace {{ namespace }};
+
+use Playground\ServiceProvider as PlaygroundServiceProvider;
+use Playground\Test\Unit\Models\ModelCase as BaseModelCase;
+{{ use }}
+/**
+ * \{{ namespace }}\{{ class }}
+ */
+class {{ class }} extends BaseModelCase
+{
+    protected function getPackageProviders($app)
+    {
+        return [
+            PlaygroundServiceProvider::class,
+            ServiceProvider::class,
+        ];
+    }
+}

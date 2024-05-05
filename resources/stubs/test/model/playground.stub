@@ -1,0 +1,17 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace {{ namespace }};
+{{ use }}
+/**
+ * \{{ namespace }}\{{ class }}
+ */
+class {{ class }} extends {{ extends }}{{ implements }}
+{
+    protected string $modelClass = \{{ model_fqdn }}::class;
+
+    protected bool $hasRelationships = {{ hasRelationships }};{{ hasMany_properties }}{{ hasOne_properties }}
+}

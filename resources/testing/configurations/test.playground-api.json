@@ -1,0 +1,22 @@
+{
+    "organization": "Playground",
+    "package": "playground-crm",
+    "module": "Crm",
+    "module_slug": "crm",
+    "fqdn": "",
+    "namespace": "Playground/Crm",
+    "model": "Contact",
+    "model_fqdn": "Playground/Crm/Models/Contact",
+    "model_column": "",
+    "model_label": "",
+    "name": "Contact",
+    "folder": "",
+    "class": "",
+    "type": "playground-api",
+    "extends": "",
+    "implements": [],
+    "properties": [],
+    "setup": [],
+    "tests": [],
+    "models": []
+}
