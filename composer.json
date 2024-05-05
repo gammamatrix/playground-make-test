@@ -24,7 +24,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "gammamatrix/playground-make": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
+        "gammamatrix/playground-make": "dev-feature/GH-3"
     },
     "require-dev": {
         "gammamatrix/playground-test": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
