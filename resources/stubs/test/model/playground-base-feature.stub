@@ -4,19 +4,18 @@
  */
 
 declare(strict_types=1);
-namespace {{ namespace }};
+namespace Tests\Feature\{{ namespace }};
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Support\Carbon;
-use Playground\ServiceProvider as PlaygroundServiceProvider;
 use Playground\Test\Feature\Models\ModelCase as BaseModelCase;
-{{ use }}
+{{use}}
 /**
  * \{{ namespace }}\{{ class }}
  */
 class {{ class }} extends BaseModelCase
 {
     use DatabaseTransactions;
+    use PackageProviders;
 
     protected bool $load_migrations_{{ module_slug }} = true;
 
@@ -24,23 +23,15 @@ class {{ class }} extends BaseModelCase
 
     protected bool $load_migrations_playground = true;
 
-    protected function getPackageProviders($app)
-    {
-        return [
-            PlaygroundServiceProvider::class,
-            ServiceProvider::class,
-        ];
-    }
-
     /**
-     * Setup the test environment.
+     * Define database migrations.
+     *
+     * @api
+     *
+     * @return void
      */
-    protected function setUp(): void
+    protected function defineDatabaseMigrations()
     {
-        parent::setUp();
-
-        Carbon::setTestNow(Carbon::now());
-
         if (! empty(env('TEST_DB_MIGRATIONS'))) {
             if ($this->load_migrations_{{ module_slug }}) {
                 $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations');

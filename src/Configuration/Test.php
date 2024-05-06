@@ -18,6 +18,11 @@ class Test extends PrimaryConfiguration
 
     protected string $model_fqdn = '';
 
+    /**
+     * @var array<int, string>
+     */
+    protected array $package_providers = [];
+
     protected string $suite = '';
 
     /**
@@ -45,6 +50,7 @@ class Test extends PrimaryConfiguration
         'type' => '',
         'uses' => [],
         'models' => [],
+        'package_providers' => [],
     ];
 
     /**
@@ -74,6 +80,14 @@ class Test extends PrimaryConfiguration
             }
         }
 
+        if (! empty($options['package_providers'])
+            && is_array($options['package_providers'])
+        ) {
+            foreach ($options['package_providers'] as $provider) {
+                $this->addClassTo('package_providers', $provider);
+            }
+        }
+
         return $this;
     }
 
@@ -93,6 +107,14 @@ class Test extends PrimaryConfiguration
     public function models(): array
     {
         return $this->models;
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function package_providers(): array
+    {
+        return $this->package_providers;
     }
 
     public function suite(): string

@@ -4,12 +4,12 @@
  */
 
 declare(strict_types=1);
-namespace Tests\Unit\{{namespace}};
+namespace {{namespace}};
 
 /**
- * \Tests\Unit\{{namespace}}\TestTrait
+ * \{{namespace}}\PackageProviders
  */
-trait TestTrait
+trait PackageProviders
 {
     protected function getPackageProviders($app)
     {

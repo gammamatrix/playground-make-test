@@ -6,7 +6,6 @@
 declare(strict_types=1);
 namespace Playground\Make\Test\Console\Commands;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Playground\Make\Building\Concerns;
 use Playground\Make\Configuration\Contracts\PrimaryConfiguration as PrimaryConfigurationContract;
@@ -58,6 +57,7 @@ class TestMakeCommand extends GeneratorCommand
         'hasRelationships' => 'false',
         'hasMany_properties' => '',
         'hasOne_properties' => '',
+        'test_trait_providers' => '',
     ];
 
     /**
@@ -84,6 +84,25 @@ class TestMakeCommand extends GeneratorCommand
     protected $type = 'Test';
 
     protected string $path_destination_folder = 'tests';
+
+    /**
+     * @var array<int, string>
+     */
+    protected array $options_type_suggested = [
+        // Service Providers
+        'providers',
+        'providers-api',
+        'providers-model',
+        'providers-resource',
+        // Models
+        'model-case',
+        'model',
+        'playground-model',
+        // APIs
+        'playground-api',
+        // Resources
+        'playground-resource',
+    ];
 
     public function prepareOptions(): void
     {
@@ -158,32 +177,12 @@ class TestMakeCommand extends GeneratorCommand
             // ]);
 
         } elseif (in_array($type, [
-            'unit-test-trait-api',
-            'unit-test-trait-model',
-            'unit-test-trait-resource',
+            'providers',
+            'providers-api',
+            'providers-model',
+            'providers-resource',
         ])) {
-
-            // @see buildClass_getPackageProviders()
-
-            // $this->c->setOptions([
-            //     'extends' => 'Playground/Test/Unit/Models/ModelCase as BaseModelCase',
-            // ]);
-
-            // $use = sprintf(
-            //     '%1$sServiceProvider',
-            //     $rootNamespace
-            // );
-
-            // $this->searches['use'] = $use;
-            // $this->buildClass_uses_add($use);
-
-            // $this->c->addToUse($use);
-            // $this->buildClass_uses_add($use);
-            // dump([
-            //     '__METHOD__' => __METHOD__,
-            //     '$this->c' => $this->c,
-            // ]);
-
+            $this->buildClass_getPackageProviders($type);
         } elseif (in_array($type, [
             'model',
             'playground-api',
@@ -220,6 +219,12 @@ class TestMakeCommand extends GeneratorCommand
                 $this->c->setOptions([
                     'extends' => 'ModelCase',
                 ]);
+
+                $this->buildClass_uses_add(sprintf(
+                    'Tests\Unit\%1$s\PackageProviders',
+                    $rootNamespace
+                ));
+
             } else {
                 $this->buildClass_uses_add(sprintf(
                     'Tests\Unit\Playground\%1$s\Models\ModelCase',
@@ -238,6 +243,8 @@ class TestMakeCommand extends GeneratorCommand
             // } elseif ($type === 'playground-resource') {
         } else {
         }
+
+        // $this->saveConfiguration();
 
         $this->applyConfigurationToSearch();
         if (is_string($this->c->name())) {
@@ -277,6 +284,16 @@ class TestMakeCommand extends GeneratorCommand
             $filename = sprintf(
                 'test.%1$s.model.json',
                 Str::of($this->c->suite())->kebab(),
+            );
+        } elseif (in_array($type, [
+            'providers',
+            'providers-api',
+            'providers-model',
+            'providers-resource',
+        ])) {
+            $filename = sprintf(
+                'test.%1$s.json',
+                Str::of($type)->kebab(),
             );
         } else {
             $type = 'test';
@@ -325,6 +342,15 @@ class TestMakeCommand extends GeneratorCommand
             // } elseif ($type === 'controller') {
             // } elseif ($type === 'playground-resource-index') {
             // } elseif ($type === 'playground-resource') {
+        } elseif (in_array($type, [
+            'providers',
+            'providers-api',
+            'providers-model',
+            'providers-resource',
+        ])) {
+            $this->c->setOptions([
+                'class' => 'PackageProviders',
+            ]);
         } else {
             $this->c->setOptions([
                 'class' => 'InstanceTest',
@@ -372,6 +398,13 @@ class TestMakeCommand extends GeneratorCommand
                 $test = 'test/test.stub';
             }
         } elseif (in_array($type, [
+            'providers',
+            'providers-api',
+            'providers-model',
+            'providers-resource',
+        ])) {
+            $test = 'test/playground-trait-providers.stub';
+        } elseif (in_array($type, [
             'model-case',
         ])) {
             if ($suite === 'feature') {
@@ -418,7 +451,13 @@ class TestMakeCommand extends GeneratorCommand
         }
 
         $name = $this->c->name();
-        if ($name) {
+        if ($name && ! in_array($type, [
+            'model-case',
+            'providers',
+            'providers-api',
+            'providers-model',
+            'providers-resource',
+        ])) {
             $namespace = Str::of($namespace)
                 ->finish('\\')
                 ->append(Str::of($name)->studly()->toString())
@@ -457,6 +496,7 @@ class TestMakeCommand extends GeneratorCommand
 
             if (in_array($this->c->type(), [
                 'model-case',
+                'providers',
             ])) {
                 $this->folder = sprintf(
                     '%1$s/%2$s',
@@ -475,54 +515,4 @@ class TestMakeCommand extends GeneratorCommand
 
         return $this->folder;
     }
-
-    // /**
-    //  * Resolve the fully-qualified path to the stub.
-    //  *
-    //  * @param  string  $stub
-    //  */
-    // protected function resolveStubPath($stub): string
-    // {
-    //     $path = '';
-    //     $stub_path = config('playground-make.paths.stubs');
-    //     dump([
-    //         '__METHOD__' => __METHOD__,
-    //         '$stub_path' => $stub_path,
-    //     ]);
-    //     if (! empty($stub_path)
-    //         && is_string($stub_path)
-    //     ) {
-    //         if (! is_dir($stub_path)) {
-    //             Log::error(__('playground-make::generator.path.invalid'), [
-    //                 '$stub_path' => $stub_path,
-    //                 '$stub' => $stub,
-    //             ]);
-    //         } else {
-    //             $path = sprintf(
-    //                 '%1$s/%2$s',
-    //                 // Str::of($stub_path)->finish('/')->toString(),
-    //                 Str::of($stub_path)->toString(),
-    //                 $stub
-    //             );
-    //         }
-    //     }
-
-    //     if (empty($path)) {
-    //         $path = sprintf(
-    //             '%1$s/resources/stubs/%2$s',
-    //             dirname(dirname(dirname(__DIR__))),
-    //             $stub
-    //         );
-    //     }
-
-    //     if (! file_exists($path)) {
-    //         $this->components->error(__('playground-make::generator.stub.missing', [
-    //             'stub_path' => is_string($stub_path) ? $stub_path : gettype($stub_path),
-    //             'stub' => $stub,
-    //             'path' => $path,
-    //         ]));
-    //     }
-
-    //     return $path;
-    // }
 }

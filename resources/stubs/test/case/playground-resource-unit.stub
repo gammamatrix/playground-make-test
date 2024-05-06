@@ -4,14 +4,15 @@
  */
 
 declare(strict_types=1);
-namespace Tests\Unit\{{ namespace }};
+namespace {{ namespace }};
 
 use Playground\Test\OrchestraTestCase;
+use Tests\Unit\{{ namespace }}\PackageProviders;
 
 /**
  * \Tests\Unit\{{ namespace }}\{{ class }}
  */
 class {{ class }} extends OrchestraTestCase
 {
-    use TestTrait;
+    use PackageProviders;
 }

@@ -43,6 +43,7 @@ class InstanceTest extends TestCase
         'type' => '',
         'uses' => [],
         'models' => [],
+        'package_providers' => [],
     ];
 
     public function test_instance_apply_without_options(): void
