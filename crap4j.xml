@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-05 06:15:26</timestamp>
+  <timestamp>2024-05-06 19:07:15</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>20</methodCount>
-    <crapMethodCount>2</crapMethodCount>
-    <crapLoad>30</crapLoad>
-    <totalCrap>582.84</totalCrap>
-    <crapMethodPercent>10</crapMethodPercent>
+    <methodCount>22</methodCount>
+    <crapMethodCount>3</crapMethodCount>
+    <crapLoad>44</crapLoad>
+    <totalCrap>793.73</totalCrap>
+    <crapMethodPercent>13.64</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -36,13 +36,24 @@
     <method>
       <package>Playground\Make\Test\Building</package>
       <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>addToBuildPackageProviders</methodName>
+      <methodSignature>addToBuildPackageProviders(string $provider): void</methodSignature>
+      <fullMethod>addToBuildPackageProviders(string $provider): void</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
       <methodName>buildClass_getPackageProviders</methodName>
       <methodSignature>buildClass_getPackageProviders(string $type): void</methodSignature>
       <fullMethod>buildClass_getPackageProviders(string $type): void</fullMethod>
-      <crap>30</crap>
-      <complexity>5</complexity>
+      <crap>210</crap>
+      <complexity>14</complexity>
       <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
+      <crapLoad>14</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Configuration</package>
@@ -50,9 +61,9 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>8.3</crap>
-      <complexity>8</complexity>
-      <coverage>83.33</coverage>
+      <crap>12.89</crap>
+      <complexity>11</complexity>
+      <coverage>75</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -91,6 +102,17 @@
     <method>
       <package>Playground\Make\Test\Configuration</package>
       <className>Playground\Make\Test\Configuration\Test</className>
+      <methodName>package_providers</methodName>
+      <methodSignature>package_providers(): array</methodSignature>
+      <fullMethod>package_providers(): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Configuration</package>
+      <className>Playground\Make\Test\Configuration\Test</className>
       <methodName>suite</methodName>
       <methodSignature>suite(): string</methodSignature>
       <fullMethod>suite(): string</fullMethod>
@@ -105,9 +127,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>15.39</crap>
+      <crap>16.65</crap>
       <complexity>14</complexity>
-      <coverage>80.77</coverage>
+      <coverage>76.19</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -116,9 +138,9 @@
       <methodName>getConfigurationFilename</methodName>
       <methodSignature>getConfigurationFilename(): string</methodSignature>
       <fullMethod>getConfigurationFilename(): string</fullMethod>
-      <crap>3.02</crap>
-      <complexity>3</complexity>
-      <coverage>86.67</coverage>
+      <crap>4.13</crap>
+      <complexity>4</complexity>
+      <coverage>80</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -127,8 +149,8 @@
       <methodName>qualifyClass</methodName>
       <methodSignature>qualifyClass($name): string</methodSignature>
       <fullMethod>qualifyClass($name): string</fullMethod>
-      <crap>4.59</crap>
-      <complexity>4</complexity>
+      <crap>5.93</crap>
+      <complexity>5</complexity>
       <coverage>66.67</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -138,9 +160,9 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>6.32</crap>
-      <complexity>5</complexity>
-      <coverage>62.5</coverage>
+      <crap>7.01</crap>
+      <complexity>6</complexity>
+      <coverage>69.57</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -149,9 +171,9 @@
       <methodName>getDefaultNamespace</methodName>
       <methodSignature>getDefaultNamespace($rootNamespace): string</methodSignature>
       <fullMethod>getDefaultNamespace($rootNamespace): string</fullMethod>
-      <crap>5.09</crap>
-      <complexity>5</complexity>
-      <coverage>84.62</coverage>
+      <crap>6.07</crap>
+      <complexity>6</complexity>
+      <coverage>87.5</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -171,9 +193,9 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>4.49</crap>
+      <crap>4.41</crap>
       <complexity>4</complexity>
-      <coverage>68.75</coverage>
+      <coverage>70.59</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
