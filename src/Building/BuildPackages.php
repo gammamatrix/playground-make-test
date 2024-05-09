@@ -118,7 +118,7 @@ trait BuildPackages
         }
 
         foreach ($this->build_providers as $provider) {
-            $test_trait_providers .= sprintf('%1$s\'%2$s\',%3$s', str_repeat(' ', 8), $provider, PHP_EOL);
+            $test_trait_providers .= sprintf('%1$s%2$s,%3$s', str_repeat(' ', 12), $provider, PHP_EOL);
         }
 
         // dump([

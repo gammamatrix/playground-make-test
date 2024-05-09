@@ -17,11 +17,11 @@ class {{ class }} extends BaseModelCase
     use DatabaseTransactions;
     use PackageProviders;
 
-    protected bool $load_migrations_{{ module_slug }} = true;
-
     protected bool $load_migrations_laravel = false;
 
-    protected bool $load_migrations_playground = true;
+    protected bool $load_migrations_package = false;
+
+    protected bool $load_migrations_playground = false;
 
     /**
      * Define database migrations.
@@ -33,12 +33,12 @@ class {{ class }} extends BaseModelCase
     protected function defineDatabaseMigrations()
     {
         if (! empty(env('TEST_DB_MIGRATIONS'))) {
-            if ($this->load_migrations_{{ module_slug }}) {
-                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations');
-            }
             // if ($this->load_migrations_laravel) {
             //     $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-laravel');
             // }
+            if ($this->load_migrations_package) {
+                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations');
+            }
             if ($this->load_migrations_playground) {
                 $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-playground');
             }

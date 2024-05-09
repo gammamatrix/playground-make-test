@@ -220,16 +220,23 @@ class TestMakeCommand extends GeneratorCommand
                     'extends' => 'ModelCase',
                 ]);
 
-                $this->buildClass_uses_add(sprintf(
-                    'Tests\Unit\%1$s\PackageProviders',
-                    $rootNamespace
-                ));
-
+                // $this->buildClass_uses_add(sprintf(
+                //     'Tests\Unit\%1$s\PackageProviders',
+                //     $rootNamespace
+                // ));
+                // dump([
+                //     '__METHOD__' => __METHOD__,
+                //     '$this->c->suite()' => $this->c->suite(),
+                // ]);
             } else {
                 $this->buildClass_uses_add(sprintf(
                     'Tests\Unit\Playground\%1$s\Models\ModelCase',
                     $this->model->module()
                 ));
+                // dump([
+                //     '__METHOD__' => __METHOD__,
+                //     '$this->c->suite()' => $this->c->suite(),
+                // ]);
             }
             $this->c->setOptions([
                 'extends' => $extends,
@@ -248,6 +255,13 @@ class TestMakeCommand extends GeneratorCommand
 
         $this->applyConfigurationToSearch();
         if (is_string($this->c->name())) {
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     // '$this->c' => $this->c,
+            //     '$this->c->name()' => $this->c->name(),
+            //     // '$this->searches' => $this->searches,
+            //     // '$this->options()' => $this->options(),
+            // ]);
             $this->buildClass_uses($this->c->name());
         }
 
@@ -273,10 +287,10 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $type = 'test';
             $filename = sprintf(
-                '%1$s/%2$s.%3$s.json',
-                Str::of($this->c->name())->before('Test')->kebab(),
+                '%1$s.%2$s.%3$s.json',
                 $type,
                 Str::of($this->c->suite())->kebab(),
+                Str::of($this->c->name())->before('Test')->kebab(),
             );
         } elseif (in_array($type, [
             'model-case',
@@ -413,6 +427,10 @@ class TestMakeCommand extends GeneratorCommand
                 $test = 'test/model/playground-base-unit.stub';
             }
         }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$test' => $test,
+        // ]);
 
         return $this->resolveStubPath($test);
     }
@@ -497,6 +515,13 @@ class TestMakeCommand extends GeneratorCommand
             if (in_array($this->c->type(), [
                 'model-case',
                 'providers',
+                'providers-api',
+                'providers-model',
+                'providers-resource',
+                // 'model',
+                // 'playground-api',
+                // 'playground-resource',
+                // 'playground-model',
             ])) {
                 $this->folder = sprintf(
                     '%1$s/%2$s',
