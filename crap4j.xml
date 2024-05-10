@@ -1,16 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-09 06:17:49</timestamp>
+  <timestamp>2024-05-10 20:15:15</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>22</methodCount>
+    <methodCount>28</methodCount>
     <crapMethodCount>3</crapMethodCount>
     <crapLoad>44</crapLoad>
-    <totalCrap>792.38</totalCrap>
-    <crapMethodPercent>13.64</crapMethodPercent>
+    <totalCrap>809.15</totalCrap>
+    <crapMethodPercent>10.71</crapMethodPercent>
   </stats>
   <methods>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildForControllers</className>
+      <methodName>prepareOptionsForControllers</methodName>
+      <methodSignature>prepareOptionsForControllers(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForControllers(array $options): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildForControllers</className>
+      <methodName>prepareOptionsForApiControllers</methodName>
+      <methodSignature>prepareOptionsForApiControllers(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForApiControllers(array $options): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildForControllers</className>
+      <methodName>prepareOptionsForResourceControllers</methodName>
+      <methodSignature>prepareOptionsForResourceControllers(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForResourceControllers(array $options): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildForModels</className>
+      <methodName>prepareOptionsForModels</methodName>
+      <methodSignature>prepareOptionsForModels(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForModels(array $options): void</fullMethod>
+      <crap>4</crap>
+      <complexity>4</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildForModels</className>
+      <methodName>prepareOptionsForModelCase</methodName>
+      <methodSignature>prepareOptionsForModelCase(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForModelCase(array $options): void</fullMethod>
+      <crap>6</crap>
+      <complexity>2</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildForModels</className>
+      <methodName>prepareOptionsForSuites</methodName>
+      <methodSignature>prepareOptionsForSuites(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForSuites(array $options): void</fullMethod>
+      <crap>4.15</crap>
+      <complexity>4</complexity>
+      <coverage>78.95</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
     <method>
       <package>Playground\Make\Test\Building</package>
       <className>Playground\Make\Test\Building\BuildModelRelationships</className>
@@ -127,9 +193,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>15.57</crap>
-      <complexity>14</complexity>
-      <coverage>80</coverage>
+      <crap>12.16</crap>
+      <complexity>12</complexity>
+      <coverage>89.58</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -171,9 +237,9 @@
       <methodName>getDefaultNamespace</methodName>
       <methodSignature>getDefaultNamespace($rootNamespace): string</methodSignature>
       <fullMethod>getDefaultNamespace($rootNamespace): string</fullMethod>
-      <crap>6.07</crap>
+      <crap>6.1</crap>
       <complexity>6</complexity>
-      <coverage>87.5</coverage>
+      <coverage>85.71</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
