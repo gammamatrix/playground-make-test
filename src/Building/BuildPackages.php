@@ -38,6 +38,8 @@ trait BuildPackages
 
     protected function buildClass_getPackageProviders(string $type): void
     {
+        $extends = '';
+
         $this->build_providers = $this->c->package_providers();
 
         $test_trait_providers = '';
@@ -94,25 +96,25 @@ trait BuildPackages
             $this->addToBuildPackageProviders('\Playground\Site\Blade\ServiceProvider::class');
         }
 
-        $namespace = $this->parseClassInput($this->c->namespace());
+        $namespace = $this->parseClassInput($this->rootNamespace());
 
         if ($add_Package_Api) {
             $this->addToBuildPackageProviders(sprintf(
-                '\%1$s\Api\ServiceProvider::class',
+                '\\%1$sApi\\ServiceProvider::class',
                 $namespace
             ));
         }
 
         if ($add_Package_Resource) {
             $this->addToBuildPackageProviders(sprintf(
-                '\%1$s\Resource\ServiceProvider::class',
+                '\\%1$sResource\\ServiceProvider::class',
                 $namespace
             ));
         }
 
         if ($add_Package_Model) {
             $this->addToBuildPackageProviders(sprintf(
-                '\%1$s\Model\ServiceProvider::class',
+                '\\%1$sModel\\ServiceProvider::class',
                 $namespace
             ));
         }
@@ -121,10 +123,17 @@ trait BuildPackages
             $test_trait_providers .= sprintf('%1$s%2$s,%3$s', str_repeat(' ', 12), $provider, PHP_EOL);
         }
 
+        $this->c->setOptions([
+            'extends' => $extends,
+        ]);
+
         // dump([
         //     '__METHOD__' => __METHOD__,
+        //     '$add_Playground' => $add_Playground,
+        //     '$namespace' => $namespace,
         //     '$test_trait_providers' => $test_trait_providers,
         //     '$this->build_providers' => $this->build_providers,
+        //     '$this->c' => $this->c,
         // ]);
         $this->searches['test_trait_providers'] = $test_trait_providers;
     }

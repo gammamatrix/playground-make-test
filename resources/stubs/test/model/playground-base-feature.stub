@@ -4,7 +4,7 @@
  */
 
 declare(strict_types=1);
-namespace Tests\Feature\{{ namespace }};
+namespace {{ namespace }};
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Playground\Test\Feature\Models\ModelCase as BaseModelCase;

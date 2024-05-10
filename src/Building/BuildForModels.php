@@ -1,0 +1,95 @@
+<?php
+/**
+ * Playground
+ */
+
+declare(strict_types=1);
+namespace Playground\Make\Test\Building;
+
+/**
+ * \Playground\Make\Test\Building\Test\BuildForModels
+ */
+trait BuildForModels
+{
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function prepareOptionsForModels(array $options = []): void
+    {
+        $this->initModel($this->c->skeleton());
+        if (! $this->model) {
+            throw new \RuntimeException('Provide a [--model-file].');
+        }
+
+        // The FQDN, from the model, is the source of truth.
+        $model_fqdn = $this->model->fqdn();
+        if (! $model_fqdn) {
+            $model_fqdn = $this->c->model_fqdn();
+        }
+
+        $this->c->setOptions([
+            'model_fqdn' => $model_fqdn,
+        ]);
+
+        $this->searches['model_fqdn'] = $model_fqdn ? $this->parseClassInput($model_fqdn) : 'ReplaceFqdn';
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function prepareOptionsForModelCase(array $options = []): void
+    {
+        $rootNamespace = $this->rootNamespace();
+
+        if (in_array($this->suite, [
+            'acceptance',
+            'feature',
+        ])) {
+            $this->buildClass_uses_add(sprintf(
+                'Tests\Unit\%1$sPackageProviders',
+                $rootNamespace
+            ));
+            $this->c->setOptions([
+                'extends' => 'Playground/Test/Feature/Models/ModelCase as BaseModelCase',
+            ]);
+        } else {
+            $this->c->setOptions([
+                'extends' => 'Playground/Test/Unit/Models/ModelCase as BaseModelCase',
+            ]);
+        }
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function prepareOptionsForSuites(array $options = []): void
+    {
+        $extends = 'ModelCase';
+
+
+        if (in_array($this->suite, [
+            'acceptance',
+            'feature',
+        ]) && $this->model?->module()) {
+
+            $this->buildClass_uses_add(sprintf(
+                'Tests\Feature\Playground\%1$s\Models\ModelCase',
+                $this->model->module()
+            ));
+
+        } elseif($this->model?->module()) {
+
+            $this->buildClass_uses_add(sprintf(
+                'Tests\Unit\Playground\%1$s\Models\ModelCase',
+                $this->model->module()
+            ));
+        }
+
+        $this->c->setOptions([
+            'extends' => $extends,
+        ]);
+
+        $this->buildClass_hasMany($this->c->type(), $this->suite);
+        $this->buildClass_hasOne($this->c->type(), $this->suite);
+    }
+}

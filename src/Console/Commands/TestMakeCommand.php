@@ -21,6 +21,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'playground:make:test')]
 class TestMakeCommand extends GeneratorCommand
 {
+    use Building\BuildForControllers;
+    use Building\BuildForModels;
     use Building\BuildModelRelationships;
     use Building\BuildPackages;
     use Concerns\BuildImplements;
@@ -116,7 +118,13 @@ class TestMakeCommand extends GeneratorCommand
         //     // '$this->model' => $this->model,
         // ]);
 
-        $type = $this->getConfigurationType();
+        if ($this->hasOption('playground') && $this->option('playground')) {
+            $this->c->setOptions([
+                'playground' => true,
+            ]);
+        }
+
+        $type = $this->prepareOptionsType($options);
 
         $suite = $this->option('suite');
         $suite = is_string($suite) ? strtolower($suite) : '';
@@ -156,24 +164,14 @@ class TestMakeCommand extends GeneratorCommand
         if (in_array($type, [
             'model-case',
         ])) {
-
-            $this->c->setOptions([
-                'extends' => 'Playground/Test/Unit/Models/ModelCase as BaseModelCase',
-            ]);
-
-            $use = sprintf(
-                '%1$sServiceProvider',
-                $rootNamespace
-            );
-
-            // $this->searches['use'] = $use;
-            $this->buildClass_uses_add($use);
+            $this->prepareOptionsForModelCase($options);
 
             // $this->c->addToUse($use);
             // $this->buildClass_uses_add($use);
             // dump([
             //     '__METHOD__' => __METHOD__,
             //     '$this->c' => $this->c,
+            //     '$this->searches' => $this->searches,
             // ]);
 
         } elseif (in_array($type, [
@@ -190,60 +188,8 @@ class TestMakeCommand extends GeneratorCommand
             'playground-model',
         ])) {
 
-            $this->initModel($this->c->skeleton());
-            if (! $this->model) {
-                throw new \RuntimeException('Provide a [--model-file].');
-            }
-
-            // The FQDN, from the model, is the source of truth.
-            $model_fqdn = $this->model->fqdn();
-            if (! $model_fqdn) {
-                $model_fqdn = $this->c->model_fqdn();
-            }
-            $this->c->setOptions([
-                'model_fqdn' => $model_fqdn,
-            ]);
-
-            $this->searches['model_fqdn'] = $model_fqdn ? $this->parseClassInput($model_fqdn) : 'ReplaceFqdn';
-
-            $extends = 'ModelCase';
-
-            if (in_array($this->suite, [
-                'acceptance',
-                'feature',
-            ])) {
-                $this->buildClass_uses_add(sprintf(
-                    'Tests\Feature\Playground\%1$s\Models\ModelCase',
-                    $this->model->module()
-                ));
-                $this->c->setOptions([
-                    'extends' => 'ModelCase',
-                ]);
-
-                // $this->buildClass_uses_add(sprintf(
-                //     'Tests\Unit\%1$s\PackageProviders',
-                //     $rootNamespace
-                // ));
-                // dump([
-                //     '__METHOD__' => __METHOD__,
-                //     '$this->c->suite()' => $this->c->suite(),
-                // ]);
-            } else {
-                $this->buildClass_uses_add(sprintf(
-                    'Tests\Unit\Playground\%1$s\Models\ModelCase',
-                    $this->model->module()
-                ));
-                // dump([
-                //     '__METHOD__' => __METHOD__,
-                //     '$this->c->suite()' => $this->c->suite(),
-                // ]);
-            }
-            $this->c->setOptions([
-                'extends' => $extends,
-            ]);
-
-            $this->buildClass_hasMany($type, $this->suite);
-            $this->buildClass_hasOne($type, $this->suite);
+            $this->prepareOptionsForModels($options);
+            $this->prepareOptionsForSuites($options);
 
             // } elseif ($type === 'controller') {
             // } elseif ($type === 'playground-resource-index') {
@@ -379,6 +325,7 @@ class TestMakeCommand extends GeneratorCommand
         //     '$type' => $type,
         //     '$rootNamespace' => $rootNamespace,
         //     '$this->c->class()' => $this->c->class(),
+        //     '$this->options()' => $this->options(),
         // ]);
 
         if (in_array($type, [
@@ -476,10 +423,10 @@ class TestMakeCommand extends GeneratorCommand
             'providers-model',
             'providers-resource',
         ])) {
-            $namespace = Str::of($namespace)
-                ->finish('\\')
-                ->append(Str::of($name)->studly()->toString())
-                ->toString();
+            // $namespace = Str::of($namespace)
+            //     ->finish('\\')
+            //     // ->append(Str::of($name)->studly()->toString())
+            //     ->toString();
         }
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -488,10 +435,10 @@ class TestMakeCommand extends GeneratorCommand
         //     '$namespace' => $namespace,
         //     '$name' => $name,
         //     '$this->c' => $this->c,
+        //     '$this->options()' => $this->options(),
         // ]);
 
         return $namespace;
-
     }
 
     /**

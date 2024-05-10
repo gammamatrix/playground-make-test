@@ -14,7 +14,7 @@ use Playground\Make\Configuration\PrimaryConfiguration;
  */
 class Test extends PrimaryConfiguration
 {
-    protected string $extends = '\Tests\TestCase';
+    protected string $extends = '';
 
     protected string $model_fqdn = '';
 
@@ -36,7 +36,7 @@ class Test extends PrimaryConfiguration
     protected $properties = [
         'class' => '',
         'config' => '',
-        'extends' => '\Tests\TestCase',
+        'extends' => '',
         'fqdn' => '',
         'model' => '',
         'model_fqdn' => '',

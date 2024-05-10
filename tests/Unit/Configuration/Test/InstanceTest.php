@@ -29,7 +29,7 @@ class InstanceTest extends TestCase
     protected array $expected_properties = [
         'class' => '',
         'config' => '',
-        'extends' => '\Tests\TestCase',
+        'extends' => '',
         'fqdn' => '',
         'model' => '',
         'model_fqdn' => '',
