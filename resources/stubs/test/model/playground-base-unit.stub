@@ -7,7 +7,7 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use Playground\Test\Unit\Models\ModelCase as BaseModelCase;
-
+{{use}}
 /**
  * \{{ namespace }}\{{ class }}
  */

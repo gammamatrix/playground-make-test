@@ -165,15 +165,6 @@ class TestMakeCommand extends GeneratorCommand
             'model-case',
         ])) {
             $this->prepareOptionsForModelCase($options);
-
-            // $this->c->addToUse($use);
-            // $this->buildClass_uses_add($use);
-            // dump([
-            //     '__METHOD__' => __METHOD__,
-            //     '$this->c' => $this->c,
-            //     '$this->searches' => $this->searches,
-            // ]);
-
         } elseif (in_array($type, [
             'providers',
             'providers-api',
@@ -331,7 +322,7 @@ class TestMakeCommand extends GeneratorCommand
         if (in_array($type, [
             'model-case',
         ])) {
-            return $this->getDefaultNamespace(trim($rootNamespace, '\\'));
+            return $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\Models';
         }
 
         return $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$this->c->class();
@@ -389,7 +380,7 @@ class TestMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        $type = $this->getConfigurationType();
+        $type = $this->c->type();
 
         // Set the suite on the namespace.
         $namespace = Str::of(
@@ -404,7 +395,6 @@ class TestMakeCommand extends GeneratorCommand
         }
 
         if (in_array($type, [
-            'model',
             'controller',
             'request',
             'policy',
@@ -413,31 +403,50 @@ class TestMakeCommand extends GeneratorCommand
                 ->finish('\\')
                 ->append(Str::of($type)->plural()->studly()->toString())
                 ->toString();
+        } elseif (in_array($type, [
+            'model-case',
+        ])) {
+            $namespace = Str::of($namespace)
+                ->finish('\\')
+                // ->append(Str::of($type)->plural()->studly()->toString())
+                // ->finish('\\')
+                ->append('Models')
+                ->toString();
+        } elseif (in_array($type, [
+            'model',
+        ])) {
+            $namespace = Str::of($namespace)
+                ->finish('\\')
+                // ->append(Str::of($type)->plural()->studly()->toString())
+                // ->finish('\\')
+                ->append(Str::of($this->c->name())->studly()->toString())
+                ->toString();
         }
 
-        $name = $this->c->name();
-        if ($name && ! in_array($type, [
-            'model-case',
-            'providers',
-            'providers-api',
-            'providers-model',
-            'providers-resource',
-        ])) {
-            // $namespace = Str::of($namespace)
-            //     ->finish('\\')
-            //     // ->append(Str::of($name)->studly()->toString())
-            //     ->toString();
-        }
+        // $name = $this->c->name();
+        // if ($name && ! in_array($type, [
+        //     'model-case',
+        //     'providers',
+        //     'providers-api',
+        //     'providers-model',
+        //     'providers-resource',
+        // ])) {
+        //     // $namespace = Str::of($namespace)
+        //     //     ->finish('\\')
+        //     //     // ->append(Str::of($name)->studly()->toString())
+        //     //     ->toString();
+        // }
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$type' => $type,
         //     '$rootNamespace' => $rootNamespace,
         //     '$namespace' => $namespace,
-        //     '$name' => $name,
         //     '$this->c' => $this->c,
         //     '$this->options()' => $this->options(),
         // ]);
 
+        $this->c->setNamespace($namespace);
+        $this->searches['namespace'] = $this->c->namespace();
         return $namespace;
     }
 
@@ -460,20 +469,33 @@ class TestMakeCommand extends GeneratorCommand
         if (empty($this->folder) && is_string($this->c->name())) {
 
             if (in_array($this->c->type(), [
-                'model-case',
                 'providers',
                 'providers-api',
                 'providers-model',
                 'providers-resource',
-                // 'model',
-                // 'playground-api',
-                // 'playground-resource',
-                // 'playground-model',
             ])) {
                 $this->folder = sprintf(
                     '%1$s/%2$s',
                     $this->getDestinationPath(),
                     Str::of($this->suite)->studly()->toString()
+                );
+            } elseif (in_array($this->c->type(), [
+                'model-case',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Models',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString()
+                );
+            } elseif (in_array($this->c->type(), [
+                'model',
+                'playground-model',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Models/%3$s',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString(),
+                    Str::of($this->c->name())->studly()->toString()
                 );
             } else {
                 $this->folder = sprintf(

@@ -114,7 +114,7 @@ trait BuildPackages
 
         if ($add_Package_Model) {
             $this->addToBuildPackageProviders(sprintf(
-                '\\%1$sModel\\ServiceProvider::class',
+                '\\%1$sServiceProvider::class',
                 $namespace
             ));
         }

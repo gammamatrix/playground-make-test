@@ -53,10 +53,22 @@ trait BuildForModels
                 'extends' => 'Playground/Test/Feature/Models/ModelCase as BaseModelCase',
             ]);
         } else {
+            $this->buildClass_uses_add(sprintf(
+                'Tests\Unit\%1$sPackageProviders',
+                $rootNamespace
+            ));
             $this->c->setOptions([
                 'extends' => 'Playground/Test/Unit/Models/ModelCase as BaseModelCase',
             ]);
         }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     // '$options' => $options,
+        //     '$rootNamespace' => $rootNamespace,
+        //     '$this->c->uses()' => $this->c->uses(),
+        //     '$this->c->suite()' => $this->c->suite(),
+        //     // '$this->options()' => $this->options(),
+        // ]);
     }
 
     /**
