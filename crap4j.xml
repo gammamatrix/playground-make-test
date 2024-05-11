@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-10 20:15:15</timestamp>
+  <timestamp>2024-05-11 07:42:19</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>28</methodCount>
     <crapMethodCount>3</crapMethodCount>
     <crapLoad>44</crapLoad>
-    <totalCrap>809.15</totalCrap>
+    <totalCrap>814.11</totalCrap>
     <crapMethodPercent>10.71</crapMethodPercent>
   </stats>
   <methods>
@@ -237,9 +237,9 @@
       <methodName>getDefaultNamespace</methodName>
       <methodSignature>getDefaultNamespace($rootNamespace): string</methodSignature>
       <fullMethod>getDefaultNamespace($rootNamespace): string</fullMethod>
-      <crap>6.1</crap>
+      <crap>8.49</crap>
       <complexity>6</complexity>
-      <coverage>85.71</coverage>
+      <coverage>58.97</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -259,9 +259,9 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>4.14</crap>
-      <complexity>4</complexity>
-      <coverage>79.17</coverage>
+      <crap>6.71</crap>
+      <complexity>6</complexity>
+      <coverage>72.97</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
