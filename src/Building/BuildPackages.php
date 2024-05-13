@@ -6,6 +6,7 @@
 declare(strict_types=1);
 namespace Playground\Make\Test\Building;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -99,25 +100,26 @@ trait BuildPackages
         $namespace = $this->parseClassInput($this->rootNamespace());
 
         if ($add_Package_Api) {
+            // Add the model ServiceProvider
             $this->addToBuildPackageProviders(sprintf(
-                '\\%1$sApi\\ServiceProvider::class',
-                $namespace
+                '\\%1$s\\ServiceProvider::class',
+                Str::of($this->rootNamespace())->before('\\Api')->toString()
             ));
         }
 
         if ($add_Package_Resource) {
+            // Add the model ServiceProvider
             $this->addToBuildPackageProviders(sprintf(
-                '\\%1$sResource\\ServiceProvider::class',
-                $namespace
+                '\\%1$s\\ServiceProvider::class',
+                Str::of($this->rootNamespace())->before('\\Resource')->toString()
             ));
         }
 
-        if ($add_Package_Model) {
-            $this->addToBuildPackageProviders(sprintf(
-                '\\%1$sServiceProvider::class',
-                $namespace
-            ));
-        }
+        // Add the package service provider
+        $this->addToBuildPackageProviders(sprintf(
+            '\\%1$sServiceProvider::class',
+            $namespace
+        ));
 
         foreach ($this->build_providers as $provider) {
             $test_trait_providers .= sprintf('%1$s%2$s,%3$s', str_repeat(' ', 12), $provider, PHP_EOL);
@@ -127,14 +129,89 @@ trait BuildPackages
             'extends' => $extends,
         ]);
 
-        // dump([
+        // dd([
         //     '__METHOD__' => __METHOD__,
         //     '$add_Playground' => $add_Playground,
+        //     '$add_Playground_Auth' => $add_Playground_Auth,
+        //     '$add_Playground_Blade' => $add_Playground_Blade,
+        //     '$add_Playground_Http' => $add_Playground_Http,
+        //     '$add_Playground_Login' => $add_Playground_Login,
+        //     '$add_Playground_Site' => $add_Playground_Site,
+        //     '$add_Package_Model' => $add_Package_Model,
+        //     '$add_Package_Resource' => $add_Package_Resource,
+        //     '$add_Package_Api' => $add_Package_Api,
         //     '$namespace' => $namespace,
         //     '$test_trait_providers' => $test_trait_providers,
         //     '$this->build_providers' => $this->build_providers,
         //     '$this->c' => $this->c,
         // ]);
         $this->searches['test_trait_providers'] = $test_trait_providers;
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function prepareOptionsForTestCase(array $options = []): void
+    {
+        $rootNamespace = $this->rootNamespace();
+
+        if (in_array($this->suite, [
+            'acceptance',
+            'feature',
+        ])) {
+            $this->buildClass_uses_add(sprintf(
+                'Tests\Unit\%1$sPackageProviders',
+                $rootNamespace
+            ));
+            $this->c->setOptions([
+                'extends' => 'OrchestraTestCase',
+                'extends_use' => 'Playground/Test/OrchestraTestCase',
+            ]);
+        } else {
+            // $this->buildClass_uses_add(sprintf(
+            //     'Tests\Unit\%1$sPackageProviders',
+            //     $rootNamespace
+            // ));
+            $this->c->setOptions([
+                'extends' => 'OrchestraTestCase',
+                'extends_use' => 'Playground/Test/OrchestraTestCase',
+            ]);
+        }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     // '$options' => $options,
+        //     '$rootNamespace' => $rootNamespace,
+        //     // '$this->c->uses()' => $this->c->uses(),
+        //     // '$this->c->suite()' => $this->c->suite(),
+        //     '$this->c' => $this->c,
+        //     '$this->options()' => $this->options(),
+        // ]);
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function prepareOptionsForRequestTestCase(array $options = []): void
+    {
+        $rootNamespace = $this->rootNamespace();
+
+        $this->buildClass_uses_add(sprintf(
+            'Tests\Unit\%1$sPackageProviders',
+            $rootNamespace
+        ));
+        $this->buildClass_uses_add('Playground/Test/Unit/Http/Requests/RequestCase');
+        $this->c->setOptions([
+            'extends' => 'RequestCase',
+            'extends_use' => 'Playground/Test/Unit/Http/Requests/RequestCase',
+        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     // '$options' => $options,
+        //     '$rootNamespace' => $rootNamespace,
+        //     // '$this->c->uses()' => $this->c->uses(),
+        //     // '$this->c->suite()' => $this->c->suite(),
+        //     '$this->c' => $this->c,
+        //     '$this->options()' => $this->options(),
+        // ]);
     }
 }

@@ -4,19 +4,17 @@
  */
 
 declare(strict_types=1);
-namespace Tests\Feature\{{ namespace }};
+namespace {{ namespace }};
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Playground\Test\OrchestraTestCase;
-use Tests\Unit\{{ namespace }}\TestTrait;
 {{ use }}
 /**
- * \Tests\Feature\{{ namespace }}\{{ class }}
+ * \{{ namespace }}\{{ class }}
  */
 class {{ class }} extends OrchestraTestCase
 {
     use DatabaseTransactions;
-    use TestTrait;
+    use PackageProviders;
 
     // protected bool $load_migrations_laravel = false;
 
@@ -35,13 +33,13 @@ class {{ class }} extends OrchestraTestCase
     {
         if (! empty(env('TEST_DB_MIGRATIONS'))) {
             // if ($this->load_migrations_laravel) {
-            //     $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-laravel');
+            //     $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-laravel');
             // }
             if ($this->load_migrations_package) {
-                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations');
+                $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-package');
             }
             if ($this->load_migrations_playground) {
-                $this->loadMigrationsFrom(dirname(dirname(dirname(__DIR__))).'/database/migrations-playground');
+                $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-playground');
             }
         }
     }
