@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-13 01:27:22</timestamp>
+  <timestamp>2024-05-17 23:32:12</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>30</methodCount>
+    <methodCount>34</methodCount>
     <crapMethodCount>3</crapMethodCount>
     <crapLoad>43</crapLoad>
-    <totalCrap>815.92</totalCrap>
-    <crapMethodPercent>10</crapMethodPercent>
+    <totalCrap>907.8</totalCrap>
+    <crapMethodPercent>8.82</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -144,6 +144,50 @@
       <crapLoad>0</crapLoad>
     </method>
     <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>prepareOptionsForControllerTestCase</methodName>
+      <methodSignature>prepareOptionsForControllerTestCase(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForControllerTestCase(array $options): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>addResourceTraits</methodName>
+      <methodSignature>addResourceTraits(): self</methodSignature>
+      <fullMethod>addResourceTraits(): self</fullMethod>
+      <crap>30</crap>
+      <complexity>5</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>prepareOptionsForControllerModelCase</methodName>
+      <methodSignature>prepareOptionsForControllerModelCase(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForControllerModelCase(array $options): void</fullMethod>
+      <crap>6</crap>
+      <complexity>2</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>addStructureModel</methodName>
+      <methodSignature>addStructureModel(): self</methodSignature>
+      <fullMethod>addStructureModel(): self</fullMethod>
+      <crap>30</crap>
+      <complexity>5</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
       <package>Playground\Make\Test\Configuration</package>
       <className>Playground\Make\Test\Configuration\Test</className>
       <methodName>setOptions</methodName>
@@ -215,9 +259,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>14.31</crap>
-      <complexity>14</complexity>
-      <coverage>88.33</coverage>
+      <crap>25.63</crap>
+      <complexity>20</complexity>
+      <coverage>75.86</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -226,9 +270,9 @@
       <methodName>getConfigurationFilename</methodName>
       <methodSignature>getConfigurationFilename(): string</methodSignature>
       <fullMethod>getConfigurationFilename(): string</fullMethod>
-      <crap>6.6</crap>
-      <complexity>6</complexity>
-      <coverage>74.51</coverage>
+      <crap>9.95</crap>
+      <complexity>8</complexity>
+      <coverage>68.75</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -237,9 +281,9 @@
       <methodName>qualifyClass</methodName>
       <methodSignature>qualifyClass($name): string</methodSignature>
       <fullMethod>qualifyClass($name): string</fullMethod>
-      <crap>9.06</crap>
-      <complexity>7</complexity>
-      <coverage>65.22</coverage>
+      <crap>12.99</crap>
+      <complexity>9</complexity>
+      <coverage>63.33</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -248,9 +292,9 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>12.51</crap>
-      <complexity>10</complexity>
-      <coverage>70.73</coverage>
+      <crap>15.16</crap>
+      <complexity>12</complexity>
+      <coverage>72</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -259,9 +303,9 @@
       <methodName>getDefaultNamespace</methodName>
       <methodSignature>getDefaultNamespace($rootNamespace): string</methodSignature>
       <fullMethod>getDefaultNamespace($rootNamespace): string</fullMethod>
-      <crap>13.14</crap>
+      <crap>10.24</crap>
       <complexity>8</complexity>
-      <coverage>56.86</coverage>
+      <coverage>67.27</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -281,9 +325,9 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>10.62</crap>
-      <complexity>8</complexity>
-      <coverage>65.52</coverage>
+      <crap>16.15</crap>
+      <complexity>10</complexity>
+      <coverage>60.53</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
