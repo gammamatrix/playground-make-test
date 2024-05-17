@@ -16,7 +16,7 @@ class {{ class }} extends OrchestraTestCase
     use DatabaseTransactions;
     use PackageProviders;
 
-    // protected bool $load_migrations_laravel = false;
+    protected bool $load_migrations_laravel = false;
 
     protected bool $load_migrations_package = true;
 
@@ -32,9 +32,9 @@ class {{ class }} extends OrchestraTestCase
     protected function defineDatabaseMigrations()
     {
         if (! empty(env('TEST_DB_MIGRATIONS'))) {
-            // if ($this->load_migrations_laravel) {
-            //     $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-laravel');
-            // }
+            if ($this->load_migrations_laravel) {
+                $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-laravel');
+            }
             if ($this->load_migrations_package) {
                 $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-package');
             }

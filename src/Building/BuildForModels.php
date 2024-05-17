@@ -78,7 +78,6 @@ trait BuildForModels
     {
         $extends = 'ModelCase';
 
-
         if (in_array($this->suite, [
             'acceptance',
             'feature',
@@ -89,7 +88,7 @@ trait BuildForModels
                 $this->model->module()
             ));
 
-        } elseif($this->model?->module()) {
+        } elseif ($this->model?->module()) {
 
             $this->buildClass_uses_add(sprintf(
                 'Tests\Unit\Playground\%1$s\Models\ModelCase',

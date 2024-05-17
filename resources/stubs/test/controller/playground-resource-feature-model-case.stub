@@ -4,12 +4,12 @@
  */
 
 declare(strict_types=1);
-namespace Tests\Feature\{{namespace}}\Http\Controllers;
+namespace {{namespace}};
 
 /**
- * \Tests\Feature\{{namespace}}\Http\Controllers\VersionTestCase
+ * \{{namespace}}\{{model}}TestCase
  */
-class VersionTestCase extends TestCase
+class {{model}}TestCase extends TestCase
 {
     public string $fqdn = \{{model_fqdn}}::class;
 
@@ -37,80 +37,5 @@ class VersionTestCase extends TestCase
      */
     protected $structure_model = [
 {{structure_model}}
-        'id',
-        'created_by_id',
-        'modified_by_id',
-        'owned_by_id',
-        'parent_id',
-        'version_type',
-        'matrix_id',
-        'project_id',
-        'roadmap_id',
-        'source_id',
-        'tag_id',
-        'team_id',
-        'ticket_id',
-        'created_at',
-        'deleted_at',
-        'updated_at',
-        'start_at',
-        'planned_start_at',
-        'end_at',
-        'planned_end_at',
-        'canceled_at',
-        'closed_at',
-        'embargo_at',
-        'fixed_at',
-        'postponed_at',
-        'published_at',
-        'released_at',
-        'resumed_at',
-        'resolved_at',
-        'suspended_at',
-        'gids',
-        'po',
-        'pg',
-        'pw',
-        'only_admin',
-        'only_user',
-        'only_guest',
-        'allow_public',
-        'status',
-        'rank',
-        'size',
-        'active',
-        'canceled',
-        'closed',
-        'completed',
-        'fixed',
-        'flagged',
-        'internal',
-        'locked',
-        'pending',
-        'planned',
-        'problem',
-        'published',
-        'released',
-        'retired',
-        'resolved',
-        'suspended',
-        'unknown',
-        'label',
-        'title',
-        'byline',
-        'slug',
-        'url',
-        'description',
-        'introduction',
-        'content',
-        'summary',
-        'icon',
-        'image',
-        'avatar',
-        'ui',
-        'assets',
-        'meta',
-        'options',
-        'sources',
     ];
 }
