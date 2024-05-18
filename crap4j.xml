@@ -1,16 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-17 23:32:12</timestamp>
+  <timestamp>2024-05-18 19:51:35</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>34</methodCount>
-    <crapMethodCount>3</crapMethodCount>
-    <crapLoad>43</crapLoad>
-    <totalCrap>907.8</totalCrap>
-    <crapMethodPercent>8.82</crapMethodPercent>
+    <methodCount>40</methodCount>
+    <crapMethodCount>4</crapMethodCount>
+    <crapLoad>57</crapLoad>
+    <totalCrap>1179.25</totalCrap>
+    <crapMethodPercent>10</crapMethodPercent>
   </stats>
   <methods>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildCovers</className>
+      <methodName>addCovers</methodName>
+      <methodSignature>addCovers(): self</methodSignature>
+      <fullMethod>addCovers(): self</fullMethod>
+      <crap>182</crap>
+      <complexity>13</complexity>
+      <coverage>0</coverage>
+      <crapLoad>13</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildCovers</className>
+      <methodName>addCovers_controllers</methodName>
+      <methodSignature>addCovers_controllers(): self</methodSignature>
+      <fullMethod>addCovers_controllers(): self</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildCovers</className>
+      <methodName>addCovers_policies</methodName>
+      <methodSignature>addCovers_policies(): self</methodSignature>
+      <fullMethod>addCovers_policies(): self</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildCovers</className>
+      <methodName>addCovers_requests</methodName>
+      <methodSignature>addCovers_requests(): self</methodSignature>
+      <fullMethod>addCovers_requests(): self</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildCovers</className>
+      <methodName>addCovers_resources</methodName>
+      <methodSignature>addCovers_resources(): self</methodSignature>
+      <fullMethod>addCovers_resources(): self</fullMethod>
+      <crap>30</crap>
+      <complexity>5</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
     <method>
       <package>Playground\Make\Test\Building</package>
       <className>Playground\Make\Test\Building\BuildForControllers</className>
@@ -171,8 +226,8 @@
       <methodName>prepareOptionsForControllerModelCase</methodName>
       <methodSignature>prepareOptionsForControllerModelCase(array $options): void</methodSignature>
       <fullMethod>prepareOptionsForControllerModelCase(array $options): void</fullMethod>
-      <crap>6</crap>
-      <complexity>2</complexity>
+      <crap>12</crap>
+      <complexity>3</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -193,9 +248,9 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>12.89</crap>
-      <complexity>11</complexity>
-      <coverage>75</coverage>
+      <crap>15.09</crap>
+      <complexity>12</complexity>
+      <coverage>72.22</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -254,14 +309,25 @@
       <crapLoad>0</crapLoad>
     </method>
     <method>
+      <package>Playground\Make\Test\Configuration</package>
+      <className>Playground\Make\Test\Configuration\Test</className>
+      <methodName>withCovers</methodName>
+      <methodSignature>withCovers(): bool</methodSignature>
+      <fullMethod>withCovers(): bool</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
       <package>Playground\Make\Test\Console\Commands</package>
       <className>Playground\Make\Test\Console\Commands\TestMakeCommand</className>
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>25.63</crap>
-      <complexity>20</complexity>
-      <coverage>75.86</coverage>
+      <crap>30.88</crap>
+      <complexity>22</complexity>
+      <coverage>73.63</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
