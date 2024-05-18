@@ -21,6 +21,7 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'playground:make:test')]
 class TestMakeCommand extends GeneratorCommand
 {
+    use Building\BuildCovers;
     use Building\BuildForControllers;
     use Building\BuildForModels;
     use Building\BuildModelRelationships;
@@ -60,6 +61,7 @@ class TestMakeCommand extends GeneratorCommand
         'hasMany_properties' => '',
         'hasOne_properties' => '',
         'test_trait_providers' => '',
+        'covers_class' => '',
     ];
 
     /**
@@ -139,6 +141,12 @@ class TestMakeCommand extends GeneratorCommand
         if ($this->hasOption('playground') && $this->option('playground')) {
             $this->c->setOptions([
                 'playground' => true,
+            ]);
+        }
+
+        if ($this->hasOption('covers') && $this->option('covers')) {
+            $this->c->setOptions([
+                'withCovers' => true,
             ]);
         }
 
@@ -658,6 +666,7 @@ class TestMakeCommand extends GeneratorCommand
         $options = parent::getOptions();
 
         $options[] = ['suite', null, InputOption::VALUE_OPTIONAL, 'The test suite: unit|feature|acceptance'];
+        $options[] = ['covers', null, InputOption::VALUE_NONE, 'Use CoversClass for code coverage'];
 
         return $options;
     }

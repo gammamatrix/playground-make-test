@@ -261,7 +261,12 @@ trait BuildPackages
         $rootNamespace = $this->rootNamespace();
 
         $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
-        $this->buildClass_uses_add('Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase');
+        $this->buildClass_uses_add(sprintf(
+            'Tests\Feature\%1$s\TestCase as BaseTestCase',
+            Str::of(
+                $this->parseClassInput($this->rootNamespace())
+            )->trim('\\')->toString()
+        ));
         $this->c->setOptions([
             'extends' => 'BaseTestCase',
             'extends_use' => 'Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase',
@@ -314,12 +319,18 @@ trait BuildPackages
     {
         $rootNamespace = $this->rootNamespace();
 
-        $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
-        $this->buildClass_uses_add('Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase');
+        // $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
+        // $this->buildClass_uses_add('Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase');
         $this->c->setOptions([
-            'extends' => 'BaseTestCase',
-            'extends_use' => 'Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase',
+            'extends' => 'TestCase',
+            'extends_use' => sprintf(
+                'Tests\Feature\%1$s\TestCase',
+                Str::of(
+                    $this->parseClassInput($this->rootNamespace())
+                )->trim('\\')->toString()
+            ),
         ]);
+
         $this->searches['model_attribute'] = $this->model?->model_attribute() ?: 'title';
         $this->searches['module_label'] = $this->c->module();
         $this->searches['module_label_plural'] = Str::of($this->c->module())->plural()->toString();
@@ -347,6 +358,11 @@ trait BuildPackages
         $this->searches['view'] = Str::of($this->c->package())->replace('-', '.')->finish('::')->finish($this->searches['model_slug'])->toString();
 
         $this->searches['model_label'] = $this->searches['model_singular'];
+
+        if ($this->c->withCovers()) {
+            $this->addCovers();
+        }
+
         $this->addStructureModel();
 
         // dump([

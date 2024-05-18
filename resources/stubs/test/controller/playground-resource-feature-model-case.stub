@@ -6,9 +6,10 @@
 declare(strict_types=1);
 namespace {{namespace}};
 
+{{use}}
 /**
  * \{{namespace}}\{{model}}TestCase
- */
+ */{{covers_class}}
 class {{model}}TestCase extends TestCase
 {
     public string $fqdn = \{{model_fqdn}}::class;

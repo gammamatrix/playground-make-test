@@ -30,6 +30,8 @@ class Test extends PrimaryConfiguration
      */
     protected array $models = [];
 
+    protected bool $withCovers = false;
+
     /**
      * @var array<string, mixed>
      */
@@ -88,6 +90,10 @@ class Test extends PrimaryConfiguration
             }
         }
 
+        if (array_key_exists('withCovers', $options)) {
+            $this->withCovers = ! empty($options['withCovers']);
+        }
+
         return $this;
     }
 
@@ -120,5 +126,10 @@ class Test extends PrimaryConfiguration
     public function suite(): string
     {
         return $this->suite;
+    }
+
+    public function withCovers(): bool
+    {
+        return $this->withCovers;
     }
 }
