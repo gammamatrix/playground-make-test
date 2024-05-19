@@ -45,6 +45,12 @@ trait BuildCovers
 
     public function addCovers(): self
     {
+        $this->build_covers = [];
+        $this->build_covers_controllers = [];
+        $this->build_covers_models = [];
+        $this->build_covers_policies = [];
+        $this->build_covers_requests = [];
+        $this->build_covers_resources = [];
         $this->searches['covers_class'] = '';
 
         $this->buildClass_uses_add('PHPUnit/Framework/Attributes/CoversClass');
@@ -124,19 +130,19 @@ trait BuildCovers
             $this->searches['covers_class'] = PHP_EOL.rtrim($covers_class);
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            // '$covers_class' => $covers_class,
-            '$this->c->type()' => $this->c->type(),
-            '$this->c' => $this->c,
-            '$this->searches' => $this->searches,
-            '$this->options()' => $this->options(),
-            '$this->build_covers_controllers' => $this->build_covers_controllers,
-            '$this->build_covers_models' => $this->build_covers_models,
-            '$this->build_covers_policies' => $this->build_covers_policies,
-            '$this->build_covers_requests' => $this->build_covers_requests,
-            '$this->build_covers' => $this->build_covers,
-        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     // '$covers_class' => $covers_class,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        //     '$this->options()' => $this->options(),
+        //     '$this->build_covers_controllers' => $this->build_covers_controllers,
+        //     '$this->build_covers_models' => $this->build_covers_models,
+        //     '$this->build_covers_policies' => $this->build_covers_policies,
+        //     '$this->build_covers_requests' => $this->build_covers_requests,
+        //     '$this->build_covers' => $this->build_covers,
+        // ]);
 
         return $this;
     }
@@ -164,15 +170,15 @@ trait BuildCovers
             }
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$model' => $model,
-            '$this->c->name()' => $this->c->name(),
-            '$this->c->type()' => $this->c->type(),
-            '$this->c' => $this->c,
-            '$this->build_covers_controllers' => $this->build_covers_controllers,
-            // '$this->options()' => $this->options(),
-        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$model' => $model,
+        //     '$this->c->name()' => $this->c->name(),
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->build_covers_controllers' => $this->build_covers_controllers,
+        //     // '$this->options()' => $this->options(),
+        // ]);
 
         return $this;
     }
@@ -196,15 +202,15 @@ trait BuildCovers
             }
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$model' => $model,
-            '$this->c->name()' => $this->c->name(),
-            '$this->c->type()' => $this->c->type(),
-            '$this->c' => $this->c,
-            '$this->build_covers_policies' => $this->build_covers_policies,
-            // '$this->options()' => $this->options(),
-        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$model' => $model,
+        //     '$this->c->name()' => $this->c->name(),
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->build_covers_policies' => $this->build_covers_policies,
+        //     // '$this->options()' => $this->options(),
+        // ]);
 
         return $this;
     }
@@ -247,16 +253,16 @@ trait BuildCovers
             }
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$model' => $model,
-            '$requests' => $requests,
-            '$this->c->name()' => $this->c->name(),
-            '$this->c->type()' => $this->c->type(),
-            '$this->c' => $this->c,
-            '$this->build_covers_requests' => $this->build_covers_requests,
-            // '$this->options()' => $this->options(),
-        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$model' => $model,
+        //     '$requests' => $requests,
+        //     '$this->c->name()' => $this->c->name(),
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->build_covers_requests' => $this->build_covers_requests,
+        //     // '$this->options()' => $this->options(),
+        // ]);
 
         return $this;
     }
@@ -289,16 +295,16 @@ trait BuildCovers
             }
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$model' => $model,
-            '$resources' => $resources,
-            '$this->c->name()' => $this->c->name(),
-            '$this->c->type()' => $this->c->type(),
-            '$this->c' => $this->c,
-            '$this->build_covers_requests' => $this->build_covers_resources,
-            // '$this->options()' => $this->options(),
-        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$model' => $model,
+        //     '$resources' => $resources,
+        //     '$this->c->name()' => $this->c->name(),
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->build_covers_requests' => $this->build_covers_resources,
+        //     // '$this->options()' => $this->options(),
+        // ]);
 
         return $this;
     }

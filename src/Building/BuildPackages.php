@@ -323,12 +323,13 @@ trait BuildPackages
         // $this->buildClass_uses_add('Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase');
         $this->c->setOptions([
             'extends' => 'TestCase',
-            'extends_use' => sprintf(
-                'Tests\Feature\%1$s\TestCase',
-                Str::of(
-                    $this->parseClassInput($this->rootNamespace())
-                )->trim('\\')->toString()
-            ),
+            'extends_use' => '',
+            // 'extends_use' => sprintf(
+            //     'Tests\Feature\%1$s\TestCase',
+            //     Str::of(
+            //         $this->parseClassInput($this->rootNamespace())
+            //     )->trim('\\')->toString()
+            // ),
         ]);
 
         $this->searches['model_attribute'] = $this->model?->model_attribute() ?: 'title';
