@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-19 22:48:42</timestamp>
+  <timestamp>2024-05-21 06:20:12</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>40</methodCount>
+    <methodCount>41</methodCount>
     <crapMethodCount>4</crapMethodCount>
     <crapLoad>57</crapLoad>
-    <totalCrap>1179.25</totalCrap>
-    <crapMethodPercent>10</crapMethodPercent>
+    <totalCrap>1201.53</totalCrap>
+    <crapMethodPercent>9.76</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -127,9 +127,9 @@
       <methodName>prepareOptionsForSuites</methodName>
       <methodSignature>prepareOptionsForSuites(array $options): void</methodSignature>
       <fullMethod>prepareOptionsForSuites(array $options): void</fullMethod>
-      <crap>4.15</crap>
+      <crap>4.13</crap>
       <complexity>4</complexity>
-      <coverage>78.95</coverage>
+      <coverage>80</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -243,6 +243,17 @@
       <crapLoad>0</crapLoad>
     </method>
     <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>prepareOptionsForAboutCommand</methodName>
+      <methodSignature>prepareOptionsForAboutCommand(array $options): void</methodSignature>
+      <fullMethod>prepareOptionsForAboutCommand(array $options): void</fullMethod>
+      <crap>6</crap>
+      <complexity>2</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
       <package>Playground\Make\Test\Configuration</package>
       <className>Playground\Make\Test\Configuration\Test</className>
       <methodName>setOptions</methodName>
@@ -325,9 +336,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>30.88</crap>
-      <complexity>22</complexity>
-      <coverage>73.63</coverage>
+      <crap>32.34</crap>
+      <complexity>23</complexity>
+      <coverage>73.96</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -336,9 +347,9 @@
       <methodName>getConfigurationFilename</methodName>
       <methodSignature>getConfigurationFilename(): string</methodSignature>
       <fullMethod>getConfigurationFilename(): string</fullMethod>
-      <crap>9.95</crap>
-      <complexity>8</complexity>
-      <coverage>68.75</coverage>
+      <crap>13.7</crap>
+      <complexity>10</complexity>
+      <coverage>66.67</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -347,9 +358,9 @@
       <methodName>qualifyClass</methodName>
       <methodSignature>qualifyClass($name): string</methodSignature>
       <fullMethod>qualifyClass($name): string</fullMethod>
-      <crap>12.99</crap>
-      <complexity>9</complexity>
-      <coverage>63.33</coverage>
+      <crap>14.97</crap>
+      <complexity>10</complexity>
+      <coverage>63.24</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -358,9 +369,9 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>15.16</crap>
-      <complexity>12</complexity>
-      <coverage>72</coverage>
+      <crap>21.08</crap>
+      <complexity>15</complexity>
+      <coverage>70</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -369,9 +380,9 @@
       <methodName>getDefaultNamespace</methodName>
       <methodSignature>getDefaultNamespace($rootNamespace): string</methodSignature>
       <fullMethod>getDefaultNamespace($rootNamespace): string</fullMethod>
-      <crap>10.24</crap>
+      <crap>10.13</crap>
       <complexity>8</complexity>
-      <coverage>67.27</coverage>
+      <coverage>67.86</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -391,9 +402,9 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>16.15</crap>
-      <complexity>10</complexity>
-      <coverage>60.53</coverage>
+      <crap>19.45</crap>
+      <complexity>11</complexity>
+      <coverage>58.82</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
