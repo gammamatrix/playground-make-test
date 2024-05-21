@@ -39,6 +39,7 @@ class InstanceTest extends TestCase
         'namespace' => '',
         'organization' => '',
         'package' => '',
+        'playground' => false,
         'suite' => '',
         'type' => '',
         'uses' => [],
