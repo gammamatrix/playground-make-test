@@ -47,7 +47,7 @@ trait BuildModelRelationships
                 if (! empty($related_base) && ! empty($related)) {
                     if ($related_base === $related) {
                         $related = sprintf(
-                            '\\%1$s\Models\\%2$s::class',
+                            '\\%1$s\\%2$s::class',
                             $this->parseClassInput($model->namespace()),
                             $this->parseClassInput($related)
                         );
@@ -193,7 +193,7 @@ PHP_CODE;
                 if (! empty($related_base) && ! empty($related)) {
                     if ($related_base === $related) {
                         $related = sprintf(
-                            '\\%1$s\Models\\%2$s::class',
+                            '\\%1$s\\%2$s::class',
                             $this->parseClassInput($model->namespace()),
                             $this->parseClassInput($related)
                         );

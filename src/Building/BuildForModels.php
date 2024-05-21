@@ -100,6 +100,8 @@ trait BuildForModels
             'extends' => $extends,
         ]);
 
+        $this->searches['extends'] = $extends;
+
         $this->buildClass_hasMany($this->c->type(), $this->suite);
         $this->buildClass_hasOne($this->c->type(), $this->suite);
     }

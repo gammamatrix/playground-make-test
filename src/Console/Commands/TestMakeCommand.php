@@ -44,9 +44,11 @@ class TestMakeCommand extends GeneratorCommand
      */
     public const SEARCH = [
         'class' => '',
+        'name' => '',
         'module' => '',
         'module_slug' => '',
         'namespace' => '',
+        'namespace_root' => '',
         'extends' => '',
         'implements' => '',
         'organization' => '',
@@ -93,6 +95,8 @@ class TestMakeCommand extends GeneratorCommand
      * @var array<int, string>
      */
     protected array $options_type_suggested = [
+        // Standard package tests
+        'command-about',
         // Service Providers
         'providers',
         'providers-api',
@@ -105,6 +109,7 @@ class TestMakeCommand extends GeneratorCommand
         'playground-model',
         // Case
         'test-case',
+        'playground-model-test-case',
         // APIs: Case
         'api-test-case',
         'playground-api-test-case',
@@ -229,6 +234,7 @@ class TestMakeCommand extends GeneratorCommand
             'api-test-case',
             'playground-api-test-case',
             'playground-resource-test-case',
+            'playground-model-test-case',
             'resource-test-case',
             'test-case',
         ])) {
@@ -262,6 +268,10 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $this->prepareOptionsForModels($options);
             $this->prepareOptionsForSuites($options);
+        } elseif (in_array($type, [
+            'command-about',
+        ])) {
+            $this->prepareOptionsForAboutCommand($options);
         }
 
         // $this->saveConfiguration();
@@ -276,30 +286,6 @@ class TestMakeCommand extends GeneratorCommand
             // ]);
             $this->buildClass_uses($this->c->name());
         }
-
-        // if (in_array($this->c->type(), [
-        //     'api',
-        //     'playground-api',
-        //     'resource',
-        //     'playground-resource',
-        // ])) {
-        //     $initModel = true;
-        // }
-
-        // if ($initModel) {
-        //     $this->initModel($this->c->skeleton());
-
-        //     $modelFile = $this->getModelFile();
-        //     if ($modelFile && $this->model?->name()) {
-        //         $this->c->addMappedClassTo(
-        //             'models',
-        //             $this->model->name(),
-        //             $modelFile
-        //         );
-        //         $fqdn = $this->model->fqdn() ?? 'Dummy';
-
-        //     }
-        // }
 
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -326,11 +312,17 @@ class TestMakeCommand extends GeneratorCommand
             'playground-model',
         ])) {
             $filename = sprintf(
-                '%1$s.%2$s.%3$s.json',
+                '%3$s/%1$s.%2$s.json',
                 'test',
                 Str::of($this->c->suite())->kebab(),
                 Str::of($this->c->name())->before('Test')->kebab(),
             );
+            // $filename = sprintf(
+            //     '%1$s.%2$s.%3$s.json',
+            //     'test',
+            //     Str::of($this->c->suite())->kebab(),
+            //     Str::of($this->c->name())->before('Test')->kebab(),
+            // );
         } elseif (in_array($type, [
             'playground-api-controller-model-case',
             'playground-resource-controller-model-case',
@@ -356,6 +348,10 @@ class TestMakeCommand extends GeneratorCommand
                 Str::of($this->c->suite())->kebab(),
             );
         } elseif (in_array($type, [
+            'command-about',
+        ])) {
+            $filename = 'test.command.about.json';
+        } elseif (in_array($type, [
             'playground-api-controller-test-case',
             'playground-resource-controller-test-case',
         ])) {
@@ -373,6 +369,13 @@ class TestMakeCommand extends GeneratorCommand
             $filename = sprintf(
                 'test.%1$s.json',
                 Str::of($type)->kebab(),
+            );
+        } elseif (in_array($type, [
+            'test-case',
+        ])) {
+            $filename = sprintf(
+                'test.%1$s.json',
+                Str::of($this->c->suite())->kebab(),
             );
         } else {
             $filename = sprintf(
@@ -414,6 +417,7 @@ class TestMakeCommand extends GeneratorCommand
             'api-test-case',
             'playground-api-test-case',
             'playground-resource-test-case',
+            'playground-model-test-case',
             'resource-test-case',
             'test-case',
         ])) {
@@ -448,6 +452,13 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $this->c->setOptions([
                 'class' => 'PackageProviders',
+            ]);
+        } elseif (in_array($type, [
+            'command',
+            'command-about',
+        ])) {
+            $this->c->setOptions([
+                'class' => 'CommandTest',
             ]);
         } else {
             $this->c->setOptions([
@@ -516,6 +527,14 @@ class TestMakeCommand extends GeneratorCommand
                 $test = 'test/case/playground-resource-unit.stub';
             }
         } elseif (in_array($type, [
+            'playground-model-test-case',
+        ])) {
+            if ($suite === 'feature') {
+                $test = 'test/case/playground-model-feature.stub';
+            } else {
+                $test = 'test/case/playground-resource-unit.stub';
+            }
+        } elseif (in_array($type, [
             'playground-request-test-case',
         ])) {
             $test = 'test/case/playground-request.stub';
@@ -523,6 +542,10 @@ class TestMakeCommand extends GeneratorCommand
             'playground-resource-controller-test-case',
         ])) {
             $test = 'test/controller/playground-resource-feature-case.stub';
+        } elseif (in_array($type, [
+            'command-about',
+        ])) {
+            $test = 'test/command/about-CommandTest.php.stub';
         } elseif (in_array($type, [
             'playground-api-controller-model-case',
             'playground-resource-controller-model-case',
@@ -612,6 +635,7 @@ class TestMakeCommand extends GeneratorCommand
         } elseif (in_array($type, [
             'playground-api-test-case',
             'playground-resource-test-case',
+            'playground-model-test-case',
         ])) {
             // $namespace;
         } elseif (in_array($type, [
@@ -688,6 +712,7 @@ class TestMakeCommand extends GeneratorCommand
                 'api-test-case',
                 'playground-api-test-case',
                 'playground-resource-test-case',
+                'playground-model-test-case',
                 'resource-test-case',
                 'test-case',
             ])) {
@@ -748,6 +773,14 @@ class TestMakeCommand extends GeneratorCommand
                     Str::of($this->suite)->studly()->toString(),
                     Str::of($this->c->name())->studly()->toString()
                 );
+            } elseif (in_array($this->c->type(), [
+                'command-about',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Console/Commands/About',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString()
+                );
             } else {
                 $this->folder = sprintf(
                     '%1$s/%2$s/%3$s',
@@ -757,6 +790,7 @@ class TestMakeCommand extends GeneratorCommand
                 );
             }
         }
+
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$this->c->type()' => $this->c->type(),

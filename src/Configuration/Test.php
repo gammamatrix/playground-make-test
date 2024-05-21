@@ -48,6 +48,7 @@ class Test extends PrimaryConfiguration
         'namespace' => '',
         'organization' => '',
         'package' => '',
+        'playground' => false,
         'suite' => '',
         'type' => '',
         'uses' => [],

@@ -415,4 +415,17 @@ trait BuildPackages
 
         return $this;
     }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function prepareOptionsForAboutCommand(array $options = []): void
+    {
+        $name = $this->c->module();
+        if ($this->c->playground()) {
+            $name = Str::of($name)->start('Playground: ')->toString();
+        }
+        $this->searches['name'] = $name;
+        $this->searches['namespace_root'] = $this->parseClassInput($this->rootNamespace());
+    }
 }
