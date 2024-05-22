@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-21 06:20:12</timestamp>
+  <timestamp>2024-05-22 05:02:52</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>41</methodCount>
     <crapMethodCount>4</crapMethodCount>
     <crapLoad>57</crapLoad>
-    <totalCrap>1201.53</totalCrap>
+    <totalCrap>1226.35</totalCrap>
     <crapMethodPercent>9.76</crapMethodPercent>
   </stats>
   <methods>
@@ -336,9 +336,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>32.34</crap>
-      <complexity>23</complexity>
-      <coverage>73.96</coverage>
+      <crap>42.91</crap>
+      <complexity>26</complexity>
+      <coverage>70.75</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -347,9 +347,9 @@
       <methodName>getConfigurationFilename</methodName>
       <methodSignature>getConfigurationFilename(): string</methodSignature>
       <fullMethod>getConfigurationFilename(): string</fullMethod>
-      <crap>13.7</crap>
-      <complexity>10</complexity>
-      <coverage>66.67</coverage>
+      <crap>17.08</crap>
+      <complexity>11</complexity>
+      <coverage>63.1</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -358,9 +358,9 @@
       <methodName>qualifyClass</methodName>
       <methodSignature>qualifyClass($name): string</methodSignature>
       <fullMethod>qualifyClass($name): string</fullMethod>
-      <crap>14.97</crap>
-      <complexity>10</complexity>
-      <coverage>63.24</coverage>
+      <crap>17.55</crap>
+      <complexity>11</complexity>
+      <coverage>62.16</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -369,9 +369,9 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>21.08</crap>
-      <complexity>15</complexity>
-      <coverage>70</coverage>
+      <crap>22.7</crap>
+      <complexity>16</complexity>
+      <coverage>70.31</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -380,9 +380,9 @@
       <methodName>getDefaultNamespace</methodName>
       <methodSignature>getDefaultNamespace($rootNamespace): string</methodSignature>
       <fullMethod>getDefaultNamespace($rootNamespace): string</fullMethod>
-      <crap>10.13</crap>
-      <complexity>8</complexity>
-      <coverage>67.86</coverage>
+      <crap>12.3</crap>
+      <complexity>9</complexity>
+      <coverage>65.57</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -402,9 +402,9 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>19.45</crap>
-      <complexity>11</complexity>
-      <coverage>58.82</coverage>
+      <crap>23.95</crap>
+      <complexity>12</complexity>
+      <coverage>56.38</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
