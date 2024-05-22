@@ -117,6 +117,8 @@ class TestMakeCommand extends GeneratorCommand
         'playground-api-controller-model-case',
         // APIs: Test
         'playground-api',
+        // Policies
+        'policy',
         // Requests
         'playground-request-test-case',
         // Resources: Case
@@ -134,6 +136,8 @@ class TestMakeCommand extends GeneratorCommand
     {
         $initModel = false;
         $options = $this->options();
+
+        $model = empty($options['model']) || ! is_string($options['model']) ? '' : $options['model'];
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$options' => $options,
@@ -272,6 +276,16 @@ class TestMakeCommand extends GeneratorCommand
             'command-about',
         ])) {
             $this->prepareOptionsForAboutCommand($options);
+        } elseif (in_array($type, [
+            'policy',
+        ])) {
+            // $this->buildClass_uses_add('PHPUnit/Framework/Attributes/CoversClass');
+            $this->buildClass_uses_add(sprintf(
+                'Tests\%1$s\%2$s\TestCase',
+                Str::of($this->suite)->studly()->toString(),
+                Str::of($this->rootNamespace())->trim('\\/')->toString()
+            ));
+            $this->buildClass_uses_add(sprintf('%1$sPolicies/%2$sPolicy', $this->rootNamespace(), $model));
         }
 
         // $this->saveConfiguration();
@@ -316,6 +330,21 @@ class TestMakeCommand extends GeneratorCommand
                 'test',
                 Str::of($this->c->suite())->kebab(),
                 Str::of($this->c->name())->before('Test')->kebab(),
+            );
+            // $filename = sprintf(
+            //     '%1$s.%2$s.%3$s.json',
+            //     'test',
+            //     Str::of($this->c->suite())->kebab(),
+            //     Str::of($this->c->name())->before('Test')->kebab(),
+            // );
+        } elseif (in_array($type, [
+            'policy',
+        ])) {
+            $filename = sprintf(
+                '%3$s/%1$s.%2$s.policy.json',
+                'test',
+                Str::of($this->c->suite())->kebab(),
+                Str::of($this->c->model())->kebab(),
             );
             // $filename = sprintf(
             //     '%1$s.%2$s.%3$s.json',
@@ -408,6 +437,12 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $this->c->setOptions([
                 'class' => 'ModelTest',
+            ]);
+        } else if (in_array($type, [
+            'policy',
+        ])) {
+            $this->c->setOptions([
+                'class' => 'PolicyTest',
             ]);
         } elseif ($type === 'model-case') {
             $this->c->setOptions([
@@ -515,6 +550,10 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $test = 'test/playground-trait-providers.stub';
         } elseif (in_array($type, [
+            'policy',
+        ])) {
+            $test = 'test/policy/PolicyTest.php.stub';
+        } elseif (in_array($type, [
             'api-test-case',
             'playground-api-test-case',
             'playground-resource-test-case',
@@ -615,7 +654,6 @@ class TestMakeCommand extends GeneratorCommand
         if (in_array($type, [
             'controller',
             'request',
-            'policy',
         ])) {
             $namespace = Str::of($namespace)->finish(
                 '/'.Str::of($type)->plural()->studly()->toString()
@@ -658,6 +696,13 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $namespace = Str::of($namespace)->finish(
                 '/'.Str::of($this->c->name())->studly()->toString()
+            )->toString();
+        } elseif (in_array($type, [
+            'policy',
+        ])) {
+            // Tests\Unit\Playground\Matrix\Resource\Policies\BacklogPolicy
+            $namespace = Str::of($namespace)->finish('/Policies')->finish(
+                Str::of($this->c->model())->studly()->start('/')->finish('Policy')->toString()
             )->toString();
         } else {
             //
@@ -772,6 +817,15 @@ class TestMakeCommand extends GeneratorCommand
                     $this->getDestinationPath(),
                     Str::of($this->suite)->studly()->toString(),
                     Str::of($this->c->name())->studly()->toString()
+                );
+            } elseif (in_array($this->c->type(), [
+                'policy',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Policies/%3$sPolicy',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString(),
+                    Str::of($this->c->model())->studly()->toString()
                 );
             } elseif (in_array($this->c->type(), [
                 'command-about',

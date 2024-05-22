@@ -1,0 +1,23 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace {{ namespace }};
+
+use PHPUnit\Framework\Attributes\CoversClass;
+{{use}}
+/**
+ * \{{ namespace }}\{{ class }}
+ */
+#[CoversClass({{model}}Policy::class)]
+class PolicyTest extends TestCase
+{
+    public function test_policy_instance(): void
+    {
+        $instance = new {{model}}Policy;
+
+        $this->assertInstanceOf({{model}}Policy::class, $instance);
+    }
+}
