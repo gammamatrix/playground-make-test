@@ -117,7 +117,7 @@ trait BuildPackages
 
         // Add the package service provider
         $this->addToBuildPackageProviders(sprintf(
-            '\\%1$sServiceProvider::class',
+            '\\%1$s\\ServiceProvider::class',
             $namespace
         ));
 
@@ -160,7 +160,7 @@ trait BuildPackages
             'feature',
         ])) {
             $this->buildClass_uses_add(sprintf(
-                'Tests\Unit\%1$sPackageProviders',
+                'Tests\Unit\%1$s\\PackageProviders',
                 $rootNamespace
             ));
             $this->c->setOptions([
@@ -169,7 +169,7 @@ trait BuildPackages
             ]);
         } else {
             // $this->buildClass_uses_add(sprintf(
-            //     'Tests\Unit\%1$sPackageProviders',
+            //     'Tests\Unit\%1$s\\PackageProviders',
             //     $rootNamespace
             // ));
             $this->c->setOptions([
@@ -196,7 +196,7 @@ trait BuildPackages
         $rootNamespace = $this->rootNamespace();
 
         $this->buildClass_uses_add(sprintf(
-            'Tests\Unit\%1$sPackageProviders',
+            'Tests\\Unit\\%1$s\\PackageProviders',
             $rootNamespace
         ));
         $this->buildClass_uses_add('Playground/Test/Unit/Http/Requests/RequestCase');

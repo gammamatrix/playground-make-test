@@ -16,31 +16,13 @@ class {{ class }} extends OrchestraTestCase
     use DatabaseTransactions;
     use PackageProviders;
 
+    protected bool $hasMigrations = true;
+
     protected bool $load_migrations_laravel = false;
 
     protected bool $load_migrations_package = true;
 
     protected bool $load_migrations_playground = true;
 
-    /**
-     * Define database migrations.
-     *
-     * @api
-     *
-     * @return void
-     */
-    protected function defineDatabaseMigrations()
-    {
-        if (! empty(env('TEST_DB_MIGRATIONS'))) {
-            if ($this->load_migrations_laravel) {
-                $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-laravel');
-            }
-            if ($this->load_migrations_package) {
-                $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations');
-            }
-            if ($this->load_migrations_playground) {
-                $this->loadMigrationsFrom(dirname(dirname(__DIR__)).'/database/migrations-playground');
-            }
-        }
-    }
+    protected bool $setUpUserForPlayground = true;
 }

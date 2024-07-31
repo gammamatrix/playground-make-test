@@ -18,8 +18,12 @@ trait BuildModelRelationships
         $model = $this->model;
         $hm = $model?->HasMany();
         $this->searches['hasMany_properties'] = '';
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$hm' => $hm,
+        // ]);
 
-        if (! $model || ! $hm) {
+        if (! $model || is_null($hm)) {
             return;
         }
 
@@ -44,10 +48,21 @@ trait BuildModelRelationships
                 $rule = 'create';
                 $related = $HasMany->related();
                 $related_base = $related ? class_basename($related) : '';
+                // dd([
+                //     '__METHOD__' => __METHOD__,
+                //     '$accessor' => $accessor,
+                //     '$localKey' => $localKey,
+                //     '$foreignKey' => $foreignKey,
+                //     '$rule' => $rule,
+                //     '$related' => $related,
+                //     '$related_base' => $related_base,
+                //     // '$hm' => $hm,
+                // ]);
+
                 if (! empty($related_base) && ! empty($related)) {
                     if ($related_base === $related) {
                         $related = sprintf(
-                            '\\%1$s\\%2$s::class',
+                            '\\%1$s\\Models\\%2$s::class',
                             $this->parseClassInput($model->namespace()),
                             $this->parseClassInput($related)
                         );
@@ -56,7 +71,7 @@ trait BuildModelRelationships
                             $related = '\\'.$this->parseClassInput($related);
                         } else {
                             $related = sprintf(
-                                '\\%1$s::class',
+                                '\\Models\\%1$s::class',
                                 $this->parseClassInput($related)
                             );
                         }
@@ -93,7 +108,7 @@ PHP_CODE;
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$this->suite' => $this->suite,
-        //     '$this->model->playground()' => $this->model->playground(),
+        //     '$model->playground()' => $model->playground(),
         //     '$this->type' => $this->type,
         //     '$type' => $type,
         //     '$suite' => $suite,
@@ -102,7 +117,7 @@ PHP_CODE;
         // ]);
         $this->searches['hasOne_properties'] = '';
 
-        if (! $model || ! $ho) {
+        if (! $model || is_null($ho)) {
             return;
         }
 
@@ -140,7 +155,7 @@ PHP_CODE;
                 'parent' => [
                     'localKey' => 'parent_id',
                     'rule' => 'create',
-                    'related' => $model->class(),
+                    'related' => $model->fqdn(),
                 ],
             ];
         }
@@ -159,7 +174,7 @@ PHP_CODE;
             }
         }
 
-        // dump([
+        // dd([
         //     '__METHOD__' => __METHOD__,
         //     '$hasOnes' => $hasOnes,
         // ]);
@@ -193,7 +208,7 @@ PHP_CODE;
                 if (! empty($related_base) && ! empty($related)) {
                     if ($related_base === $related) {
                         $related = sprintf(
-                            '\\%1$s\\%2$s::class',
+                            '\\%1$s\\Models\\%2$s::class',
                             $this->parseClassInput($model->namespace()),
                             $this->parseClassInput($related)
                         );

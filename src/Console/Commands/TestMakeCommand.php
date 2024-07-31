@@ -438,7 +438,7 @@ class TestMakeCommand extends GeneratorCommand
             $this->c->setOptions([
                 'class' => 'ModelTest',
             ]);
-        } else if (in_array($type, [
+        } elseif (in_array($type, [
             'policy',
         ])) {
             $this->c->setOptions([
@@ -545,10 +545,13 @@ class TestMakeCommand extends GeneratorCommand
         } elseif (in_array($type, [
             'providers',
             'providers-api',
-            'providers-model',
             'providers-resource',
         ])) {
             $test = 'test/playground-trait-providers.stub';
+        } elseif (in_array($type, [
+            'providers-model',
+        ])) {
+            $test = 'test/playground-trait-providers-models.stub';
         } elseif (in_array($type, [
             'policy',
         ])) {
@@ -584,7 +587,12 @@ class TestMakeCommand extends GeneratorCommand
         } elseif (in_array($type, [
             'command-about',
         ])) {
-            $test = 'test/command/about-CommandTest.php.stub';
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$this->c' => $this->c,
+            // ]);
+            // $test = 'test/command/about-CommandTest.php.stub';
+            $test = 'test/command/about-CommandTest.php-models.stub';
         } elseif (in_array($type, [
             'playground-api-controller-model-case',
             'playground-resource-controller-model-case',
@@ -607,6 +615,8 @@ class TestMakeCommand extends GeneratorCommand
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$test' => $test,
+        //     '$type' => $type,
+        //     '$suite' => $suite,
         // ]);
 
         return $this->resolveStubPath($test);

@@ -1,0 +1,21 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace {{namespace}};
+
+/**
+ * \{{namespace}}\PackageProviders
+ */
+trait PackageProviders
+{
+    protected string $package_providers_dir = __DIR__;
+
+    protected function getPackageProviders($app)
+    {
+        return [
+{{test_trait_providers}}        ];
+    }
+}

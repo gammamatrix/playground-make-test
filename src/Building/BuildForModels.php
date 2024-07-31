@@ -46,7 +46,7 @@ trait BuildForModels
             'feature',
         ])) {
             $this->buildClass_uses_add(sprintf(
-                'Tests\Unit\%1$sPackageProviders',
+                'Tests\\Unit\\%1$s\\PackageProviders',
                 $rootNamespace
             ));
             $this->c->setOptions([
@@ -54,7 +54,7 @@ trait BuildForModels
             ]);
         } else {
             $this->buildClass_uses_add(sprintf(
-                'Tests\Unit\%1$sPackageProviders',
+                'Tests\\Unit\\%1$s\\PackageProviders',
                 $rootNamespace
             ));
             $this->c->setOptions([

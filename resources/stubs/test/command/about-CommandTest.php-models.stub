@@ -16,6 +16,19 @@ use Tests\Feature\{{namespace_root}}\TestCase;
 #[CoversClass(ServiceProvider::class)]
 class CommandTest extends TestCase
 {
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function defineEnvironment($app)
+    {
+        parent::defineEnvironment($app);
+
+        $app['config']->set('{{package}}.load.migrations', true);
+    }
+
     public function test_command_about_displays_package_information_and_succeed_with_code_0(): void
     {
         /**
