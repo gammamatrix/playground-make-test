@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-07-31 20:00:52</timestamp>
+  <timestamp>2024-08-02 22:00:26</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>41</methodCount>
-    <crapMethodCount>3</crapMethodCount>
-    <crapLoad>43</crapLoad>
-    <totalCrap>984.41</totalCrap>
-    <crapMethodPercent>7.32</crapMethodPercent>
+    <crapMethodCount>4</crapMethodCount>
+    <crapLoad>53</crapLoad>
+    <totalCrap>1040.24</totalCrap>
+    <crapMethodPercent>9.76</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -138,10 +138,10 @@
       <methodName>buildClass_hasMany</methodName>
       <methodSignature>buildClass_hasMany(string $type, string $suite): void</methodSignature>
       <fullMethod>buildClass_hasMany(string $type, string $suite): void</fullMethod>
-      <crap>40.15</crap>
+      <crap>95.98</crap>
       <complexity>11</complexity>
-      <coverage>37.78</coverage>
-      <crapLoad>0</crapLoad>
+      <coverage>11.11</coverage>
+      <crapLoad>10</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Building</package>

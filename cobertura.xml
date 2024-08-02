@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.42899408284024" branch-rate="0" lines-covered="435" lines-valid="1014" branches-covered="0" branches-valid="0" complexity="230" version="0.4" timestamp="1722456052">
+<coverage line-rate="0.41715976331361" branch-rate="0" lines-covered="423" lines-valid="1014" branches-covered="0" branches-valid="0" complexity="230" version="0.4" timestamp="1722636026">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -381,24 +381,24 @@
         </class>
       </classes>
     </package>
-    <package name="Building/BuildModelRelationships.php" line-rate="0.3" branch-rate="0" complexity="32">
+    <package name="Building/BuildModelRelationships.php" line-rate="0.20769230769231" branch-rate="0" complexity="32">
       <classes>
-        <class name="Playground\Make\Test\Building\BuildModelRelationships" filename="Building/BuildModelRelationships.php" line-rate="0.3" branch-rate="0" complexity="32">
+        <class name="Playground\Make\Test\Building\BuildModelRelationships" filename="Building/BuildModelRelationships.php" line-rate="0.20769230769231" branch-rate="0" complexity="32">
           <methods>
-            <method name="buildClass_hasMany" signature="string $type, string $suite" line-rate="0.37777777777778" branch-rate="0" complexity="11">
+            <method name="buildClass_hasMany" signature="string $type, string $suite" line-rate="0.11111111111111" branch-rate="0" complexity="11">
               <lines>
                 <line number="18" hits="11"/>
                 <line number="19" hits="11"/>
                 <line number="20" hits="11"/>
                 <line number="26" hits="11"/>
-                <line number="27" hits="0"/>
-                <line number="30" hits="11"/>
-                <line number="32" hits="11"/>
-                <line number="34" hits="11"/>
-                <line number="35" hits="11"/>
-                <line number="36" hits="11"/>
-                <line number="37" hits="11"/>
-                <line number="38" hits="11"/>
+                <line number="27" hits="11"/>
+                <line number="30" hits="0"/>
+                <line number="32" hits="0"/>
+                <line number="34" hits="0"/>
+                <line number="35" hits="0"/>
+                <line number="36" hits="0"/>
+                <line number="37" hits="0"/>
+                <line number="38" hits="0"/>
                 <line number="39" hits="0"/>
                 <line number="42" hits="0"/>
                 <line number="43" hits="0"/>
@@ -426,12 +426,12 @@
                 <line number="83" hits="0"/>
                 <line number="84" hits="0"/>
                 <line number="85" hits="0"/>
-                <line number="90" hits="11"/>
-                <line number="92" hits="11"/>
-                <line number="96" hits="11"/>
-                <line number="98" hits="11"/>
-                <line number="99" hits="11"/>
-                <line number="101" hits="11"/>
+                <line number="90" hits="0"/>
+                <line number="92" hits="0"/>
+                <line number="96" hits="0"/>
+                <line number="98" hits="0"/>
+                <line number="99" hits="0"/>
+                <line number="101" hits="0"/>
               </lines>
             </method>
             <method name="buildClass_hasOne" signature="string $type, string $suite" line-rate="0.25882352941176" branch-rate="0" complexity="21">
@@ -529,14 +529,14 @@
             <line number="19" hits="11"/>
             <line number="20" hits="11"/>
             <line number="26" hits="11"/>
-            <line number="27" hits="0"/>
-            <line number="30" hits="11"/>
-            <line number="32" hits="11"/>
-            <line number="34" hits="11"/>
-            <line number="35" hits="11"/>
-            <line number="36" hits="11"/>
-            <line number="37" hits="11"/>
-            <line number="38" hits="11"/>
+            <line number="27" hits="11"/>
+            <line number="30" hits="0"/>
+            <line number="32" hits="0"/>
+            <line number="34" hits="0"/>
+            <line number="35" hits="0"/>
+            <line number="36" hits="0"/>
+            <line number="37" hits="0"/>
+            <line number="38" hits="0"/>
             <line number="39" hits="0"/>
             <line number="42" hits="0"/>
             <line number="43" hits="0"/>
@@ -564,12 +564,12 @@
             <line number="83" hits="0"/>
             <line number="84" hits="0"/>
             <line number="85" hits="0"/>
-            <line number="90" hits="11"/>
-            <line number="92" hits="11"/>
-            <line number="96" hits="11"/>
-            <line number="98" hits="11"/>
-            <line number="99" hits="11"/>
-            <line number="101" hits="11"/>
+            <line number="90" hits="0"/>
+            <line number="92" hits="0"/>
+            <line number="96" hits="0"/>
+            <line number="98" hits="0"/>
+            <line number="99" hits="0"/>
+            <line number="101" hits="0"/>
             <line number="106" hits="11"/>
             <line number="107" hits="11"/>
             <line number="118" hits="11"/>
