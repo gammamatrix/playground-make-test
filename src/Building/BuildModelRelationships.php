@@ -23,7 +23,7 @@ trait BuildModelRelationships
         //     '$hm' => $hm,
         // ]);
 
-        if (! $model || is_null($hm)) {
+        if (! $model || ! $hm) {
             return;
         }
 
