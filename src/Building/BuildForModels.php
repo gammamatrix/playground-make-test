@@ -77,6 +77,15 @@ trait BuildForModels
     public function prepareOptionsForSuites(array $options = []): void
     {
         $extends = 'ModelCase';
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$options' => $options,
+        //     'this->model?->module()' => $this->model?->module(),
+        //     'this->model?->namespace()' => $this->model?->namespace(),
+        //     'this->c->namespace()' => $this->c->namespace(),
+        //     '$this->c->suite()' => $this->c->suite(),
+        //     // '$this->options()' => $this->options(),
+        // ]);
 
         if (in_array($this->suite, [
             'acceptance',
@@ -84,15 +93,15 @@ trait BuildForModels
         ]) && $this->model?->module()) {
 
             $this->buildClass_uses_add(sprintf(
-                'Tests\Feature\Playground\%1$s\Models\ModelCase',
-                $this->model->module()
+                'Tests\Feature\%1$s\Models\ModelCase',
+                $this->parseClassInput($this->model->namespace())
             ));
 
         } elseif ($this->model?->module()) {
 
             $this->buildClass_uses_add(sprintf(
-                'Tests\Unit\Playground\%1$s\Models\ModelCase',
-                $this->model->module()
+                'Tests\Unit\%1$s\Models\ModelCase',
+                $this->parseClassInput($this->model->namespace())
             ));
         }
 

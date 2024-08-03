@@ -49,11 +49,11 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*Start:*\n${{ steps.timer_start.outputs.DATE_START }}"
+                    "text": "*Start:* <!date^${{ steps.timer_start.outputs.TIMESTAMP_START }}^{date} at {time}|${{ steps.timer_start.outputs.DATE_START }}>"
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*End:*\n--"
+                    "text": "*End:* --"
                   }
                 ]
               },
@@ -71,18 +71,25 @@ jobs:
                 ]
               },
               {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*PR:* ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*Build:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                }
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Merge/Pull Request"
+                    },
+                    "url": "${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                  },
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Build: ${{ github.run_id }}"
+                    },
+                    "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  }
+                ]
               }
             ]
           }
@@ -102,6 +109,7 @@ jobs:
         version: "11.0"
         php_version: "8.2"
         php_extensions: intl xdebug
+        configuration: phpunit-ci.xml
         coverage_clover: clover.xml
         coverage_text: true
     - name: Make code coverage badge
@@ -131,6 +139,7 @@ jobs:
       run: |
         echo "DATE_END=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
         echo "DURATION_PHRASE=$(($(date +'%s')-$TIMESTAMP_START)) seconds" >> $GITHUB_OUTPUT
+        echo "TIMESTAMP_END=$(date +'%s')" >> $GITHUB_OUTPUT
     - name: "Slack notification: Done"
       uses: slackapi/slack-github-action@v1.25.0
       with:
@@ -152,11 +161,11 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*Start:*\n${{ steps.timer_start.outputs.DATE_START }}"
+                    "text": "*Start:* <!date^${{ steps.timer_start.outputs.TIMESTAMP_START }}^{date} at {time}|${{ steps.timer_start.outputs.DATE_START }}>"
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*End:*\n${{ steps.timer_end.outputs.DATE_END }}"
+                    "text": "*End:* <!date^${{ steps.timer_end.outputs.TIMESTAMP_END }}^{date} at {time}|${{ steps.timer_end.outputs.DATE_END }}>"
                   }
                 ]
               },
@@ -174,18 +183,26 @@ jobs:
                 ]
               },
               {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*PR:* ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*Build:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                }
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Merge/Pull Request"
+                    },
+                    "url": "${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                  },
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Build: ${{ github.run_id }}"
+                    },
+                    "style": "primary",
+                    "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  }
+                ]
               }
             ]
           }
@@ -213,11 +230,11 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*Start:*\n${{ steps.timer_start.outputs.DATE_START }}"
+                    "text": "*Start:* <!date^${{ steps.timer_start.outputs.TIMESTAMP_START }}^{date} at {time}|${{ steps.timer_start.outputs.DATE_START }}>"
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*End:*\n${{ steps.timer_end.outputs.DATE_END }}"
+                    "text": "*End:* <!date^${{ steps.timer_end.outputs.TIMESTAMP_END }}^{date} at {time}|${{ steps.timer_end.outputs.DATE_END }}>"
                   }
                 ]
               },
@@ -235,18 +252,26 @@ jobs:
                 ]
               },
               {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*PR:* ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*Build:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                }
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Merge/Pull Request"
+                    },
+                    "url": "${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                  },
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Build: ${{ github.run_id }}"
+                    },
+                    "style": "danger",
+                    "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  }
+                ]
               }
             ]
           }
