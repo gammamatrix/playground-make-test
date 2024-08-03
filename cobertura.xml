@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.41715976331361" branch-rate="0" lines-covered="423" lines-valid="1014" branches-covered="0" branches-valid="0" complexity="230" version="0.4" timestamp="1722636026">
+<coverage line-rate="0.41715976331361" branch-rate="0" lines-covered="423" lines-valid="1014" branches-covered="0" branches-valid="0" complexity="230" version="0.4" timestamp="1722721074">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -305,25 +305,25 @@
             <method name="prepareOptionsForSuites" signature="array $options" line-rate="0.8" branch-rate="0" complexity="4">
               <lines>
                 <line number="79" hits="11"/>
-                <line number="81" hits="11"/>
-                <line number="82" hits="11"/>
-                <line number="83" hits="11"/>
-                <line number="84" hits="11"/>
-                <line number="86" hits="0"/>
-                <line number="87" hits="0"/>
-                <line number="88" hits="0"/>
-                <line number="89" hits="0"/>
+                <line number="90" hits="11"/>
                 <line number="91" hits="11"/>
-                <line number="93" hits="7"/>
-                <line number="94" hits="7"/>
-                <line number="95" hits="7"/>
-                <line number="96" hits="7"/>
-                <line number="99" hits="11"/>
+                <line number="92" hits="11"/>
+                <line number="93" hits="11"/>
+                <line number="95" hits="0"/>
+                <line number="96" hits="0"/>
+                <line number="97" hits="0"/>
+                <line number="98" hits="0"/>
                 <line number="100" hits="11"/>
-                <line number="101" hits="11"/>
-                <line number="103" hits="11"/>
-                <line number="105" hits="11"/>
-                <line number="106" hits="11"/>
+                <line number="102" hits="7"/>
+                <line number="103" hits="7"/>
+                <line number="104" hits="7"/>
+                <line number="105" hits="7"/>
+                <line number="108" hits="11"/>
+                <line number="109" hits="11"/>
+                <line number="110" hits="11"/>
+                <line number="112" hits="11"/>
+                <line number="114" hits="11"/>
+                <line number="115" hits="11"/>
               </lines>
             </method>
           </methods>
@@ -358,25 +358,25 @@
             <line number="61" hits="0"/>
             <line number="62" hits="0"/>
             <line number="79" hits="11"/>
-            <line number="81" hits="11"/>
-            <line number="82" hits="11"/>
-            <line number="83" hits="11"/>
-            <line number="84" hits="11"/>
-            <line number="86" hits="0"/>
-            <line number="87" hits="0"/>
-            <line number="88" hits="0"/>
-            <line number="89" hits="0"/>
+            <line number="90" hits="11"/>
             <line number="91" hits="11"/>
-            <line number="93" hits="7"/>
-            <line number="94" hits="7"/>
-            <line number="95" hits="7"/>
-            <line number="96" hits="7"/>
-            <line number="99" hits="11"/>
+            <line number="92" hits="11"/>
+            <line number="93" hits="11"/>
+            <line number="95" hits="0"/>
+            <line number="96" hits="0"/>
+            <line number="97" hits="0"/>
+            <line number="98" hits="0"/>
             <line number="100" hits="11"/>
-            <line number="101" hits="11"/>
-            <line number="103" hits="11"/>
-            <line number="105" hits="11"/>
-            <line number="106" hits="11"/>
+            <line number="102" hits="7"/>
+            <line number="103" hits="7"/>
+            <line number="104" hits="7"/>
+            <line number="105" hits="7"/>
+            <line number="108" hits="11"/>
+            <line number="109" hits="11"/>
+            <line number="110" hits="11"/>
+            <line number="112" hits="11"/>
+            <line number="114" hits="11"/>
+            <line number="115" hits="11"/>
           </lines>
         </class>
       </classes>
