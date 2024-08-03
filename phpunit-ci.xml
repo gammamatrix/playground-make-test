@@ -11,8 +11,8 @@
     failOnRisky="true"
     failOnWarning="true"
     processIsolation="false"
-    stopOnError="true"
-    stopOnFailure="true"
+    stopOnError="false"
+    stopOnFailure="false"
     cacheDirectory=".phpunit.cache"
     backupStaticProperties="false"
     displayDetailsOnIncompleteTests="true"
@@ -39,10 +39,10 @@
             <clover outputFile="output/clover.xml" />
             <cobertura outputFile="output/cobertura.xml" />
             <crap4j outputFile="output/crap4j.xml" threshold="50" />
-            <html outputDirectory="output/html" lowUpperBound="50" highLowerBound="90" />
+            <!-- <html outputDirectory="output/html" lowUpperBound="50" highLowerBound="90" /> -->
             <php outputFile="output/coverage.php" />
             <text outputFile="output/coverage.txt" showUncoveredFiles="false" showOnlySummary="true" />
-            <xml outputDirectory="output/xml" />
+            <!-- <xml outputDirectory="output/xml" /> -->
         </report>
     </coverage>
     <logging>

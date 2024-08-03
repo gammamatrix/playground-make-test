@@ -129,7 +129,7 @@ jobs:
       with:
         level: 9
         php_version: "8.2"
-        path: config/ lang/ src/ tests/Feature/
+        path: config/ lang/ src/ tests/Feature/ tests/Unit/
         args: --verbose --debug
     - name: Stopping timer
       if: ${{ !cancelled() }}
