@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-03 21:37:54</timestamp>
+  <timestamp>2024-08-04 20:19:17</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>41</methodCount>
     <crapMethodCount>4</crapMethodCount>
     <crapLoad>53</crapLoad>
-    <totalCrap>1040.24</totalCrap>
+    <totalCrap>1085.67</totalCrap>
     <crapMethodPercent>9.76</crapMethodPercent>
   </stats>
   <methods>
@@ -248,8 +248,8 @@
       <methodName>prepareOptionsForAboutCommand</methodName>
       <methodSignature>prepareOptionsForAboutCommand(array $options): void</methodSignature>
       <fullMethod>prepareOptionsForAboutCommand(array $options): void</fullMethod>
-      <crap>6</crap>
-      <complexity>2</complexity>
+      <crap>42</crap>
+      <complexity>6</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -369,9 +369,9 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>24.69</crap>
-      <complexity>17</complexity>
-      <coverage>70.15</coverage>
+      <crap>34.12</crap>
+      <complexity>21</complexity>
+      <coverage>69.01</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
