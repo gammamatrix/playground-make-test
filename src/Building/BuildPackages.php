@@ -421,9 +421,18 @@ trait BuildPackages
      */
     public function prepareOptionsForAboutCommand(array $options = []): void
     {
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
         $name = $this->c->module();
         if ($this->c->playground()) {
             $name = Str::of($name)->start('Playground: ')->toString();
+
+            if ($isApi) {
+                $name = Str::of($name)->finish(' API')->toString();
+            } elseif ($isResource) {
+                $name = Str::of($name)->finish(' Resource')->toString();
+            }
         }
         $this->searches['name'] = $name;
         $this->searches['namespace_root'] = $this->parseClassInput($this->rootNamespace());

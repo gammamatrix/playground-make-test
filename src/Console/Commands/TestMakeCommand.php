@@ -534,6 +534,9 @@ class TestMakeCommand extends GeneratorCommand
 
         $type = $this->getConfigurationType();
 
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
         if (in_array($type, [
             'model',
         ])) {
@@ -590,9 +593,13 @@ class TestMakeCommand extends GeneratorCommand
             // dd([
             //     '__METHOD__' => __METHOD__,
             //     '$this->c' => $this->c,
+            //     '$this->options()' => $this->options(),
             // ]);
-            // $test = 'test/command/about-CommandTest.php.stub';
-            $test = 'test/command/about-CommandTest.php-models.stub';
+            if ($isApi || $isResource) {
+                $test = 'test/command/about-CommandTest.php.stub';
+            } else {
+                $test = 'test/command/about-CommandTest.php-models.stub';
+            }
         } elseif (in_array($type, [
             'playground-api-controller-model-case',
             'playground-resource-controller-model-case',
@@ -746,6 +753,8 @@ class TestMakeCommand extends GeneratorCommand
 
         $options[] = ['suite', null, InputOption::VALUE_OPTIONAL, 'The test suite: unit|feature|acceptance'];
         $options[] = ['covers', null, InputOption::VALUE_NONE, 'Use CoversClass for code coverage'];
+        $options[] = ['api', null, InputOption::VALUE_NONE, 'The test is for APIs'];
+        $options[] = ['resource', null, InputOption::VALUE_NONE, 'The test is for resources'];
 
         return $options;
     }
