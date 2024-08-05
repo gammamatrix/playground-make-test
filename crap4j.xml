@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-04 20:19:17</timestamp>
+  <timestamp>2024-08-05 19:04:46</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>41</methodCount>
-    <crapMethodCount>4</crapMethodCount>
-    <crapLoad>53</crapLoad>
-    <totalCrap>1085.67</totalCrap>
-    <crapMethodPercent>9.76</crapMethodPercent>
+    <methodCount>44</methodCount>
+    <crapMethodCount>5</crapMethodCount>
+    <crapLoad>64</crapLoad>
+    <totalCrap>1243.04</totalCrap>
+    <crapMethodPercent>11.36</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -171,10 +171,10 @@
       <methodName>buildClass_getPackageProviders</methodName>
       <methodSignature>buildClass_getPackageProviders(string $type): void</methodSignature>
       <fullMethod>buildClass_getPackageProviders(string $type): void</fullMethod>
-      <crap>182</crap>
-      <complexity>13</complexity>
+      <crap>210</crap>
+      <complexity>14</complexity>
       <coverage>0</coverage>
-      <crapLoad>13</crapLoad>
+      <crapLoad>14</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Building</package>
@@ -182,8 +182,8 @@
       <methodName>prepareOptionsForTestCase</methodName>
       <methodSignature>prepareOptionsForTestCase(array $options): void</methodSignature>
       <fullMethod>prepareOptionsForTestCase(array $options): void</fullMethod>
-      <crap>6</crap>
-      <complexity>2</complexity>
+      <crap>20</crap>
+      <complexity>4</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -204,8 +204,8 @@
       <methodName>prepareOptionsForControllerTestCase</methodName>
       <methodSignature>prepareOptionsForControllerTestCase(array $options): void</methodSignature>
       <fullMethod>prepareOptionsForControllerTestCase(array $options): void</fullMethod>
-      <crap>2</crap>
-      <complexity>1</complexity>
+      <crap>12</crap>
+      <complexity>3</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -215,8 +215,41 @@
       <methodName>addResourceTraits</methodName>
       <methodSignature>addResourceTraits(): self</methodSignature>
       <fullMethod>addResourceTraits(): self</fullMethod>
-      <crap>30</crap>
-      <complexity>5</complexity>
+      <crap>110</crap>
+      <complexity>10</complexity>
+      <coverage>0</coverage>
+      <crapLoad>10</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>addRevisionPropertiesForModel</methodName>
+      <methodSignature>addRevisionPropertiesForModel(string $fqdn, string $variable): self</methodSignature>
+      <fullMethod>addRevisionPropertiesForModel(string $fqdn, string $variable): self</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>addRevisionProperties</methodName>
+      <methodSignature>addRevisionProperties(): self</methodSignature>
+      <fullMethod>addRevisionProperties(): self</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>addRevisionMethods</methodName>
+      <methodSignature>addRevisionMethods(): self</methodSignature>
+      <fullMethod>addRevisionMethods(): self</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -226,8 +259,8 @@
       <methodName>prepareOptionsForControllerModelCase</methodName>
       <methodSignature>prepareOptionsForControllerModelCase(array $options): void</methodSignature>
       <fullMethod>prepareOptionsForControllerModelCase(array $options): void</fullMethod>
-      <crap>12</crap>
-      <complexity>3</complexity>
+      <crap>30</crap>
+      <complexity>5</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -336,9 +369,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>42.91</crap>
+      <crap>42.44</crap>
       <complexity>26</complexity>
-      <coverage>70.75</coverage>
+      <coverage>71.03</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -369,9 +402,9 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>34.12</crap>
-      <complexity>21</complexity>
-      <coverage>69.01</coverage>
+      <crap>35.96</crap>
+      <complexity>22</complexity>
+      <coverage>69.33</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
