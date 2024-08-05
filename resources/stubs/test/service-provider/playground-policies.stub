@@ -7,8 +7,8 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use Illuminate\Database\Eloquent\Model;
-use Playground\Matrix\Resource\ServiceProvider;
-use Tests\Unit\Playground\Matrix\Resource\TestCase;
+use {{ namespace_root }}\ServiceProvider;
+use Tests\Unit\{{ namespace_root }}\TestCase;
 use TiMacDonald\Log\LogEntry;
 use TiMacDonald\Log\LogFake;
 
@@ -23,7 +23,7 @@ class InstanceTest extends TestCase
 
         $this->assertNotEmpty(ServiceProvider::VERSION);
         $this->assertIsString(ServiceProvider::VERSION);
-        $this->assertSame(ServiceProvider::VERSION, $instance->version());
+        $this->assertSame(ServiceProvider::VERSION, $instance::VERSION);
     }
 
     public function test_setPolicies_with_empty_array(): void

@@ -185,15 +185,13 @@ trait BuildCovers
 
     public function addCovers_policies(): self
     {
-        // use Playground\Matrix\Resource\Policies\BacklogPolicy;
-
         $model = $this->c->model();
         if (in_array($this->c->type(), [
             'playground-resource-controller-model-case',
         ])) {
 
             if ($model) {
-                $this->buildClass_uses_add(sprintf('%1$sPolicies/%2$sPolicy', $this->rootNamespace(), $model));
+                $this->buildClass_uses_add(sprintf('%1$s/Policies/%2$sPolicy', $this->rootNamespace(), $model));
 
                 $this->build_covers_policies[] = sprintf(
                     '#[CoversClass(%1$sPolicy::class)]',

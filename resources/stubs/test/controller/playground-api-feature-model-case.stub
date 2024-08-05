@@ -1,0 +1,68 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace {{namespace}};
+
+use Illuminate\Database\Eloquent\Model;
+{{use}}
+/**
+ * \{{namespace}}\{{model}}TestCase
+ */{{covers_class}}
+class {{model}}TestCase extends TestCase
+{
+    public string $fqdn = \{{model_fqdn}}::class;
+{{revision_properties}}
+    protected int $status_code_json_guest_create = 401;
+
+    protected int $status_code_json_guest_destroy = 401;
+
+    protected int $status_code_json_guest_edit = 401;
+
+    protected int $status_code_json_guest_index = 401;
+
+    protected int $status_code_json_guest_lock = 401;
+
+    protected int $status_code_json_guest_restore = 401;
+
+    protected int $status_code_json_guest_restore_revision = 401;
+
+    protected int $status_code_guest_json_revision = 401;
+
+    protected int $status_code_guest_json_revisions = 401;
+
+    protected int $status_code_json_guest_show = 401;
+
+    protected int $status_code_guest_json_store = 401;
+
+    protected int $status_code_guest_json_unlock = 401;
+
+    protected int $status_code_guest_json_update = 401;
+
+    /**
+     * @var array<string, string>
+     */
+    public array $packageInfo = [
+        'model_attribute' => '{{model_attribute}}',
+        'model_label' => '{{model_label}}',
+        'model_label_plural' => '{{model_label_plural}}',
+        'model_route' => '{{model_route}}',
+        'model_slug' => '{{model_slug}}',
+        'model_slug_plural' => '{{model_slug_plural}}',
+        'module_label' => '{{module_label}}',
+        'module_label_plural' => '{{module_label_plural}}',
+        'module_route' => '{{module_route}}',
+        'module_slug' => '{{module_slug}}',
+        'privilege' => '{{privilege}}',
+        'table' => '{{table}}',
+    ];
+
+    /**
+     * @var array<int, string>
+     */
+    protected $structure_model = [
+{{structure_model}}
+    ];
+}

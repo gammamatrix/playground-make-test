@@ -13,7 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TestCase extends BaseTestCase
 {
-{{test_case_use_traits}}    /**
+{{test_case_use_traits}}    protected bool $setUpUserForPlayground = true;
+
+    /**
      * @var array<string, string>
      */
     public array $packageInfo = [
@@ -36,7 +38,7 @@ class TestCase extends BaseTestCase
      * @var class-string<Model>
      */
     public string $fqdn = Model::class;
-
+{{revision_properties}}
     /**
      * @var array<int, string>
      */
@@ -51,7 +53,7 @@ class TestCase extends BaseTestCase
     {
         return $this->fqdn;
     }
-
+{{revision_methods}}
     /**
      * @return array<string, string>
      */

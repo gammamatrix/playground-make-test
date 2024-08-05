@@ -121,6 +121,10 @@ trait BuildPackages
             $namespace
         ));
 
+        if ($add_Package_Api) {
+            $this->addToBuildPackageProviders('\Laravel\Sanctum\SanctumServiceProvider::class');
+        }
+
         foreach ($this->build_providers as $provider) {
             $test_trait_providers .= sprintf('%1$s%2$s,%3$s', str_repeat(' ', 12), $provider, PHP_EOL);
         }
@@ -153,7 +157,10 @@ trait BuildPackages
      */
     public function prepareOptionsForTestCase(array $options = []): void
     {
+        $type = $this->c->type();
         $rootNamespace = $this->rootNamespace();
+
+        $options_set = [];
 
         if (in_array($this->suite, [
             'acceptance',
@@ -163,27 +170,30 @@ trait BuildPackages
                 'Tests\Unit\%1$s\\PackageProviders',
                 $rootNamespace
             ));
-            $this->c->setOptions([
-                'extends' => 'OrchestraTestCase',
-                'extends_use' => 'Playground/Test/OrchestraTestCase',
-            ]);
+            $options_set['extends'] = 'OrchestraTestCase';
+            $options_set['extends_use'] = 'Playground/Test/OrchestraTestCase';
         } else {
-            // $this->buildClass_uses_add(sprintf(
-            //     'Tests\Unit\%1$s\\PackageProviders',
-            //     $rootNamespace
-            // ));
-            $this->c->setOptions([
-                'extends' => 'OrchestraTestCase',
-                'extends_use' => 'Playground/Test/OrchestraTestCase',
-            ]);
+            $options_set['extends'] = 'OrchestraTestCase';
+            $options_set['extends_use'] = 'Playground/Test/OrchestraTestCase';
         }
-        // dump([
+
+        if (! empty($options['model-package'])
+            && is_string($options['model-package'])
+        ) {
+            $this->searches['packagist_vendor'] = Str::of($options['model-package'])->before('/')->toString();
+            $this->searches['packagist_model'] = Str::of($options['model-package'])->after('/')->toString();
+        }
+
+        $this->c->setOptions($options_set);
+        // dd([
         //     '__METHOD__' => __METHOD__,
-        //     // '$options' => $options,
+        //     '$options' => $options,
+        //     '$options_set' => $options_set,
         //     '$rootNamespace' => $rootNamespace,
         //     // '$this->c->uses()' => $this->c->uses(),
         //     // '$this->c->suite()' => $this->c->suite(),
         //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
         //     '$this->options()' => $this->options(),
         // ]);
     }
@@ -215,13 +225,40 @@ trait BuildPackages
         // ]);
     }
 
-    // protected array $controllerCase_crud_api = [
+    /**
+     * @var array<int, string>
+     */
+    protected array $controllerCase_crud_api = [
+        'Resource/Playground/CreateJsonTrait',
+        'Resource/Playground/DestroyJsonTrait',
+        'Resource/Playground/EditJsonTrait',
+        'Resource/Playground/IndexJsonTrait',
+        'Resource/Playground/LockJsonTrait',
+        'Resource/Playground/RestoreJsonTrait',
+        'Resource/Playground/ShowJsonTrait',
+        'Resource/Playground/StoreJsonTrait',
+        'Resource/Playground/UnlockJsonTrait',
+        'Resource/Playground/UpdateJsonTrait',
+    ];
 
-    // ];
-
-    // protected array $controllerCase_crud_api_revisionable = [
-
-    // ];
+    /**
+     * @var array<int, string>
+     */
+    protected array $controllerCase_crud_api_revisionable = [
+        'Resource/Playground/CreateJsonTrait',
+        'Resource/Playground/DestroyJsonTrait',
+        'Resource/Playground/EditJsonTrait',
+        'Resource/Playground/IndexJsonTrait',
+        'Resource/Playground/LockJsonTrait',
+        'Resource/Playground/RestoreJsonTrait',
+        'Resource/Playground/RestoreRevisionJsonTrait',
+        'Resource/Playground/RevisionJsonTrait',
+        'Resource/Playground/RevisionsJsonTrait',
+        'Resource/Playground/ShowJsonTrait',
+        'Resource/Playground/StoreJsonTrait',
+        'Resource/Playground/UnlockJsonTrait',
+        'Resource/Playground/UpdateJsonTrait',
+    ];
 
     /**
      * @var array<int, string>
@@ -249,9 +286,34 @@ trait BuildPackages
         'Resource/Playground/UpdateTrait',
     ];
 
-    // protected array $controllerCase_crud_resource_revisionable = [
-
-    // ];
+    /**
+     * @var array<int, string>
+     */
+    protected array $controllerCase_crud_resource_revisionable = [
+        'Resource/Playground/CreateJsonTrait',
+        'Resource/Playground/CreateTrait',
+        'Resource/Playground/DestroyJsonTrait',
+        'Resource/Playground/DestroyTrait',
+        'Resource/Playground/EditJsonTrait',
+        'Resource/Playground/EditTrait',
+        'Resource/Playground/IndexJsonTrait',
+        'Resource/Playground/IndexTrait',
+        'Resource/Playground/LockJsonTrait',
+        'Resource/Playground/LockTrait',
+        'Resource/Playground/RestoreJsonTrait',
+        'Resource/Playground/RestoreRevisionJsonTrait',
+        'Resource/Playground/RestoreTrait',
+        'Resource/Playground/RevisionJsonTrait',
+        'Resource/Playground/RevisionsJsonTrait',
+        'Resource/Playground/ShowJsonTrait',
+        'Resource/Playground/ShowTrait',
+        'Resource/Playground/StoreJsonTrait',
+        'Resource/Playground/StoreTrait',
+        'Resource/Playground/UnlockJsonTrait',
+        'Resource/Playground/UnlockTrait',
+        'Resource/Playground/UpdateJsonTrait',
+        'Resource/Playground/UpdateTrait',
+    ];
 
     /**
      * @param array<string, mixed> $options
@@ -259,6 +321,7 @@ trait BuildPackages
     public function prepareOptionsForControllerTestCase(array $options = []): void
     {
         $rootNamespace = $this->rootNamespace();
+        $revision = $this->hasOption('revision') && $this->option('revision');
 
         $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
         $this->buildClass_uses_add(sprintf(
@@ -267,10 +330,6 @@ trait BuildPackages
                 $this->parseClassInput($this->rootNamespace())
             )->trim('\\')->toString()
         ));
-        $this->c->setOptions([
-            'extends' => 'BaseTestCase',
-            'extends_use' => 'Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase',
-        ]);
         $this->searches['model_attribute'] = 'title';
         $this->searches['module_label'] = $this->c->module();
         $this->searches['module_label_plural'] = Str::of($this->c->module())->plural()->toString();
@@ -280,6 +339,11 @@ trait BuildPackages
         $this->searches['module_view'] = Str::of($this->c->package())->replace('-', '.')->finish('::')->toString();
 
         $this->addResourceTraits();
+
+        if ($revision) {
+            $this->addRevisionProperties();
+            $this->addRevisionMethods();
+        }
 
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -293,9 +357,33 @@ trait BuildPackages
 
     public function addResourceTraits(): self
     {
+        $revision = $this->hasOption('revision') && $this->option('revision');
+
+        $type = $this->c->type();
+
+        if (in_array($type, [
+            'playground-api-controller-test-case',
+        ])) {
+            if ($revision) {
+                $traits = $this->controllerCase_crud_api_revisionable;
+            } else {
+                $traits = $this->controllerCase_crud_api;
+            }
+        } elseif (in_array($type, [
+            'playground-resource-controller-test-case',
+        ])) {
+            if ($revision) {
+                $traits = $this->controllerCase_crud_resource_revisionable;
+            } else {
+                $traits = $this->controllerCase_crud_resource;
+            }
+        } else {
+            $traits = $this->controllerCase_crud_resource;
+        }
+
         $this->searches['test_case_use_traits'] = '';
         $test_case_use_traits = '';
-        foreach ($this->controllerCase_crud_resource as $use) {
+        foreach ($traits as $use) {
             if (is_string($use) && $use) {
                 $test_case_use_traits .= sprintf(
                     '    use %2$s;%1$s',
@@ -312,12 +400,78 @@ trait BuildPackages
         return $this;
     }
 
+    public function addRevisionPropertiesForModel(
+        string $fqdn,
+        string $variable
+    ): self {
+        $this->searches['revision_properties'] = <<<PHP_CODE
+
+    /**
+     * @var class-string<Model>
+     */
+    public string \$fqdnRevision = \\{$fqdn}Revision::class;
+
+    public string \$revisionId = '{$variable}_id';
+
+    public string \$revisionRouteParameter = '{$variable}_revision';
+
+PHP_CODE;
+
+        return $this;
+    }
+
+    public function addRevisionProperties(): self
+    {
+        $this->searches['revision_properties'] = <<<'PHP_CODE'
+
+    /**
+     * @var class-string<Model>
+     */
+    public string $fqdnRevision = Model::class;
+
+    public string $revisionId = 'revision_id';
+
+    public string $revisionRouteParameter = 'revision';
+
+PHP_CODE;
+
+        return $this;
+    }
+
+    public function addRevisionMethods(): self
+    {
+        $this->searches['revision_methods'] = <<<'PHP_CODE'
+
+    /**
+     * @return class-string<Model>
+     */
+    public function getGetFqdnRevision(): string
+    {
+        return $this->fqdnRevision;
+    }
+
+    public function getRevisionId(): string
+    {
+        return $this->revisionId;
+    }
+
+    public function getRevisionRouteParameter(): string
+    {
+        return $this->revisionRouteParameter;
+    }
+
+PHP_CODE;
+
+        return $this;
+    }
+
     /**
      * @param array<string, mixed> $options
      */
     public function prepareOptionsForControllerModelCase(array $options = []): void
     {
         $rootNamespace = $this->rootNamespace();
+        $revision = $this->hasOption('revision') && $this->option('revision');
 
         // $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
         // $this->buildClass_uses_add('Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase');
@@ -347,7 +501,10 @@ trait BuildPackages
         $this->searches['model_fqdn'] = $this->parseClassInput($fqdn);
         // $this->searches['model_fqdn'] = $this->parseClassConfig($fqdn);
 
-        $this->searches['model_slug'] = $this->model?->model_slug() ?? 'dummy';
+        $model_slug = $this->model?->model_slug() ?? 'dummy';
+        $variable = Str::of($model_slug)->snake()->toString();
+
+        $this->searches['model_slug'] = $model_slug;
         $this->searches['model_label_plural'] = $this->model?->model_plural() ?? 'dummies';
         $this->searches['model_singular'] = $this->model?->model_singular() ?? 'Dummy';
         $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->plural()->kebab()->toString();
@@ -365,6 +522,13 @@ trait BuildPackages
         }
 
         $this->addStructureModel();
+
+        if ($revision) {
+            $this->addRevisionPropertiesForModel(
+                $this->parseClassInput($fqdn),
+                $variable
+            );
+        }
 
         // dump([
         //     '__METHOD__' => __METHOD__,

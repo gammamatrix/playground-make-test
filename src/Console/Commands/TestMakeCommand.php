@@ -59,11 +59,15 @@ class TestMakeCommand extends GeneratorCommand
         'setup' => '',
         'tests' => '',
         'model_fqdn' => '',
+        'packagist_model' => '',
+        'packagist_vendor' => '',
         'hasRelationships' => 'false',
         'hasMany_properties' => '',
         'hasOne_properties' => '',
         'test_trait_providers' => '',
         'covers_class' => '',
+        'revision_methods' => '',
+        'revision_properties' => '',
     ];
 
     /**
@@ -185,6 +189,8 @@ class TestMakeCommand extends GeneratorCommand
 
         $rootNamespace = $this->rootNamespace();
 
+        $this->searches['namespace_root'] = $this->parseClassInput($rootNamespace);
+
         if (in_array($this->c->type(), [
             'playground-api-controller-model-case',
             'playground-resource-controller-model-case',
@@ -285,7 +291,7 @@ class TestMakeCommand extends GeneratorCommand
                 Str::of($this->suite)->studly()->toString(),
                 Str::of($this->rootNamespace())->trim('\\/')->toString()
             ));
-            $this->buildClass_uses_add(sprintf('%1$sPolicies/%2$sPolicy', $this->rootNamespace(), $model));
+            $this->buildClass_uses_add(sprintf('%1$s/Policies/%2$sPolicy', $this->rootNamespace(), $model));
         }
 
         // $this->saveConfiguration();
@@ -584,6 +590,7 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $test = 'test/case/playground-request.stub';
         } elseif (in_array($type, [
+            'playground-api-controller-test-case',
             'playground-resource-controller-test-case',
         ])) {
             $test = 'test/controller/playground-resource-feature-case.stub';
@@ -602,6 +609,9 @@ class TestMakeCommand extends GeneratorCommand
             }
         } elseif (in_array($type, [
             'playground-api-controller-model-case',
+        ])) {
+            $test = 'test/controller/playground-api-feature-model-case.stub';
+        } elseif (in_array($type, [
             'playground-resource-controller-model-case',
         ])) {
             $test = 'test/controller/playground-resource-feature-model-case.stub';
@@ -609,6 +619,16 @@ class TestMakeCommand extends GeneratorCommand
             'playground-service-provider-policies',
         ])) {
             $test = 'test/service-provider/playground-policies.stub';
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$test' => $test,
+            //     '$type' => $type,
+            //     '$suite' => $suite,
+            //     '$this->c' => $this->c,
+            //     '$this->options()' => $this->options(),
+            //     '$this->rootNamespace()' => $this->rootNamespace(),
+            //     '$this->searches' => $this->searches,
+            // ]);
         } elseif (in_array($type, [
             'model-case',
         ])) {
@@ -751,10 +771,12 @@ class TestMakeCommand extends GeneratorCommand
     {
         $options = parent::getOptions();
 
+        $options[] = ['model-package', null, InputOption::VALUE_OPTIONAL, 'The model package to use for loading migrations'];
         $options[] = ['suite', null, InputOption::VALUE_OPTIONAL, 'The test suite: unit|feature|acceptance'];
         $options[] = ['covers', null, InputOption::VALUE_NONE, 'Use CoversClass for code coverage'];
         $options[] = ['api', null, InputOption::VALUE_NONE, 'The test is for APIs'];
         $options[] = ['resource', null, InputOption::VALUE_NONE, 'The test is for resources'];
+        $options[] = ['revision', null, InputOption::VALUE_NONE, 'The test is for resources with revisions'];
 
         return $options;
     }
