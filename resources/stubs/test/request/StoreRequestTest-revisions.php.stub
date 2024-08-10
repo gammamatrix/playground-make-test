@@ -1,0 +1,39 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace Tests\Unit\{{namespace_root}}\Http\Requests\{{model}};
+
+use {{namespace_root}}\Http\Requests\{{model}}\StoreRequest;
+use Tests\Unit\{{namespace_root}}\Http\Requests\RequestTestCase;
+
+/**
+ * \Tests\Unit\{{namespace_root}}\Http\Requests\{{model}}\StoreRequestTest
+ */
+class StoreRequestTest extends RequestTestCase
+{
+    protected string $requestClass = StoreRequest::class;
+
+    public function test_StoreRequest_rules_with_optional_revisions_disabled(): void
+    {
+        config(['{{package}}.revisions.optional' => false]);
+        $instance = new StoreRequest;
+        $rules = $instance->rules();
+        $this->assertNotEmpty($rules);
+        $this->assertIsArray($rules);
+        $this->assertArrayNotHasKey('revision', $rules);
+    }
+
+    public function test_StoreRequest_rules_with_optional_revisions_enabled(): void
+    {
+        config(['{{package}}.revisions.optional' => true]);
+        $instance = new StoreRequest;
+        $rules = $instance->rules();
+        $this->assertNotEmpty($rules);
+        $this->assertIsArray($rules);
+        $this->assertArrayHasKey('revision', $rules);
+        $this->assertSame('bool', $rules['revision']);
+    }
+}

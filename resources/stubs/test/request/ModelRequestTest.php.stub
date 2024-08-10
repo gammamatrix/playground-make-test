@@ -1,0 +1,17 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace Tests\Unit\{{namespace_root}}\Http\Requests\{{model}};
+
+use Tests\Unit\{{namespace_root}}\Http\Requests\RequestTestCase;
+
+/**
+ * \Tests\Unit\{{namespace_root}}\Http\Requests\{{model}}\{{request_type}}RequestTest
+ */
+class {{request_type}}RequestTest extends RequestTestCase
+{
+    protected string $requestClass = \{{namespace_root}}\Http\Requests\{{model}}\{{request_type}}Request::class;
+}

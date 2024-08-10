@@ -214,6 +214,19 @@ trait BuildPackages
             'extends' => 'RequestCase',
             'extends_use' => 'Playground/Test/Unit/Http/Requests/RequestCase',
         ]);
+
+        $request_type = '';
+        if (in_array($this->c->type(), [
+            'playground-request-model',
+            'playground-request-model-store',
+            'playground-request-model-update',
+        ])) {
+
+            $request_type = Str::of($this->c->name())->before('RequestTest')->toString();
+        }
+
+        $this->searches['request_type'] = $request_type;
+
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     // '$options' => $options,

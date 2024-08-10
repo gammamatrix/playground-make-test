@@ -59,6 +59,7 @@ class TestMakeCommand extends GeneratorCommand
         'setup' => '',
         'tests' => '',
         'model_fqdn' => '',
+        'request_type' => '',
         'packagist_model' => '',
         'packagist_vendor' => '',
         'hasRelationships' => 'false',
@@ -125,6 +126,9 @@ class TestMakeCommand extends GeneratorCommand
         'policy',
         // Requests
         'playground-request-test-case',
+        'playground-request-model',
+        'playground-request-model-store',
+        'playground-request-model-update',
         // Resources: Case
         'resource-test-case',
         'playground-resource-test-case',
@@ -251,6 +255,9 @@ class TestMakeCommand extends GeneratorCommand
             $this->prepareOptionsForTestCase($options);
         } elseif (in_array($type, [
             'playground-request-test-case',
+            'playground-request-model',
+            'playground-request-model-store',
+            'playground-request-model-update',
         ])) {
             $this->prepareOptionsForRequestTestCase($options);
         } elseif (in_array($type, [
@@ -383,6 +390,30 @@ class TestMakeCommand extends GeneratorCommand
                 Str::of($this->c->suite())->kebab(),
             );
         } elseif (in_array($type, [
+            'playground-request-model-store',
+        ])) {
+            $filename = sprintf(
+                'test.%1$s.request-store.json',
+                Str::of($this->c->suite())->kebab(),
+            );
+        } elseif (in_array($type, [
+            'playground-request-model-update',
+        ])) {
+            $filename = sprintf(
+                'test.%1$s.request-update.json',
+                Str::of($this->c->suite())->kebab(),
+            );
+        } elseif (in_array($type, [
+            'playground-request-model',
+        ])) {
+            $request_type_slug = Str::of($this->c->name())->before('RequestTest')->kebab()->lower()->toString();
+
+            $filename = sprintf(
+                'test.%1$s.request.%2$s.json',
+                Str::of($this->c->suite())->kebab(),
+                $request_type_slug
+            );
+        } elseif (in_array($type, [
             'command-about',
         ])) {
             $filename = 'test.command.about.json';
@@ -472,6 +503,14 @@ class TestMakeCommand extends GeneratorCommand
                 'class' => 'RequestTestCase',
             ]);
         } elseif (in_array($type, [
+            'playground-request-model',
+            'playground-request-model-store',
+            'playground-request-model-update',
+        ])) {
+            $this->c->setOptions([
+                'class' => $this->c->name(),
+            ]);
+        } elseif (in_array($type, [
             'playground-api-controller-test-case',
             'playground-resource-controller-test-case',
         ])) {
@@ -542,6 +581,7 @@ class TestMakeCommand extends GeneratorCommand
 
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
+        $revision = $this->hasOption('revision') && $this->option('revision');
 
         if (in_array($type, [
             'model',
@@ -589,6 +629,26 @@ class TestMakeCommand extends GeneratorCommand
             'playground-request-test-case',
         ])) {
             $test = 'test/case/playground-request.stub';
+        } elseif (in_array($type, [
+            'playground-request-model',
+        ])) {
+            $test = 'test/request/ModelRequestTest.php.stub';
+        } elseif (in_array($type, [
+            'playground-request-model-store',
+        ])) {
+            if ($revision) {
+                $test = 'test/request/StoreRequestTest-revisions.php.stub';
+            } else {
+                $test = 'test/request/StoreRequestTest.php.stub';
+            }
+        } elseif (in_array($type, [
+            'playground-request-model-update',
+        ])) {
+            if ($revision) {
+                $test = 'test/request/UpdateRequestTest-revisions.php.stub';
+            } else {
+                $test = 'test/request/UpdateRequestTest.php.stub';
+            }
         } elseif (in_array($type, [
             'playground-api-controller-test-case',
             'playground-resource-controller-test-case',
@@ -638,13 +698,6 @@ class TestMakeCommand extends GeneratorCommand
                 $test = 'test/model/playground-base-unit.stub';
             }
         }
-
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$test' => $test,
-        //     '$type' => $type,
-        //     '$suite' => $suite,
-        // ]);
 
         return $this->resolveStubPath($test);
     }
@@ -707,6 +760,12 @@ class TestMakeCommand extends GeneratorCommand
             $namespace = Str::of(
                 $namespace
             )->finish('/Http/Requests')->toString();
+        } elseif (in_array($type, [
+            'playground-request-model',
+            'playground-request-model-store',
+            'playground-request-model-update',
+        ])) {
+            // leave as is
         } elseif (in_array($type, [
             'playground-api-test-case',
             'playground-resource-test-case',
@@ -868,6 +927,24 @@ class TestMakeCommand extends GeneratorCommand
                     Str::of($this->suite)->studly()->toString(),
                     Str::of($this->c->model())->studly()->toString()
                 );
+            } elseif (in_array($this->c->type(), [
+                'playground-request-model',
+                'playground-request-model-store',
+                'playground-request-model-update',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Http/Requests/%3$s',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString(),
+                    Str::of($this->c->model())->studly()->toString()
+                );
+
+                // dd([
+                //     '__METHOD__' => __METHOD__,
+                //     '$this->c->type()' => $this->c->type(),
+                //     '$this->folder' => $this->folder,
+                // ]);
+
             } elseif (in_array($this->c->type(), [
                 'command-about',
             ])) {
