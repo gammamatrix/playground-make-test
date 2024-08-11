@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-10 19:17:37</timestamp>
+  <timestamp>2024-08-11 16:58:10</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>44</methodCount>
     <crapMethodCount>6</crapMethodCount>
-    <crapLoad>73</crapLoad>
-    <totalCrap>1283.81</totalCrap>
+    <crapLoad>74</crapLoad>
+    <totalCrap>1301.82</totalCrap>
     <crapMethodPercent>13.64</crapMethodPercent>
   </stats>
   <methods>
@@ -369,9 +369,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>41.13</crap>
+      <crap>40.73</crap>
       <complexity>26</complexity>
-      <coverage>71.82</coverage>
+      <coverage>72.07</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -380,9 +380,9 @@
       <methodName>getConfigurationFilename</methodName>
       <methodSignature>getConfigurationFilename(): string</methodSignature>
       <fullMethod>getConfigurationFilename(): string</fullMethod>
-      <crap>28.58</crap>
-      <complexity>14</complexity>
-      <coverage>57.94</coverage>
+      <crap>32.87</crap>
+      <complexity>15</complexity>
+      <coverage>57.02</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -402,10 +402,10 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>55.18</crap>
-      <complexity>28</complexity>
-      <coverage>67.39</coverage>
-      <crapLoad>10</crapLoad>
+      <crap>64.36</crap>
+      <complexity>30</complexity>
+      <coverage>66.33</coverage>
+      <crapLoad>11</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Console\Commands</package>
@@ -435,9 +435,9 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>28.16</crap>
-      <complexity>13</complexity>
-      <coverage>55.24</coverage>
+      <crap>33.1</crap>
+      <complexity>14</complexity>
+      <coverage>53.98</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
