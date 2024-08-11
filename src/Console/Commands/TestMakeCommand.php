@@ -125,6 +125,7 @@ class TestMakeCommand extends GeneratorCommand
         // Policies
         'policy',
         // Requests
+        'playground-request-form',
         'playground-request-test-case',
         'playground-request-model',
         'playground-request-model-store',
@@ -254,6 +255,7 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $this->prepareOptionsForTestCase($options);
         } elseif (in_array($type, [
+            'playground-request-form',
             'playground-request-test-case',
             'playground-request-model',
             'playground-request-model-store',
@@ -387,6 +389,13 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $filename = sprintf(
                 'test.%1$s.request.json',
+                Str::of($this->c->suite())->kebab(),
+            );
+        } elseif (in_array($type, [
+            'playground-request-form',
+        ])) {
+            $filename = sprintf(
+                'test.%1$s.request-form.json',
                 Str::of($this->c->suite())->kebab(),
             );
         } elseif (in_array($type, [
@@ -624,6 +633,14 @@ class TestMakeCommand extends GeneratorCommand
                 $test = 'test/case/playground-model-feature.stub';
             } else {
                 $test = 'test/case/playground-resource-unit.stub';
+            }
+        } elseif (in_array($type, [
+            'playground-request-form',
+        ])) {
+            if ($suite === 'feature') {
+                $test = 'test/request/FormRequestInstanceTest-feature.php.stub';
+            } else {
+                $test = 'test/request/FormRequestInstanceTest-unit.php.stub';
             }
         } elseif (in_array($type, [
             'playground-request-test-case',
@@ -871,6 +888,14 @@ class TestMakeCommand extends GeneratorCommand
             ])) {
                 $this->folder = sprintf(
                     '%1$s/%2$s/Models',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString()
+                );
+            } elseif (in_array($this->c->type(), [
+                'playground-request-form',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Http/Requests/FormRequest',
                     $this->getDestinationPath(),
                     Str::of($this->suite)->studly()->toString()
                 );

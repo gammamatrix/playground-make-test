@@ -13,7 +13,7 @@ namespace {{namespace}};
 class {{model}}TestCase extends TestCase
 {
     public string $fqdn = \{{model_fqdn}}::class;
-
+{{revision_properties}}
     /**
      * @var array<string, string>
      */

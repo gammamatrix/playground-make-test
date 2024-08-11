@@ -223,6 +223,7 @@ trait BuildPackages
         ])) {
 
             $request_type = Str::of($this->c->name())->before('RequestTest')->toString();
+
         }
 
         $this->searches['request_type'] = $request_type;
@@ -314,10 +315,13 @@ trait BuildPackages
         'Resource/Playground/LockJsonTrait',
         'Resource/Playground/LockTrait',
         'Resource/Playground/RestoreJsonTrait',
-        'Resource/Playground/RestoreRevisionJsonTrait',
         'Resource/Playground/RestoreTrait',
+        'Resource/Playground/RestoreRevisionJsonTrait',
+        'Resource/Playground/RestoreRevisionTrait',
         'Resource/Playground/RevisionJsonTrait',
+        'Resource/Playground/RevisionTrait',
         'Resource/Playground/RevisionsJsonTrait',
+        'Resource/Playground/RevisionsTrait',
         'Resource/Playground/ShowJsonTrait',
         'Resource/Playground/ShowTrait',
         'Resource/Playground/StoreJsonTrait',
@@ -349,7 +353,7 @@ trait BuildPackages
         $this->searches['module_slug'] = $this->c->module_slug();
         $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
         $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
-        $this->searches['module_view'] = Str::of($this->c->package())->replace('-', '.')->finish('::')->toString();
+        $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
 
         $this->addResourceTraits();
 
@@ -505,7 +509,7 @@ PHP_CODE;
         $this->searches['module_slug'] = $this->c->module_slug();
         $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
         $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
-        $this->searches['module_view'] = Str::of($this->c->package())->replace('-', '.')->finish('::')->toString();
+        $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
 
         $this->searches['model'] = $this->model?->model() ?? 'Dummy';
         $this->searches['table'] = $this->model?->table() ?? '';
@@ -535,6 +539,16 @@ PHP_CODE;
         }
 
         $this->addStructureModel();
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$options' => $options,
+        //     '$revision' => $revision,
+        //     // '$rootNamespace' => $rootNamespace,
+        //     // '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        //     // '$this->model' => $this->model?->toArray(),
+        //     // '$this->options()' => $this->options(),
+        // ]);
 
         if ($revision) {
             $this->addRevisionPropertiesForModel(
@@ -546,8 +560,9 @@ PHP_CODE;
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$options' => $options,
-        //     '$rootNamespace' => $rootNamespace,
-        //     '$this->c' => $this->c,
+        //     '$revision' => $revision,
+        //     // '$rootNamespace' => $rootNamespace,
+        //     // '$this->c' => $this->c,
         //     '$this->searches' => $this->searches,
         //     // '$this->model' => $this->model?->toArray(),
         //     // '$this->options()' => $this->options(),
