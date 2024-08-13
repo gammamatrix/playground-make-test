@@ -24,10 +24,10 @@
     ],
     "require": {
         "php": "^8.2",
-        "gammamatrix/playground-make": "dev-develop|dev-feature/*"
+        "gammamatrix/playground-make": "*"
     },
     "require-dev": {
-        "gammamatrix/playground-test": "dev-develop|dev-feature/*"
+        "gammamatrix/playground-test": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
