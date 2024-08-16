@@ -4,34 +4,14 @@
  */
 
 declare(strict_types=1);
-namespace Tests\Feature\{{namespace}}\Http\Controllers\{{user_handler}};
+namespace {{namespace}}\Http\Controllers\{{user_handler}};
 
-use Tests\Feature\{{namespace}}\Http\Controllers\BacklogTestCase;
+use {{namespace}}\Http\Controllers\{{model}}TestCase;
 
 /**
- * \Tests\Feature\{{namespace}}\Http\Controllers\{{user_handler}}\BacklogRouteTest
+ * \{{namespace}}\Http\Controllers\{{user_handler}}\{{model}}RouteTest
  */
-class BacklogRouteTest extends BacklogTestCase
+class {{model}}RouteTest extends {{model}}TestCase
 {
-    protected bool $load_migrations_package = {{load_migrations_package}};
-
-    protected bool $load_migrations_playground = {{load_migrations_playground}};
-
-    // TODO set a user as true
-
-    protected bool $setUpUserForAdmin = false;
-
-    protected bool $setUpUserForLaravel = false;
-
-    protected bool $setUpUserForLaravelSanctum = false;
-
-    protected bool $setUpUserForPlayground = false;
-
-    protected bool $setUpUserForPlaygroundSanctum = false;
-
-    protected bool $setUpUserForPolicy = false;
-
-    protected bool $setUpUserForPrivileges = false;
-
-    protected bool $setUpUserForRoles = false;
+    protected bool $load_migrations_playground = true;
 }

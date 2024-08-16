@@ -1,0 +1,43 @@
+<?php
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+namespace {{namespace}}\Http\Controllers\{{user_handler}};
+
+use Playground\Models\User;
+use {{namespace}}\TestCase;
+
+/**
+ * \{{namespace}}\Http\Controllers\{{user_handler}}\IndexRouteTest
+ */
+class IndexRouteTest extends TestCase
+{
+    protected bool $setUpUserForPlayground = true;
+
+    public function test_guest_cannot_render_index_view(): void
+    {
+        $url = route('{{module_route}}');
+
+        $response = $this->get($url);
+
+        $response->assertStatus(403);
+    }
+
+    public function test_admin_can_render_index_view(): void
+    {
+        /**
+         * @var User $user
+         */
+        $user = User::factory()->admin()->create();
+
+        $url = route('{{module_route}}');
+
+        $response = $this->actingAs($user)->get($url);
+
+        $response->assertStatus(200);
+
+        $this->assertAuthenticated();
+    }
+}

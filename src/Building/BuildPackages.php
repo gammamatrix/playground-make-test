@@ -177,11 +177,22 @@ trait BuildPackages
             $options_set['extends_use'] = 'Playground/Test/OrchestraTestCase';
         }
 
-        if (! empty($options['model-package'])
-            && is_string($options['model-package'])
+        if (! empty($options['model-packagist'])
+            && is_string($options['model-packagist'])
         ) {
-            $this->searches['packagist_vendor'] = Str::of($options['model-package'])->before('/')->toString();
-            $this->searches['packagist_model'] = Str::of($options['model-package'])->after('/')->toString();
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$options' => $options,
+            //     '$options_set' => $options_set,
+            //     '$rootNamespace' => $rootNamespace,
+            //     // '$this->c->uses()' => $this->c->uses(),
+            //     // '$this->c->suite()' => $this->c->suite(),
+            //     '$this->c' => $this->c,
+            //     '$this->searches' => $this->searches,
+            //     '$this->options()' => $this->options(),
+            // ]);
+            $this->searches['packagist_vendor'] = Str::of($options['model-packagist'])->before('/')->toString();
+            $this->searches['packagist_model'] = Str::of($options['model-packagist'])->after('/')->toString();
         }
 
         $this->c->setOptions($options_set);

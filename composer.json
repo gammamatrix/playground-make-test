@@ -20,6 +20,22 @@
         {
             "type": "vcs",
             "url": "git@github.com:gammamatrix/playground-make.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:gammamatrix/playground-make-blade.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:gammamatrix/playground-make-controller.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:gammamatrix/playground-make-model.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:gammamatrix/playground-make-package.git"
         }
     ],
     "require": {
@@ -27,6 +43,7 @@
         "gammamatrix/playground-make": "*"
     },
     "require-dev": {
+        "gammamatrix/playground-make-package": "*",
         "gammamatrix/playground-test": "*"
     },
     "minimum-stability": "dev",

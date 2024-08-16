@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Playground\Make\Building\Concerns;
 use Playground\Make\Configuration\Contracts\PrimaryConfiguration as PrimaryConfigurationContract;
 use Playground\Make\Console\Commands\GeneratorCommand;
+use Playground\Make\Package\Configuration\Package;
 use Playground\Make\Test\Building;
 use Playground\Make\Test\Configuration\Test as Configuration;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -39,6 +40,8 @@ class TestMakeCommand extends GeneratorCommand
      */
     protected PrimaryConfigurationContract $c;
 
+    protected ?Package $modelPackage = null;
+
     /**
      * @var array<string, string>
      */
@@ -47,6 +50,9 @@ class TestMakeCommand extends GeneratorCommand
         'name' => '',
         'module' => '',
         'module_slug' => '',
+        'model_route' => '',
+        'module_route' => '',
+        'route' => '',
         'namespace' => '',
         'namespace_root' => '',
         'extends' => '',
@@ -69,6 +75,7 @@ class TestMakeCommand extends GeneratorCommand
         'covers_class' => '',
         'revision_methods' => '',
         'revision_properties' => '',
+        'user_handler' => 'Playground',
     ];
 
     /**
@@ -120,6 +127,7 @@ class TestMakeCommand extends GeneratorCommand
         'playground-api-test-case',
         'playground-api-controller-test-case',
         'playground-api-controller-model-case',
+        'playground-api-controller-model-user',
         // APIs: Test
         'playground-api',
         // Policies
@@ -135,14 +143,18 @@ class TestMakeCommand extends GeneratorCommand
         'playground-resource-test-case',
         'playground-resource-controller-test-case',
         'playground-resource-controller-model-case',
+        'playground-resource-controller-model-user',
         // Resources: Test
         'playground-resource',
+        'playground-resource-index',
         // Service Provider
         'playground-service-provider-policies',
     ];
 
     public function prepareOptions(): void
     {
+        $this->modelPackage = null;
+
         $initModel = false;
         $options = $this->options();
 
@@ -150,7 +162,7 @@ class TestMakeCommand extends GeneratorCommand
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$options' => $options,
-        //     // '$this->configuration' => $this->configuration,
+        //     // '$this->c' => $this->c,
         //     '$this->c' => $this->c,
         //     '$this->searches' => $this->searches,
         //     // '$this->model' => $this->model,
@@ -169,6 +181,24 @@ class TestMakeCommand extends GeneratorCommand
         }
 
         $type = $this->prepareOptionsType($options);
+
+        $model_package = $this->hasOption('model-package') && is_string($this->option('model-package')) ? $this->option('model-package') : '';
+        if ($model_package) {
+            $this->load_model_package($model_package);
+            // if ($this->modelPackage) {
+
+            // }
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$options' => $options,
+            //     '$model_package' => $model_package,
+            //     // '$this->c' => $this->c,
+            //     // '$this->c' => $this->c,
+            //     '$this->searches' => $this->searches,
+            //     // '$this->model' => $this->model,
+            //     '$this->modelPackage' => $this->modelPackage,
+            // ]);
+        }
 
         $suite = $this->option('suite');
         $suite = is_string($suite) ? strtolower($suite) : '';
@@ -198,7 +228,9 @@ class TestMakeCommand extends GeneratorCommand
 
         if (in_array($this->c->type(), [
             'playground-api-controller-model-case',
+            'playground-api-controller-model-user',
             'playground-resource-controller-model-case',
+            'playground-resource-controller-model-user',
         ])) {
             $initModel = true;
         }
@@ -273,6 +305,17 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $this->prepareOptionsForControllerModelCase($options);
         } elseif (in_array($type, [
+            'playground-api-controller-model-user',
+            'playground-resource-controller-model-user',
+        ])) {
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     '$this->suite' => $this->suite,
+            //     '$this->type' => $this->type,
+            //     '$type' => $type,
+            //     '$rootNamespace' => $rootNamespace,
+            // ]);
+        } elseif (in_array($type, [
             'providers',
             'providers-api',
             'providers-model',
@@ -287,6 +330,18 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $this->prepareOptionsForModels($options);
             $this->prepareOptionsForSuites($options);
+        } elseif (in_array($type, [
+            'playground-resource-index',
+        ])) {
+            $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     '$this->suite' => $this->suite,
+            //     '$this->type' => $this->type,
+            //     '$this->searches' => $this->searches,
+            //     '$type' => $type,
+            //     '$rootNamespace' => $rootNamespace,
+            // ]);
         } elseif (in_array($type, [
             'command-about',
         ])) {
@@ -353,6 +408,15 @@ class TestMakeCommand extends GeneratorCommand
             //     Str::of($this->c->name())->before('Test')->kebab(),
             // );
         } elseif (in_array($type, [
+            'playground-resource-index',
+        ])) {
+            $filename = sprintf(
+                '%3$s/%1$s.%2$s.json',
+                'test',
+                Str::of($this->c->suite())->kebab(),
+                Str::of($this->c->name())->before('RouteTest')->kebab(),
+            );
+        } elseif (in_array($type, [
             'policy',
         ])) {
             $filename = sprintf(
@@ -376,6 +440,16 @@ class TestMakeCommand extends GeneratorCommand
                 Str::of($this->c->model())->kebab(),
                 'test',
                 'case',
+            );
+        } elseif (in_array($type, [
+            'playground-api-controller-model-user',
+            'playground-resource-controller-model-user',
+        ])) {
+            $filename = sprintf(
+                '%1$s/%2$s.%3$s.json',
+                Str::of($this->c->model())->kebab(),
+                'test',
+                'route',
             );
         } elseif (in_array($type, [
             'model-case',
@@ -464,6 +538,15 @@ class TestMakeCommand extends GeneratorCommand
         return $filename;
     }
 
+    public function load_model_package(string $model_package): void
+    {
+        $payload = $this->readJsonFileAsArray($model_package);
+        if (! empty($payload)) {
+            $this->modelPackage = new Package($payload);
+            // $this->modelPackage->apply();
+        }
+    }
+
     /**
      * Parse the class name and format according to the root namespace.
      *
@@ -532,6 +615,19 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $this->c->setOptions([
                 'class' => Str::of($this->c->model())->finish('TestCase')->toString(),
+            ]);
+        } elseif (in_array($type, [
+            'playground-api-controller-model-user',
+            'playground-resource-controller-model-user',
+        ])) {
+            $this->c->setOptions([
+                'class' => Str::of($this->c->model())->finish('RouteTest')->toString(),
+            ]);
+        } elseif (in_array($type, [
+            'playground-resource-index',
+        ])) {
+            $this->c->setOptions([
+                'class' => 'IndexRouteTest',
             ]);
         } elseif (in_array($type, [
             'providers',
@@ -635,6 +731,10 @@ class TestMakeCommand extends GeneratorCommand
                 $test = 'test/case/playground-resource-unit.stub';
             }
         } elseif (in_array($type, [
+            'playground-resource-index',
+        ])) {
+            $test = 'test/controller/IndexRouteTest.php.stub';
+        } elseif (in_array($type, [
             'playground-request-form',
         ])) {
             if ($suite === 'feature') {
@@ -692,6 +792,11 @@ class TestMakeCommand extends GeneratorCommand
             'playground-resource-controller-model-case',
         ])) {
             $test = 'test/controller/playground-resource-feature-model-case.stub';
+        } elseif (in_array($type, [
+            'playground-api-controller-model-user',
+            'playground-resource-controller-model-user',
+        ])) {
+            $test = 'test/controller/playground-resource-feature-model-user.stub';
         } elseif (in_array($type, [
             'playground-service-provider-policies',
         ])) {
@@ -799,6 +904,13 @@ class TestMakeCommand extends GeneratorCommand
                 $namespace
             )->finish('/Http/Controllers')->toString();
         } elseif (in_array($type, [
+            'playground-api-controller-model-user',
+            'playground-resource-controller-model-user',
+        ])) {
+            // $namespace = Str::of(
+            //     $namespace
+            // )->finish('/Http/Controllers')->toString();
+        } elseif (in_array($type, [
             'playground-service-provider-policies',
         ])) {
             $namespace = Str::of(
@@ -847,7 +959,8 @@ class TestMakeCommand extends GeneratorCommand
     {
         $options = parent::getOptions();
 
-        $options[] = ['model-package', null, InputOption::VALUE_OPTIONAL, 'The model package to use for loading migrations'];
+        $options[] = ['model-package', null, InputOption::VALUE_OPTIONAL, 'The model package to use for building tests'];
+        $options[] = ['model-packagist', null, InputOption::VALUE_OPTIONAL, 'The Packagist name for the model package to use test cases'];
         $options[] = ['suite', null, InputOption::VALUE_OPTIONAL, 'The test suite: unit|feature|acceptance'];
         $options[] = ['covers', null, InputOption::VALUE_NONE, 'Use CoversClass for code coverage'];
         $options[] = ['api', null, InputOption::VALUE_NONE, 'The test is for APIs'];
@@ -926,6 +1039,23 @@ class TestMakeCommand extends GeneratorCommand
                     Str::of($this->suite)->studly()->toString()
                 );
             } elseif (in_array($this->c->type(), [
+                'playground-api-controller-model-user',
+                'playground-resource-controller-model-user',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Http/Controllers/Playground',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString()
+                );
+            } elseif (in_array($this->c->type(), [
+                'playground-resource-index',
+            ])) {
+                $this->folder = sprintf(
+                    '%1$s/%2$s/Http/Controllers/Playground',
+                    $this->getDestinationPath(),
+                    Str::of($this->suite)->studly()->toString()
+                );
+            } elseif (in_array($this->c->type(), [
                 'playground-service-provider-policies',
             ])) {
                 $this->folder = sprintf(
@@ -992,6 +1122,7 @@ class TestMakeCommand extends GeneratorCommand
         //     '__METHOD__' => __METHOD__,
         //     '$this->c->type()' => $this->c->type(),
         //     '$this->folder' => $this->folder,
+        //     '$this->searches' => $this->searches,
         // ]);
 
         return $this->folder;
