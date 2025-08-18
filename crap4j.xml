@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-08-02 23:49:01</timestamp>
+  <timestamp>2025-08-18 02:15:10</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>45</methodCount>
     <crapMethodCount>6</crapMethodCount>
     <crapLoad>75</crapLoad>
-    <totalCrap>1348.78</totalCrap>
+    <totalCrap>1357.84</totalCrap>
     <crapMethodPercent>13.33</crapMethodPercent>
   </stats>
   <methods>
@@ -138,9 +138,9 @@
       <methodName>buildClass_hasMany</methodName>
       <methodSignature>buildClass_hasMany(string $type, string $suite): void</methodSignature>
       <fullMethod>buildClass_hasMany(string $type, string $suite): void</fullMethod>
-      <crap>95.98</crap>
+      <crap>92.91</crap>
       <complexity>11</complexity>
-      <coverage>11.11</coverage>
+      <coverage>12.2</coverage>
       <crapLoad>10</crapLoad>
     </method>
     <method>
@@ -149,9 +149,9 @@
       <methodName>buildClass_hasOne</methodName>
       <methodSignature>buildClass_hasOne(string $type, string $suite): void</methodSignature>
       <fullMethod>buildClass_hasOne(string $type, string $suite): void</fullMethod>
-      <crap>200.56</crap>
+      <crap>218.77</crap>
       <complexity>21</complexity>
-      <coverage>25.88</coverage>
+      <coverage>23.46</coverage>
       <crapLoad>16</crapLoad>
     </method>
     <method>
@@ -369,9 +369,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>48.68</crap>
-      <complexity>31</complexity>
-      <coverage>73.6</coverage>
+      <crap>46.96</crap>
+      <complexity>30</complexity>
+      <coverage>73.39</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -446,8 +446,8 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>43.77</crap>
-      <complexity>16</complexity>
+      <crap>39.41</crap>
+      <complexity>15</complexity>
       <coverage>52.31</coverage>
       <crapLoad>0</crapLoad>
     </method>
