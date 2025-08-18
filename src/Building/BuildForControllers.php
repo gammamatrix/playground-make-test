@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Test\Building;
 
 /**
@@ -12,26 +14,17 @@ namespace Playground\Make\Test\Building;
 trait BuildForControllers
 {
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
-    public function prepareOptionsForControllers(array $options = []): void
-    {
-
-    }
+    public function prepareOptionsForControllers(array $options = []): void {}
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
-    public function prepareOptionsForApiControllers(array $options = []): void
-    {
-
-    }
+    public function prepareOptionsForApiControllers(array $options = []): void {}
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
-    public function prepareOptionsForResourceControllers(array $options = []): void
-    {
-
-    }
+    public function prepareOptionsForResourceControllers(array $options = []): void {}
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -7,6 +8,11 @@ declare(strict_types=1);
 
 /**
  * Playground Make Configuration and Environment Variables
+ *
+ * @return array{
+ *         about: bool,
+ *         load: array{commands: bool, translations: bool}
+ *     }
  */
 return [
 

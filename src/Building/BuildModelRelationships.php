@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Test\Building;
 
 use Illuminate\Support\Str;
@@ -29,17 +31,17 @@ trait BuildModelRelationships
 
         $hasMany_properties = PHP_EOL;
 
-        $docblock = '';
+        // $docblock = '';
 
         if (in_array($suite, [
             'unit',
         ])) {
-            $docblock = '@var array<int, string> Test has many relationships.';
+            // $docblock = '@var array<int, string> Test has many relationships.';
             foreach ($hm as $HasMany) {
                 $hasMany_properties .= sprintf('%1$s\'%2$s\',%3$s', str_repeat(' ', 8), $HasMany->accessor(), PHP_EOL);
             }
         } else {
-            $docblock = '@var array<string, array<string, mixed>> Test has many relationships.';
+            // $docblock = '@var array<string, array<string, mixed>> Test has many relationships.';
             foreach ($hm as $HasMany) {
                 $accessor = $HasMany->accessor();
                 $localKey = $HasMany->localKey();
@@ -92,9 +94,6 @@ trait BuildModelRelationships
         $this->searches['hasMany_properties'] = <<<PHP_CODE
 
 
-    /**
-     * $docblock
-     */
     protected array \$hasMany = [$hasMany_properties];
 PHP_CODE;
 
@@ -180,17 +179,17 @@ PHP_CODE;
         // ]);
         $hasOne_properties = PHP_EOL;
 
-        $docblock = '';
+        // $docblock = '';
 
         if (in_array($suite, [
             'unit',
         ])) {
-            $docblock = '@var array<int, string> Test has one relationships.';
+            // $docblock = '@var array<int, string> Test has one relationships.';
             foreach ($hasOnes as $accessor => $meta) {
                 $hasOne_properties .= sprintf('%1$s\'%2$s\',%3$s', str_repeat(' ', 8), $accessor, PHP_EOL);
             }
         } else {
-            $docblock = '@var array<string, array<string, mixed>> Test has one relationships.';
+            // $docblock = '@var array<string, array<string, mixed>> Test has one relationships.';
             foreach ($hasOnes as $accessor => $meta) {
                 $localKey = '';
                 if (! empty($meta['localKey']) && is_string($meta['localKey'])) {
@@ -237,9 +236,6 @@ PHP_CODE;
         $this->searches['hasOne_properties'] = <<<PHP_CODE
 
 
-    /**
-     * $docblock
-     */
     protected array \$hasOne = [$hasOne_properties];
 PHP_CODE;
 

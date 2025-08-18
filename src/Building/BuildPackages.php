@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Test\Building;
 
 use Illuminate\Support\Facades\Log;
@@ -74,6 +76,7 @@ trait BuildPackages
         }
 
         if ($add_Playground) {
+            $this->addToBuildPackageProviders('\Playground\Test\ServiceProvider::class');
             $this->addToBuildPackageProviders('\Playground\ServiceProvider::class');
         }
 
@@ -153,7 +156,7 @@ trait BuildPackages
     }
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForTestCase(array $options = []): void
     {
@@ -210,7 +213,7 @@ trait BuildPackages
     }
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForRequestTestCase(array $options = []): void
     {
@@ -344,7 +347,7 @@ trait BuildPackages
     ];
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForControllerTestCase(array $options = []): void
     {
@@ -494,7 +497,7 @@ PHP_CODE;
     }
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForControllerModelCase(array $options = []): void
     {
@@ -620,7 +623,7 @@ PHP_CODE;
     }
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForAboutCommand(array $options = []): void
     {

@@ -1,12 +1,12 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
-namespace Playground\Make\Test\Building;
 
-use Illuminate\Support\Str;
+namespace Playground\Make\Test\Building;
 
 /**
  * \Playground\Make\Test\Building\Test\BuildCovers

@@ -99,15 +99,15 @@ jobs:
     - name: Run php-actions/composer@v6
       uses: php-actions/composer@v6
       with:
-        php_version: "8.2"
+        php_version: "8.4"
         php_extensions: intl
         version: 2.x
     - uses: php-actions/phpunit@v3
       env:
         XDEBUG_MODE: coverage
       with:
-        version: "11.0"
-        php_version: "8.2"
+        version: "12.3"
+        php_version: "8.4"
         php_extensions: intl xdebug
         configuration: phpunit-ci.xml
         coverage_clover: clover.xml
@@ -127,8 +127,8 @@ jobs:
         user_email: 'github-actions[bot]@users.noreply.github.com'
     - uses: php-actions/phpstan@v3
       with:
-        level: 9
-        php_version: "8.2"
+        level: 10
+        php_version: "8.4"
         path: config/ lang/ src/ tests/Feature/ tests/Unit/
         args: --verbose --debug
     - name: Stopping timer

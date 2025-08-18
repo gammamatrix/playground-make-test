@@ -5,6 +5,7 @@
  */
 
 declare(strict_types=1);
+
 namespace {{namespace}}\Http\Controllers\{{user_handler}};
 
 use {{namespace}}\Http\Controllers\{{model}}TestCase;

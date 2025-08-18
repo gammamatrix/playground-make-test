@@ -4,7 +4,7 @@ includes:
     - vendor/phpstan/phpstan-phpunit/rules.neon
 
 parameters:
-    level: 9
+    level: max
 
     paths:
         - config
@@ -18,3 +18,8 @@ parameters:
 
     # editorUrl: 'vscode://file/%%file%%:%%line%%'
     # editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+    ignoreErrors:
+            -
+                message: "#Called 'env' outside of the config directory which returns null when the config is cached, use 'config'.#"
+                path: *config/*.php

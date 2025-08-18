@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Feature\Playground\Make\Test\Console\Commands\TestMakeCommand;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -23,7 +25,7 @@ class CommandTest extends TestCase
          */
         $result = $this->artisan('playground:make:test');
         $result->assertExitCode(1);
-        $result->expectsOutputToContain( __('playground-make::generator.input.error'));
+        $result->expectsOutputToContain(__('playground-make::generator.input.error'));
     }
 
     public function test_command_skeleton(): void

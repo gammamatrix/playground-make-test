@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Test\Building;
 
 /**
@@ -12,7 +14,7 @@ namespace Playground\Make\Test\Building;
 trait BuildForModels
 {
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForModels(array $options = []): void
     {
@@ -35,7 +37,7 @@ trait BuildForModels
     }
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForModelCase(array $options = []): void
     {
@@ -72,7 +74,7 @@ trait BuildForModels
     }
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareOptionsForSuites(array $options = []): void
     {

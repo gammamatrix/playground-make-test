@@ -39,7 +39,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "gammamatrix/playground-make": "*"
     },
     "require-dev": {
@@ -68,7 +68,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "73.x-dev"
+            "dev-develop": "74.x-dev"
         },
         "laravel": {
             "providers": [
@@ -77,8 +77,9 @@
         }
     },
     "scripts": {
+        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
+        "format": "vendor/bin/pint",
         "test": "vendor/bin/testbench package:test",
-        "format": "vendor/bin/php-cs-fixer fix",
-        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max"
+        "test-dev": "vendor/bin/phpunit -c phpunit-dev.xml"
     }
 }

@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Test\Console\Commands;
 
 use Illuminate\Support\Str;
@@ -156,6 +158,9 @@ class TestMakeCommand extends GeneratorCommand
         $this->modelPackage = null;
 
         $initModel = false;
+        /**
+         * @var array<string, mixed> $options
+         */
         $options = $this->options();
 
         $model = empty($options['model']) || ! is_string($options['model']) ? '' : $options['model'];
@@ -216,11 +221,10 @@ class TestMakeCommand extends GeneratorCommand
         ]);
 
         $this->type = 'Test';
-        if ($this->suite) {
-            $this->type = Str::of(
-                $this->suite
-            )->replace('-', ' ')->ucfirst()->finish(' Test')->toString();
-        }
+
+        $this->type = Str::of(
+            $this->suite
+        )->replace('-', ' ')->ucfirst()->finish(' Test')->toString();
 
         $rootNamespace = $this->rootNamespace();
 
@@ -360,7 +364,7 @@ class TestMakeCommand extends GeneratorCommand
 
         // $this->saveConfiguration();
 
-        if (is_string($this->c->name())) {
+        if (! empty($this->c->name())) {
             // dump([
             //     '__METHOD__' => __METHOD__,
             //     // '$this->c' => $this->c,
@@ -977,7 +981,7 @@ class TestMakeCommand extends GeneratorCommand
         //     '$this->c->name()' => $this->c->name(),
         //     '$this->folder' => $this->folder,
         // ]);
-        if (empty($this->folder) && is_string($this->c->name())) {
+        if (empty($this->folder)) {
 
             if (in_array($this->c->type(), [
                 'providers',

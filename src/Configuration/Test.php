@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Make\Test\Configuration;
 
 use Illuminate\Support\Str;
@@ -57,7 +58,7 @@ class Test extends PrimaryConfiguration
     ];
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function setOptions(array $options = []): self
     {

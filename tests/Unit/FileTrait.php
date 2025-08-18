@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Unit\Playground\Make\Test;
 
 /**
@@ -19,6 +21,7 @@ trait FileTrait
         $file = $this->getResourceFile($type);
         $content = file_exists($file) ? file_get_contents($file) : null;
         $data = $content ? json_decode($content, true) : [];
+
         return is_array($data) ? $data : [];
     }
 

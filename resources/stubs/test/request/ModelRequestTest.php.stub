@@ -5,6 +5,7 @@
  */
 
 declare(strict_types=1);
+
 namespace Tests\Unit\{{namespace_root}}\Http\Requests\{{model}};
 
 use Tests\Unit\{{namespace_root}}\Http\Requests\RequestTestCase;
