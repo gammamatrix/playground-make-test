@@ -18,7 +18,7 @@ class UpdateRequestTest extends RequestTestCase
 {
     protected string $requestClass = UpdateRequest::class;
 
-    public function test_UpdateRequest_rules_with_optional_revisions_disabled(): void
+    public function test_update_request_rules_with_optional_revisions_disabled(): void
     {
         config(['{{package}}.revisions.optional' => false]);
         $instance = new UpdateRequest;
@@ -28,7 +28,7 @@ class UpdateRequestTest extends RequestTestCase
         $this->assertArrayNotHasKey('revision', $rules);
     }
 
-    public function test_UpdateRequest_rules_with_optional_revisions_enabled(): void
+    public function test_update_request_rules_with_optional_revisions_enabled(): void
     {
         config(['{{package}}.revisions.optional' => true]);
         $instance = new UpdateRequest;

@@ -20,6 +20,7 @@ class PolicyTest extends TestCase
     {
         $instance = new {{model}}Policy;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertInstanceOf({{model}}Policy::class, $instance);
     }
 }
