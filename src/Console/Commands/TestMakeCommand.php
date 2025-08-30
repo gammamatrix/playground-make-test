@@ -480,14 +480,16 @@ class TestMakeCommand extends GeneratorCommand
             'playground-request-model-store',
         ])) {
             $filename = sprintf(
-                'test.%1$s.request-store.json',
+                '%1$s/test.%2$s.request-store.json',
+                Str::of($this->model?->name() ?? '')->kebab(),
                 Str::of($this->c->suite())->kebab(),
             );
         } elseif (in_array($type, [
             'playground-request-model-update',
         ])) {
             $filename = sprintf(
-                'test.%1$s.request-update.json',
+                '%1$s/test.%2$s.request-update.json',
+                Str::of($this->model?->name() ?? '')->kebab(),
                 Str::of($this->c->suite())->kebab(),
             );
         } elseif (in_array($type, [
@@ -496,7 +498,8 @@ class TestMakeCommand extends GeneratorCommand
             $request_type_slug = Str::of($this->c->name())->before('RequestTest')->kebab()->lower()->toString();
 
             $filename = sprintf(
-                'test.%1$s.request.%2$s.json',
+                '%1$s/test.%2$s.request.%3$s.json',
+                Str::of($this->model?->name() ?? '')->kebab(),
                 Str::of($this->c->suite())->kebab(),
                 $request_type_slug
             );
@@ -778,11 +781,13 @@ class TestMakeCommand extends GeneratorCommand
         } elseif (in_array($type, [
             'command-about',
         ])) {
-            // dd([
-            //     '__METHOD__' => __METHOD__,
-            //     '$this->c' => $this->c,
-            //     '$this->options()' => $this->options(),
-            // ]);
+//             dd([
+//                 '__METHOD__' => __METHOD__,
+//                 '__METHOD__' => __METHOD__,
+//                 '__METHOD__' => __METHOD__,
+//                 '$this->c' => $this->c,
+//                 '$this->options()' => $this->options(),
+//             ]);
             if ($isApi || $isResource) {
                 $test = 'test/command/about-CommandTest.php.stub';
             } else {

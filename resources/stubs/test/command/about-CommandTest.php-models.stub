@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature\{{namespace_root}}\Console\Commands\About;
 
-use Illuminate\Console\Command;
 use PHPUnit\Framework\Attributes\CoversClass;
 use {{namespace_root}}\ServiceProvider;
+use Symfony\Component\Console\Command\Command;
 use Tests\Feature\{{namespace_root}}\TestCase;
 
 /**
