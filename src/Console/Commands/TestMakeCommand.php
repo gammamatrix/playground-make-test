@@ -781,13 +781,13 @@ class TestMakeCommand extends GeneratorCommand
         } elseif (in_array($type, [
             'command-about',
         ])) {
-//             dd([
-//                 '__METHOD__' => __METHOD__,
-//                 '__METHOD__' => __METHOD__,
-//                 '__METHOD__' => __METHOD__,
-//                 '$this->c' => $this->c,
-//                 '$this->options()' => $this->options(),
-//             ]);
+            //             dd([
+            //                 '__METHOD__' => __METHOD__,
+            //                 '__METHOD__' => __METHOD__,
+            //                 '__METHOD__' => __METHOD__,
+            //                 '$this->c' => $this->c,
+            //                 '$this->options()' => $this->options(),
+            //             ]);
             if ($isApi || $isResource) {
                 $test = 'test/command/about-CommandTest.php.stub';
             } else {
