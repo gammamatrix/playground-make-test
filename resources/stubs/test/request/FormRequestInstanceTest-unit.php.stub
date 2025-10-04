@@ -20,14 +20,14 @@ class InstanceTest extends TestCase
 {
     protected bool $load_migrations_playground = true;
 
-    public function test_FormRequest_authorize_without_user(): void
+    public function test_form_request_authorize_without_user(): void
     {
         $instance = new FormRequest;
 
         $this->assertFalse($instance->authorize());
     }
 
-    public function test_RULES_is_empty_by_default(): void
+    public function test_rules_is_empty_by_default(): void
     {
         $instance = new FormRequest;
 
@@ -35,14 +35,14 @@ class InstanceTest extends TestCase
         $this->assertEmpty($instance->rules());
     }
 
-    public function test_userHasAdminPrivileges_without_user(): void
+    public function test_user_has_admin_privileges_without_user(): void
     {
         $instance = new FormRequest;
 
         $this->assertFalse($instance->userHasAdminPrivileges());
     }
 
-    public function test_userHasAdminPrivileges_with_admin(): void
+    public function test_user_has_admin_privileges_with_admin(): void
     {
         /**
          * @var User $user
@@ -54,7 +54,7 @@ class InstanceTest extends TestCase
         $this->assertTrue($instance->userHasAdminPrivileges($user));
     }
 
-    public function test_userHasAdminPrivileges_with_default_laravel_user(): void
+    public function test_user_has_admin_privileges_with_default_laravel_user(): void
     {
         /**
          * @var DefaultUser $user
