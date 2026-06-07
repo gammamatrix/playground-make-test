@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Playground\Make\Test\Building;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 
 /**
@@ -130,7 +131,7 @@ PHP_CODE;
         ])) {
 
             /**
-             * @var class-string<\Illuminate\Contracts\Auth\Authenticatable>
+             * @var class-string<Authenticatable>
              */
             $uc = config('auth.providers.users.model', '\\App\\Models\\User');
             $uc = '\Playground\Models\User::class';

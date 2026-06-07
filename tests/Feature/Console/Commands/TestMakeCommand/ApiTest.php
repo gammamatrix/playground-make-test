@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Playground\Make\Test\Console\Commands\TestMakeCommand;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Testing\PendingCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Playground\Make\Test\Console\Commands\TestMakeCommand;
 use Tests\Feature\Playground\Make\Test\TestCase;
@@ -50,7 +51,7 @@ class ApiTest extends TestCase
         // dd(Artisan::output());
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -69,7 +70,7 @@ class ApiTest extends TestCase
         // dump(Artisan::output());
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(1);
@@ -88,7 +89,7 @@ class ApiTest extends TestCase
         // dump(Artisan::output());
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -106,7 +107,7 @@ class ApiTest extends TestCase
         // dump(Artisan::output());
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
