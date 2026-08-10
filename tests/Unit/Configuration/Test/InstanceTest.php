@@ -36,6 +36,8 @@ class InstanceTest extends TestCase
         'fqdn' => '',
         'model' => '',
         'model_fqdn' => '',
+        'model_variable' => '',
+        'model_variable_plural' => '',
         'module' => '',
         'module_slug' => '',
         'name' => '',

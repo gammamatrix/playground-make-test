@@ -53,6 +53,8 @@ class TestMakeCommand extends GeneratorCommand
         'module' => '',
         'module_slug' => '',
         'model_route' => '',
+        'model_variable' => '',
+        'model_variable_plural' => '',
         'module_route' => '',
         'route' => '',
         'namespace' => '',
@@ -252,6 +254,8 @@ class TestMakeCommand extends GeneratorCommand
 
                 $this->c->setOptions([
                     'model_fqdn' => $this->model->model_fqdn(),
+                    'model_variable' => Str::of($this->model->model_singular())->snake()->toString(),
+                    'model_variable_plural' => Str::of($this->model->model_plural())->snake()->toString(),
                 ]);
             }
             // dd([

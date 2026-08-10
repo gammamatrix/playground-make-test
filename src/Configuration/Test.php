@@ -19,6 +19,10 @@ class Test extends PrimaryConfiguration
 
     protected string $model_fqdn = '';
 
+    protected string $model_variable = '';
+
+    protected string $model_variable_plural = '';
+
     /**
      * @var array<int, string>
      */
@@ -43,6 +47,8 @@ class Test extends PrimaryConfiguration
         'fqdn' => '',
         'model' => '',
         'model_fqdn' => '',
+        'model_variable' => '',
+        'model_variable_plural' => '',
         'module' => '',
         'module_slug' => '',
         'name' => '',
@@ -68,6 +74,18 @@ class Test extends PrimaryConfiguration
             && is_string($options['model_fqdn'])
         ) {
             $this->model_fqdn = $options['model_fqdn'];
+        }
+
+        if (! empty($options['model_variable'])
+            && is_string($options['model_variable'])
+        ) {
+            $this->model_variable = $options['model_variable'];
+        }
+
+        if (! empty($options['model_variable_plural'])
+            && is_string($options['model_variable_plural'])
+        ) {
+            $this->model_variable_plural = $options['model_variable_plural'];
         }
 
         if (! empty($options['suite'])
@@ -102,6 +120,16 @@ class Test extends PrimaryConfiguration
     public function model_fqdn(): string
     {
         return $this->model_fqdn;
+    }
+
+    public function model_variable(): string
+    {
+        return $this->model_variable;
+    }
+
+    public function model_variable_plural(): string
+    {
+        return $this->model_variable_plural;
     }
 
     public function module_slug(): string
