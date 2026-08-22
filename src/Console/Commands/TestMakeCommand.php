@@ -252,11 +252,16 @@ class TestMakeCommand extends GeneratorCommand
                     $modelFile
                 );
 
+                $model_variable = Str::of($this->model->model_singular())->snake()->toString();
+                $model_variable_plural = Str::of($this->model->model_plural())->snake()->toString();
                 $this->c->setOptions([
-                    'model_fqdn' => $this->model->model_fqdn(),
-                    'model_variable' => Str::of($this->model->model_singular())->snake()->toString(),
-                    'model_variable_plural' => Str::of($this->model->model_plural())->snake()->toString(),
+                    'model_fqdn' => $this->model->fqdn(),
+                    'model_variable' => $model_variable,
+                    'model_variable_plural' => $model_variable_plural,
                 ]);
+                $this->searches['model_fqdn'] = $this->model->fqdn();
+                $this->searches['model_variable'] = $model_variable;
+                $this->searches['model_variable_plural'] = $model_variable_plural;
             }
             // dd([
             //     '__METHOD__' => __METHOD__,

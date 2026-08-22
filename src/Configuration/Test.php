@@ -134,7 +134,8 @@ class Test extends PrimaryConfiguration
 
     public function module_slug(): string
     {
-        return Str::of($this->module_slug)->replace('-', '_')->toString();
+        return $this->module_slug;
+        // return Str::of($this->module_slug)->replace('-', '_')->toString();
     }
 
     /**

@@ -53,6 +53,8 @@ class {{model}}TestCase extends TestCase
         'model_route' => '{{model_route}}',
         'model_slug' => '{{model_slug}}',
         'model_slug_plural' => '{{model_slug_plural}}',
+        'model_variable' => '{{model_variable}}',
+        'model_variable_plural' => '{{model_variable_plural}}',
         'module_label' => '{{module_label}}',
         'module_label_plural' => '{{module_label_plural}}',
         'module_route' => '{{module_route}}',
