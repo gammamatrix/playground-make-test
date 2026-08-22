@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-06-07 19:51:26</timestamp>
+  <timestamp>2026-08-22 17:46:15</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>45</methodCount>
-    <crapMethodCount>6</crapMethodCount>
-    <crapLoad>75</crapLoad>
-    <totalCrap>1360.08</totalCrap>
-    <crapMethodPercent>13.33</crapMethodPercent>
+    <methodCount>47</methodCount>
+    <crapMethodCount>7</crapMethodCount>
+    <crapLoad>85</crapLoad>
+    <totalCrap>1378</totalCrap>
+    <crapMethodPercent>14.89</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -292,9 +292,9 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>15.09</crap>
-      <complexity>12</complexity>
-      <coverage>72.22</coverage>
+      <crap>22.35</crap>
+      <complexity>16</complexity>
+      <coverage>70.83</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -303,6 +303,28 @@
       <methodName>model_fqdn</methodName>
       <methodSignature>model_fqdn(): string</methodSignature>
       <fullMethod>model_fqdn(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Configuration</package>
+      <className>Playground\Make\Test\Configuration\Test</className>
+      <methodName>model_variable</methodName>
+      <methodSignature>model_variable(): string</methodSignature>
+      <fullMethod>model_variable(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Configuration</package>
+      <className>Playground\Make\Test\Configuration\Test</className>
+      <methodName>model_variable_plural</methodName>
+      <methodSignature>model_variable_plural(): string</methodSignature>
+      <fullMethod>model_variable_plural(): string</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -369,10 +391,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>46.96</crap>
+      <crap>55.62</crap>
       <complexity>30</complexity>
-      <coverage>73.39</coverage>
-      <crapLoad>0</crapLoad>
+      <coverage>69.47</coverage>
+      <crapLoad>10</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Console\Commands</package>
