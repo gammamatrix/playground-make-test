@@ -123,6 +123,8 @@ class TestMakeCommand extends GeneratorCommand
         // Models: Test
         'model',
         'playground-model',
+        'playground-model-linked',
+        'playground-model-tagged',
         // Case
         'test-case',
         'playground-model-test-case',
@@ -340,7 +342,14 @@ class TestMakeCommand extends GeneratorCommand
             'playground-api',
             'playground-resource',
             'playground-model',
+            'playground-model-linked',
+            'playground-model-tagged',
         ])) {
+            dump([
+                '__METHOD__' => __METHOD__,
+                '$type' => $type,
+                '$options' => $options,
+            ]);
             $this->prepareOptionsForModels($options);
             $this->prepareOptionsForSuites($options);
         } elseif (in_array($type, [
@@ -407,6 +416,8 @@ class TestMakeCommand extends GeneratorCommand
             'playground-api',
             'playground-resource',
             'playground-model',
+            'playground-model-linked',
+            'playground-model-tagged',
         ])) {
             $filename = sprintf(
                 '%3$s/%1$s.%2$s.json',
@@ -579,6 +590,9 @@ class TestMakeCommand extends GeneratorCommand
 
         if (in_array($type, [
             'model',
+            'playground-model',
+            'playground-model-linked',
+            'playground-model-tagged',
         ])) {
             $this->c->setOptions([
                 'class' => 'ModelTest',
@@ -706,12 +720,21 @@ class TestMakeCommand extends GeneratorCommand
 
         if (in_array($type, [
             'model',
+            'playground-model',
         ])) {
             if ($this->model?->playground()) {
                 $test = 'test/model/playground.stub';
             } else {
                 $test = 'test/test.stub';
             }
+        } elseif (in_array($type, [
+            'playground-model-linked',
+        ])) {
+            $test = 'test/model/playground-linked.stub';
+        } elseif (in_array($type, [
+            'playground-model-tagged',
+        ])) {
+            $test = 'test/model/playground-tagged.stub';
         } elseif (in_array($type, [
             'providers',
             'providers-api',
