@@ -345,11 +345,6 @@ class TestMakeCommand extends GeneratorCommand
             'playground-model-linked',
             'playground-model-tagged',
         ])) {
-            dump([
-                '__METHOD__' => __METHOD__,
-                '$type' => $type,
-                '$options' => $options,
-            ]);
             $this->prepareOptionsForModels($options);
             $this->prepareOptionsForSuites($options);
         } elseif (in_array($type, [
