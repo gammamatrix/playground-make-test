@@ -127,7 +127,8 @@ PHP_CODE;
         $hasOnes = [];
 
         if ($model->playground() && in_array($type, [
-            'model',
+                'model',
+                'playground-model',
         ])) {
 
             /**

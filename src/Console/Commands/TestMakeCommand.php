@@ -954,6 +954,7 @@ class TestMakeCommand extends GeneratorCommand
             )->finish('/ServiceProvider')->toString();
         } elseif (in_array($type, [
             'model',
+            'playground-model',
         ])) {
             $namespace = Str::of($namespace)->finish(
                 '/'.Str::of($this->c->name())->studly()->toString()
