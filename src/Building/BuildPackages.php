@@ -349,18 +349,22 @@ trait BuildPackages
     /**
      * @param  array<string, mixed>  $options
      */
-    public function prepareOptionsForControllerTestCase(array $options = []): void
-    {
+    public function prepareOptionsForControllerTestCase(
+        array $options = [],
+        string $type = '',
+    ): void {
         $rootNamespace = $this->rootNamespace();
         $revision = $this->hasOption('revision') && $this->option('revision');
 
         $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
-        $this->buildClass_uses_add(sprintf(
-            'Tests\Feature\%1$s\TestCase as BaseTestCase',
-            Str::of(
-                $this->parseClassInput($this->rootNamespace())
-            )->trim('\\')->toString()
-        ));
+        if ($type !== 'playground-resource-controller-playground-case') {
+            $this->buildClass_uses_add(sprintf(
+                'Tests\Feature\%1$s\TestCase as BaseTestCase',
+                Str::of(
+                    $this->parseClassInput($this->rootNamespace())
+                )->trim('\\')->toString()
+            ));
+        }
         $this->searches['model_attribute'] = 'title';
         $this->searches['module_label'] = $this->c->module();
         $this->searches['module_label_plural'] = Str::of($this->c->module())->plural()->toString();
@@ -368,6 +372,26 @@ trait BuildPackages
         $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
         $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
         $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
+
+        if ($type === 'playground-resource-controller-playground-case') {
+            $this->c->setOptions([
+                'extends' => 'TestCase',
+                'extends_use' => '',
+            ]);
+
+            $this->searches['extends'] = 'TestCase';
+            $this->searches['extends_use'] = '';
+
+            return;
+        } else {
+            //            $this->c->setOptions([
+            //                'extends' => 'PlaygroundCase',
+            //                'extends_use' => '',
+            //            ]);
+
+            $this->searches['extends'] = '';
+            $this->searches['extends_use'] = '';
+        }
 
         $this->addResourceTraits();
 
@@ -499,23 +523,52 @@ PHP_CODE;
     /**
      * @param  array<string, mixed>  $options
      */
-    public function prepareOptionsForControllerModelCase(array $options = []): void
-    {
+    public function prepareOptionsForControllerModelCase(
+        array $options = [],
+        string $type = '',
+    ): void {
         $rootNamespace = $this->rootNamespace();
         $revision = $this->hasOption('revision') && $this->option('revision');
 
         // $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
         // $this->buildClass_uses_add('Tests\Feature\Playground\Matrix\Resource\TestCase as BaseTestCase');
-        $this->c->setOptions([
-            'extends' => 'TestCase',
-            'extends_use' => '',
-            // 'extends_use' => sprintf(
-            //     'Tests\Feature\%1$s\TestCase',
-            //     Str::of(
-            //         $this->parseClassInput($this->rootNamespace())
-            //     )->trim('\\')->toString()
-            // ),
-        ]);
+
+        $model_type = $this->model?->type();
+
+        $extends = '';
+        // $extends_use = '';
+        if (in_array($model_type, [
+            'playground-model',
+        ])) {
+            $extends = 'PlaygroundCase';
+            // $extends_use = '';
+        } elseif (in_array($model_type, [
+            'playground-model-linked',
+            'playground-model-tagged',
+        ])) {
+            $extends = 'TestCase';
+            // $extends_use = '';
+        }
+
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$model_type' => $model_type,
+        //     '$this->c->name()' => $this->c->name(),
+        // ]);
+
+        if (! empty($extends)) {
+            $this->c->setOptions([
+                'extends' => $extends,
+            ]);
+            $this->searches['extends'] = $extends;
+        }
+
+        // if (! empty($extends_use)) {
+        //    $this->c->setOptions([
+        //        'extends_use' => $extends_use,
+        //    ]);
+        //    $this->searches['extends_use'] = $extends_use;
+        // }
 
         $this->searches['model_attribute'] = $this->model?->model_attribute() ?: 'title';
         $this->searches['module_label'] = $this->c->module();
@@ -538,8 +591,11 @@ PHP_CODE;
         $this->searches['model_slug'] = $model_slug;
         $this->searches['model_label_plural'] = $this->model?->model_plural() ?? 'dummies';
         $this->searches['model_singular'] = $this->model?->model_singular() ?? 'Dummy';
-        $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->plural()->kebab()->toString();
-        // $this->searches['model_slug'] = $this->model?->model_slug() ?? '';
+        if (Str::endsWith($this->searches['model_singular'], ['ed'])) {
+            $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->kebab()->toString();
+        } else {
+            $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->plural()->kebab()->toString();
+        }
 
         $this->searches['model_route'] = Str::of($this->searches['module_route'])->finish('.')->finish($this->searches['model_slug_plural'])->toString();
 

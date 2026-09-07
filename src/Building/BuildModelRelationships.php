@@ -127,8 +127,9 @@ PHP_CODE;
         $hasOnes = [];
 
         if ($model->playground() && in_array($type, [
-                'model',
-                'playground-model',
+            'model',
+            'playground-model',
+            'playground-model-tagged',
         ])) {
 
             /**
@@ -137,21 +138,28 @@ PHP_CODE;
             $uc = config('auth.providers.users.model', '\\App\\Models\\User');
             $uc = '\Playground\Models\User::class';
 
+            if ($this->suite === 'feature') {
+                $this->buildClass_uses_add('Playground/Models/User');
+            }
+
             $hasOnes = [
                 'creator' => [
                     'localKey' => 'created_by_id',
                     'rule' => 'create',
-                    'related' => $uc,
+                    // 'related' => $uc,
+                    'related' => '\Playground\Models\User::class',
                 ],
                 'modifier' => [
                     'localKey' => 'modified_by_id',
                     'rule' => 'first',
-                    'related' => $uc,
+                    // 'related' => $uc,
+                    'related' => '\Playground\Models\User::class',
                 ],
                 'owner' => [
                     'localKey' => 'owned_by_id',
                     'rule' => 'first',
-                    'related' => $uc,
+                    // 'related' => $uc,
+                    'related' => '\Playground\Models\User::class',
                 ],
                 'parent' => [
                     'localKey' => 'parent_id',
@@ -159,6 +167,11 @@ PHP_CODE;
                     'related' => $model->fqdn(),
                 ],
             ];
+            if ($type === 'playground-model-tagged') {
+                unset($hasOnes['modifier']);
+                unset($hasOnes['owner']);
+                unset($hasOnes['parent']);
+            }
         }
 
         foreach ($ho as $HasOne) {
@@ -170,7 +183,7 @@ PHP_CODE;
                 $hasOnes[$HasOne->accessor()] = [
                     'localKey' => $HasOne->localKey(),
                     'rule' => 'create',
-                    'related' => $HasOne->related(),
+                    'related' => $HasOne->related() === 'User' ? $hasOnes[$HasOne->accessor()]['related'] : $HasOne->related(),
                 ];
             }
         }
@@ -206,6 +219,12 @@ PHP_CODE;
                     $related = $meta['related'];
                 }
                 $related_base = $related ? class_basename($related) : '';
+                // dd([
+                //     '__METHOD__' => __METHOD__,
+                //     '$related' => $related,
+                //     '$related_base' => $related_base,
+                //     '$meta' => $meta,
+                // ]);
                 if (! empty($related_base) && ! empty($related)) {
                     if ($related_base === $related) {
                         $related = sprintf(

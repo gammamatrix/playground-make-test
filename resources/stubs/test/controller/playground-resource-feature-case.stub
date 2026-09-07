@@ -15,7 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TestCase extends BaseTestCase
 {
-{{test_case_use_traits}}    protected bool $setUpUserForPlayground = true;
+    /**
+     * @var class-string<Model>
+     */
+    public string $fqdn = Model::class;
 
     /**
      * @var array<string, string>
@@ -37,11 +40,6 @@ class TestCase extends BaseTestCase
         'table' => '',
         'view' => '{{module_view}}',
     ];
-
-    /**
-     * @var class-string<Model>
-     */
-    public string $fqdn = Model::class;
 {{revision_properties}}
     /**
      * @var array<int, string>

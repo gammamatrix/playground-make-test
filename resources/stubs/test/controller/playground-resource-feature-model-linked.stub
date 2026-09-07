@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * {{organization}}
+ */
+
+declare(strict_types=1);
+
+namespace {{namespace}}\Http\Controllers\{{user_handler}};
+
+use {{namespace}}\Http\Controllers\{{model}}TestCase;
+
+/**
+ * \{{namespace}}\Http\Controllers\{{user_handler}}\{{model}}RouteTest
+ */
+class {{model}}RouteTest extends {{model}}TestCase
+{
+    protected bool $load_migrations_playground = true;
+
+    public function test_destroy_as_admin_and_succeed(): void
+    {
+        $packageInfo = $this->getPackageInfo();
+
+        $user = User::factory()->admin()->create();
+
+        $model = {{model}}::factory()->create();
+
+        $this->assertDatabaseHas($packageInfo['table'], [
+            'id' => $model->id,
+        ]);
+
+        $url = route(sprintf(
+            '%1$s.destroy',
+            $packageInfo['model_route']
+        ), [
+            $packageInfo['model_variable'] => $model->id,
+        ]);
+
+        $response = $this->actingAs($user)->delete($url);
+        $this->assertDatabaseMissing($packageInfo['table'], [
+            'id' => $model->id,
+        ]);
+
+        $response->assertRedirect(route('{{module_route}}'));
+    }
+}
