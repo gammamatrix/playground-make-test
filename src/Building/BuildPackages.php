@@ -356,8 +356,19 @@ trait BuildPackages
         $rootNamespace = $this->rootNamespace();
         $revision = $this->hasOption('revision') && $this->option('revision');
 
-        $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
-        if ($type !== 'playground-resource-controller-playground-case') {
+        if ($type === 'playground-api-controller-playground-case') {
+
+        }
+
+        if ($type === 'playground-resource-controller-playground-case') {
+
+        }
+        $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Api');
+        // $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
+        if (! in_array($type, [
+            'playground-api-controller-playground-case',
+            'playground-resource-controller-playground-case',
+        ])) {
             $this->buildClass_uses_add(sprintf(
                 'Tests\Feature\%1$s\TestCase as BaseTestCase',
                 Str::of(
@@ -373,7 +384,10 @@ trait BuildPackages
         $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
         $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
 
-        if ($type === 'playground-resource-controller-playground-case') {
+        if (in_array($type, [
+            'playground-api-controller-playground-case',
+            'playground-resource-controller-playground-case',
+        ])) {
             $this->c->setOptions([
                 'extends' => 'TestCase',
                 'extends_use' => '',
@@ -609,16 +623,18 @@ PHP_CODE;
         }
 
         $this->addStructureModel();
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$options' => $options,
-        //     '$revision' => $revision,
-        //     // '$rootNamespace' => $rootNamespace,
-        //     // '$this->c' => $this->c,
-        //     '$this->searches' => $this->searches,
-        //     // '$this->model' => $this->model?->toArray(),
-        //     // '$this->options()' => $this->options(),
-        // ]);
+        dump([
+            '__METHOD__' => __METHOD__,
+            '$options' => $options,
+            '$revision' => $revision,
+            // '$rootNamespace' => $rootNamespace,
+            // '$this->c' => $this->c,
+            '$type' => $type,
+            '$this->c->type()' => $this->c->type(),
+            '$this->searches' => $this->searches,
+            // '$this->model' => $this->model?->toArray(),
+            // '$this->options()' => $this->options(),
+        ]);
 
         if ($revision) {
             $this->addRevisionPropertiesForModel(

@@ -80,6 +80,10 @@
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
         "format": "vendor/bin/pint",
         "test": "vendor/bin/testbench package:test",
-        "test-dev": "vendor/bin/phpunit -c phpunit-dev.xml"
+        "test-dev": "vendor/bin/phpunit -c phpunit-dev.xml",
+        "test-parallel": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/paratest -c phpunit-dev.xml"
+        ]
     }
 }

@@ -132,6 +132,7 @@ class TestMakeCommand extends GeneratorCommand
         'api-test-case',
         'playground-api-test-case',
         'playground-api-controller-test-case',
+        'playground-api-controller-playground-case',
         'playground-api-controller-model-case',
         'playground-api-controller-model-user',
         'playground-api-controller-model-linked',
@@ -323,6 +324,7 @@ class TestMakeCommand extends GeneratorCommand
             $this->prepareOptionsForRequestTestCase($options);
         } elseif (in_array($type, [
             'playground-api-controller-test-case',
+            'playground-api-controller-playground-case',
             'playground-resource-controller-test-case',
             'playground-resource-controller-playground-case',
         ])) {
@@ -612,6 +614,7 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $filename = 'test.controller.json';
         } elseif (in_array($type, [
+            'playground-api-controller-playground-case',
             'playground-resource-controller-playground-case',
         ])) {
             $filename = 'test.controller.playground.json';
@@ -723,6 +726,7 @@ class TestMakeCommand extends GeneratorCommand
                 'class' => 'TestCase',
             ]);
         } elseif (in_array($type, [
+            'playground-api-controller-playground-case',
             'playground-resource-controller-playground-case',
         ])) {
             $this->c->setOptions([
@@ -904,9 +908,21 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $test = 'test/controller/playground-resource-feature-case.stub';
         } elseif (in_array($type, [
+            'playground-api-controller-playground-case',
+        ])) {
+            if ($revision) {
+                $test = 'test/controller/playground-api-feature-playground-revisions-case.stub';
+            } else {
+                $test = 'test/controller/playground-api-feature-playground-case.stub';
+            }
+        } elseif (in_array($type, [
             'playground-resource-controller-playground-case',
         ])) {
-            $test = 'test/controller/playground-resource-feature-playground-case.stub';
+            if ($revision) {
+                $test = 'test/controller/playground-resource-feature-playground-revisions-case.stub';
+            } else {
+                $test = 'test/controller/playground-resource-feature-playground-case.stub';
+            }
         } elseif (in_array($type, [
             'command-about',
         ])) {
@@ -1044,6 +1060,7 @@ class TestMakeCommand extends GeneratorCommand
             // $namespace;
         } elseif (in_array($type, [
             'playground-api-controller-test-case',
+            'playground-api-controller-playground-case',
             'playground-api-controller-model-case',
             'playground-resource-controller-test-case',
             'playground-resource-controller-playground-case',
@@ -1176,6 +1193,7 @@ class TestMakeCommand extends GeneratorCommand
                 );
             } elseif (in_array($this->c->type(), [
                 'playground-api-controller-test-case',
+                'playground-api-controller-playground-case',
                 'playground-resource-controller-test-case',
                 'playground-resource-controller-playground-case',
             ])) {
