@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.43220338983051" branch-rate="0" lines-covered="612" lines-valid="1416" branches-covered="0" branches-valid="0" complexity="317" version="0.4" timestamp="1789408338">
+<coverage line-rate="0.4352773826458" branch-rate="0" lines-covered="612" lines-valid="1406" branches-covered="0" branches-valid="0" complexity="317" version="0.4" timestamp="1789409983">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -934,16 +934,6 @@
                 <line number="621" hits="0"/>
                 <line number="622" hits="0"/>
                 <line number="625" hits="0"/>
-                <line number="626" hits="0"/>
-                <line number="627" hits="0"/>
-                <line number="628" hits="0"/>
-                <line number="629" hits="0"/>
-                <line number="632" hits="0"/>
-                <line number="633" hits="0"/>
-                <line number="634" hits="0"/>
-                <line number="635" hits="0"/>
-                <line number="636" hits="0"/>
-                <line number="637" hits="0"/>
                 <line number="639" hits="0"/>
                 <line number="640" hits="0"/>
                 <line number="641" hits="0"/>
@@ -1224,16 +1214,6 @@
             <line number="621" hits="0"/>
             <line number="622" hits="0"/>
             <line number="625" hits="0"/>
-            <line number="626" hits="0"/>
-            <line number="627" hits="0"/>
-            <line number="628" hits="0"/>
-            <line number="629" hits="0"/>
-            <line number="632" hits="0"/>
-            <line number="633" hits="0"/>
-            <line number="634" hits="0"/>
-            <line number="635" hits="0"/>
-            <line number="636" hits="0"/>
-            <line number="637" hits="0"/>
             <line number="639" hits="0"/>
             <line number="640" hits="0"/>
             <line number="641" hits="0"/>
