@@ -357,14 +357,14 @@ trait BuildPackages
         $revision = $this->hasOption('revision') && $this->option('revision');
 
         if ($type === 'playground-api-controller-playground-case') {
-
+            // TODO this could be an Api resource in playground-test
+            $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
         }
 
         if ($type === 'playground-resource-controller-playground-case') {
-
+            $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
         }
-        $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Api');
-        // $this->buildClass_uses_add('Playground/Test/Feature/Http/Controllers/Resource');
+
         if (! in_array($type, [
             'playground-api-controller-playground-case',
             'playground-resource-controller-playground-case',

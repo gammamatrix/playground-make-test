@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * \{{namespace}}\{{model}}TestCase
  */{{covers_class}}
-class {{model}}TestCase extends TestCase
+class {{model}}TestCase extends {{extends}}
 {
     public string $fqdn = \{{model_fqdn}}::class;
 {{revision_properties}}
