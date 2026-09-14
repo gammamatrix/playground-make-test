@@ -623,18 +623,18 @@ PHP_CODE;
         }
 
         $this->addStructureModel();
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$options' => $options,
-            '$revision' => $revision,
-            // '$rootNamespace' => $rootNamespace,
-            // '$this->c' => $this->c,
-            '$type' => $type,
-            '$this->c->type()' => $this->c->type(),
-            '$this->searches' => $this->searches,
-            // '$this->model' => $this->model?->toArray(),
-            // '$this->options()' => $this->options(),
-        ]);
+        //dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$options' => $options,
+        //    '$revision' => $revision,
+        //    // '$rootNamespace' => $rootNamespace,
+        //    // '$this->c' => $this->c,
+        //    '$type' => $type,
+        //    '$this->c->type()' => $this->c->type(),
+        //    '$this->searches' => $this->searches,
+        //    // '$this->model' => $this->model?->toArray(),
+        //    // '$this->options()' => $this->options(),
+        //]);
 
         if ($revision) {
             $this->addRevisionPropertiesForModel(
