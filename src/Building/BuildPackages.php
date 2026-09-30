@@ -376,10 +376,17 @@ trait BuildPackages
                 )->trim('\\')->toString()
             ));
         }
-        $this->searches['model_attribute'] = 'title';
-        $this->searches['module_label'] = $this->c->module();
-        $this->searches['module_label_plural'] = Str::of($this->c->module())->plural()->toString();
-        $this->searches['module_slug'] = $this->c->module_slug();
+
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$type' => $type,
+        //     '$options' => $options,
+        //     '$rootNamespace' => $rootNamespace,
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        //     // '$this->options()' => $this->options(),
+        // ]);
+
         $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
         $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
         $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
@@ -584,46 +591,54 @@ PHP_CODE;
         //    $this->searches['extends_use'] = $extends_use;
         // }
 
-        $this->searches['model_attribute'] = $this->model?->model_attribute() ?: 'title';
-        $this->searches['module_label'] = $this->c->module();
-        $this->searches['module_label_plural'] = Str::of($this->c->module())->plural()->toString();
-        $this->searches['module_slug'] = $this->c->module_slug();
-        $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
+        //        dd([
+        //            '__METHOD__' => __METHOD__,
+        //            '$type' => $type,
+        //            '$options' => $options,
+        //            '$rootNamespace' => $rootNamespace,
+        //            '$this->c' => $this->c,
+        //            '$this->searches' => $this->searches,
+        //            // '$this->options()' => $this->options(),
+        //        ]);
+
+        // $this->searches['model_attribute'] = $this->model?->model_attribute() ?: 'title';
+        // $this->searches['module_label_plural'] = $this->c->module_labels();
         $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
         $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
+        $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
 
-        $this->searches['model'] = $this->model?->model() ?? 'Dummy';
-        $this->searches['table'] = $this->model?->table() ?? '';
-
+        //        $this->searches['model'] = $this->model?->model() ?? 'Dummy';
+        //        $this->searches['table'] = $this->model?->table() ?? '';
+        //
         $fqdn = $this->model?->fqdn() ?? 'Dummy';
-        $this->searches['model_fqdn'] = $this->parseClassInput($fqdn);
-        // $this->searches['model_fqdn'] = $this->parseClassConfig($fqdn);
+        //        $this->searches['model_fqdn'] = $this->parseClassInput($fqdn);
+        //        // $this->searches['model_fqdn'] = $this->parseClassConfig($fqdn);
+        //
+        //        $model_slug = $this->model?->model_slug() ?? 'dummy';
+        $model_variable = $this->model?->model_variable() ?? 'dummy';
 
-        $model_slug = $this->model?->model_slug() ?? 'dummy';
-        $variable = Str::of($model_slug)->snake()->toString();
-
-        $this->searches['model_slug'] = $model_slug;
-        $this->searches['model_label_plural'] = $this->model?->model_plural() ?? 'dummies';
-        $this->searches['model_singular'] = $this->model?->model_singular() ?? 'Dummy';
-        if (Str::endsWith($this->searches['model_singular'], ['ed'])) {
-            $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->kebab()->toString();
-        } else {
-            $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->plural()->kebab()->toString();
-        }
-
-        $this->searches['model_route'] = Str::of($this->searches['module_route'])->finish('.')->finish($this->searches['model_slug_plural'])->toString();
+        //        $this->searches['model_slug'] = $model_slug;
+        //        $this->searches['model_label_plural'] = $this->model?->model_plural() ?? 'dummies';
+        //        $this->searches['model_singular'] = $this->model?->model_singular() ?? 'Dummy';
+        //        if (Str::endsWith($this->searches['model_singular'], ['ed'])) {
+        //            $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->kebab()->toString();
+        //        } else {
+        //            $this->searches['model_slug_plural'] = Str::of($this->searches['model_singular'])->plural()->kebab()->toString();
+        //        }
+        //
+        $this->searches['model_route'] = Str::of($this->searches['module_route'])->finish('.')->finish($this->searches['model_slugs'])->toString();
 
         $this->searches['privilege'] = Str::of($this->c->package())->finish(':')->finish($this->searches['model_slug'])->toString();
         $this->searches['view'] = Str::of($this->c->package())->replace('-', '.')->finish('::')->finish($this->searches['model_slug'])->toString();
 
-        $this->searches['model_label'] = $this->searches['model_singular'];
+        //        $this->searches['model_label'] = $this->searches['model_singular'];
 
         if ($this->c->withCovers()) {
             $this->addCovers();
         }
 
         $this->addStructureModel();
-        //dump([
+        // dump([
         //    '__METHOD__' => __METHOD__,
         //    '$options' => $options,
         //    '$revision' => $revision,
@@ -634,12 +649,12 @@ PHP_CODE;
         //    '$this->searches' => $this->searches,
         //    // '$this->model' => $this->model?->toArray(),
         //    // '$this->options()' => $this->options(),
-        //]);
+        // ]);
 
         if ($revision) {
             $this->addRevisionPropertiesForModel(
                 $this->parseClassInput($fqdn),
-                $variable
+                $model_variable
             );
         }
 
@@ -714,5 +729,13 @@ PHP_CODE;
         }
         $this->searches['name'] = $name;
         $this->searches['namespace_root'] = $this->parseClassInput($this->rootNamespace());
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$name' => $name,
+        //     '$isApi' => $isApi,
+        //     '$isResource' => $isResource,
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        // ]);
     }
 }

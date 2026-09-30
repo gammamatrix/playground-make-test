@@ -30,6 +30,7 @@ class TestMakeCommand extends GeneratorCommand
     use Building\BuildModelRelationships;
     use Building\BuildPackages;
     use Concerns\BuildImplements;
+    use Concerns\BuildModel;
     use Concerns\BuildUses;
 
     /**
@@ -51,11 +52,34 @@ class TestMakeCommand extends GeneratorCommand
         'class' => '',
         'name' => '',
         'module' => '',
+        'module_label' => '',
+        'module_labels' => '',
         'module_slug' => '',
-        'model_route' => '',
+        'module_slugs' => '',
+
+        'model_attribute' => '',
+        'model_camel' => '',
+        'model_camels' => '',
+        'model_label' => '',
+        'model_labels' => '',
+        'model_lower' => '',
+        'model_lowers' => '',
+        'model_kebab' => '',
+        'model_kebabs' => '',
+        'model_slug' => '',
+        'model_slugs' => '',
+        'model_snake' => '',
+        'model_snakes' => '',
+        'model_studly' => '',
+        'model_studlies' => '',
         'model_variable' => '',
+        'model_variables' => '',
+
+        'model_route' => '',
+        // 'model_variable' => '',
         'model_variable_plural' => '',
         'module_route' => '',
+        'model_route_param' => '',
         'route' => '',
         'namespace' => '',
         'namespace_root' => '',
@@ -163,6 +187,11 @@ class TestMakeCommand extends GeneratorCommand
         'playground-service-provider-policies',
     ];
 
+    /**
+     * @param array<string, mixed> $options
+     */
+    public function prepareModule(array $options): void {}
+
     public function prepareOptions(): void
     {
         $this->modelPackage = null;
@@ -199,6 +228,8 @@ class TestMakeCommand extends GeneratorCommand
         }
 
         $type = $this->prepareOptionsType($options);
+
+        $this->prepareModule($options);
 
         $model_package = $this->hasOption('model-package') && is_string($this->option('model-package')) ? $this->option('model-package') : '';
         if ($model_package) {
@@ -267,26 +298,36 @@ class TestMakeCommand extends GeneratorCommand
                     $modelFile
                 );
 
-                $model_variable = Str::of($this->model->model_singular())->snake()->toString();
-                $model_variable_plural = Str::of($this->model->model_plural())->snake()->toString();
-                $this->c->setOptions([
-                    'model_fqdn' => $this->model->fqdn(),
-                    'model_variable' => $model_variable,
-                    'model_variable_plural' => $model_variable_plural,
-                ]);
-                $this->searches['model_fqdn'] = $this->model->fqdn();
-                $this->searches['model_variable'] = $model_variable;
-                $this->searches['model_variable_plural'] = $model_variable_plural;
+                //                $model_variable = Str::of($this->model->model_singular())->snake()->toString();
+                //                $model_variable_plural = Str::of($this->model->model_plural())->snake()->toString();
+                //                $this->c->setOptions([
+                //                    'model_fqdn' => $this->model->fqdn(),
+                //                    'model_variable' => $model_variable,
+                //                    'model_variable_plural' => $model_variable_plural,
+                //                ]);
+                //                $this->searches['model_fqdn'] = $this->model->fqdn();
+                // //                $this->searches['model_variable'] = $model_variable;
+                //                $this->searches['model_variable_plural'] = $this->model->model_variables();
+                //                $this->searches['model_slug_plural'] = $this->model->model_slugs();
+                //                $this->searches['model_label'] = $this->model->model_label();
+                //                $this->c->setOptions([
+                //                    'model_fqdn' => $this->model->fqdn(),
+                //                    'model_label' => $this->model->model_label(),
+                //                    'model_slug_plural' => $this->model->model_slugs(),
+                //                    'model_variable_plural' => $this->model->model_variables(),
+                //                ]);
+                $this->buildClass_model($this->model->name());
             }
-            // dd([
-            //     '__METHOD__' => __METHOD__,
-            //     '$modelFile' => $modelFile,
-            //     '$this->type' => $this->type,
-            //     '$type' => $type,
-            //     '$rootNamespace' => $rootNamespace,
-            //     '$this->model' => $this->model,
-            //     // '$this->model' => $this->model->toArray(),
-            // ]);
+            //             dd([
+            //                 '__METHOD__' => __METHOD__,
+            //                 '$modelFile' => $modelFile,
+            //                 '$this->type' => $this->type,
+            //                 '$type' => $type,
+            //                 '$rootNamespace' => $rootNamespace,
+            //                 '$this->searches' => $this->searches,
+            //                 //'$this->model' => $this->model,
+            //                 // '$this->model' => $this->model->toArray(),
+            //             ]);
         }
         // $this->applyConfigurationToSearch();
 
@@ -358,12 +399,22 @@ class TestMakeCommand extends GeneratorCommand
 
             // $extends = 'TestCase';
             $extends_use = '';
-            $this->searches['module_label'] = $this->c->module();
-            $this->searches['module_label_plural'] = Str::of($this->c->module())->plural()->toString();
-            $this->searches['module_slug'] = $this->c->module_slug();
+            //            $this->searches['module_label'] = $this->c->module();
+            //            $this->searches['module_label_plural'] = Str::of($this->c->module())->plural()->toString();
+            //            $this->searches['module_slug'] = $this->c->module_slug();
             $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
-            $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
-            $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
+            //            $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
+            //            $this->searches['module_privilege'] = Str::of($this->c->package())->finish(':')->toString();
+            //            $this->searches['module_view'] = Str::of($this->c->package())->finish('::')->toString();
+            //            dd([
+            //                '__METHOD__' => __METHOD__,
+            //                '$type' => $type,
+            //                '$options' => $options,
+            //                '$rootNamespace' => $rootNamespace,
+            //                '$this->c' => $this->c,
+            //                '$this->searches' => $this->searches,
+            //                // '$this->options()' => $this->options(),
+            //            ]);
             // dump([
             //     '__METHOD__' => __METHOD__,
             //     '$this->suite' => $this->suite,
@@ -393,6 +444,15 @@ class TestMakeCommand extends GeneratorCommand
         ])) {
             $extends = 'TestCase';
             $extends_use = sprintf('Tests/Feature/%1$s/TestCase', $this->c->namespace());
+            //            dd([
+            //                '__METHOD__' => __METHOD__,
+            //                '$type' => $type,
+            //                '$options' => $options,
+            //                '$rootNamespace' => $rootNamespace,
+            //                '$this->c' => $this->c,
+            //                '$this->searches' => $this->searches,
+            //                // '$this->options()' => $this->options(),
+            //            ]);
 
             $this->searches['module_route'] = Str::of($this->c->package())->replace('-', '.')->toString();
             // dump([
@@ -958,6 +1018,9 @@ class TestMakeCommand extends GeneratorCommand
             $test = 'test/controller/playground-resource-feature-model-linked.stub';
         } elseif (in_array($type, [
             'playground-api-controller-model-tagged',
+        ])) {
+            $test = 'test/controller/playground-api-feature-model-tagged.stub';
+        } elseif (in_array($type, [
             'playground-resource-controller-model-tagged',
         ])) {
             $test = 'test/controller/playground-resource-feature-model-tagged.stub';
