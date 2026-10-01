@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-09-14 18:19:43</timestamp>
+  <timestamp>2026-10-01 18:03:15</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>47</methodCount>
+    <methodCount>45</methodCount>
     <crapMethodCount>9</crapMethodCount>
-    <crapLoad>109</crapLoad>
-    <totalCrap>1592.06</totalCrap>
-    <crapMethodPercent>19.15</crapMethodPercent>
+    <crapLoad>106</crapLoad>
+    <totalCrap>1535.9</totalCrap>
+    <crapMethodPercent>20</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -259,10 +259,10 @@
       <methodName>prepareOptionsForControllerModelCase</methodName>
       <methodSignature>prepareOptionsForControllerModelCase(array $options, string $type): void</methodSignature>
       <fullMethod>prepareOptionsForControllerModelCase(array $options, string $type): void</fullMethod>
-      <crap>90</crap>
-      <complexity>9</complexity>
+      <crap>56</crap>
+      <complexity>7</complexity>
       <coverage>0</coverage>
-      <crapLoad>9</crapLoad>
+      <crapLoad>7</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Building</package>
@@ -292,31 +292,9 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>22.35</crap>
-      <complexity>16</complexity>
-      <coverage>70.83</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Test\Configuration</package>
-      <className>Playground\Make\Test\Configuration\Test</className>
-      <methodName>model_fqdn</methodName>
-      <methodSignature>model_fqdn(): string</methodSignature>
-      <fullMethod>model_fqdn(): string</fullMethod>
-      <crap>1</crap>
-      <complexity>1</complexity>
-      <coverage>100</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Test\Configuration</package>
-      <className>Playground\Make\Test\Configuration\Test</className>
-      <methodName>model_variable</methodName>
-      <methodSignature>model_variable(): string</methodSignature>
-      <fullMethod>model_variable(): string</fullMethod>
-      <crap>1</crap>
-      <complexity>1</complexity>
-      <coverage>100</coverage>
+      <crap>22.25</crap>
+      <complexity>15</complexity>
+      <coverage>68.18</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -325,17 +303,6 @@
       <methodName>model_variable_plural</methodName>
       <methodSignature>model_variable_plural(): string</methodSignature>
       <fullMethod>model_variable_plural(): string</fullMethod>
-      <crap>1</crap>
-      <complexity>1</complexity>
-      <coverage>100</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Test\Configuration</package>
-      <className>Playground\Make\Test\Configuration\Test</className>
-      <methodName>module_slug</methodName>
-      <methodSignature>module_slug(): string</methodSignature>
-      <fullMethod>module_slug(): string</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -388,13 +355,24 @@
     <method>
       <package>Playground\Make\Test\Console\Commands</package>
       <className>Playground\Make\Test\Console\Commands\TestMakeCommand</className>
+      <methodName>prepareModule</methodName>
+      <methodSignature>prepareModule(array $options): void</methodSignature>
+      <fullMethod>prepareModule(array $options): void</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Console\Commands</package>
+      <className>Playground\Make\Test\Console\Commands\TestMakeCommand</className>
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>91.6</crap>
+      <crap>67.86</crap>
       <complexity>35</complexity>
-      <coverage>64.12</coverage>
-      <crapLoad>13</crapLoad>
+      <coverage>70.06</coverage>
+      <crapLoad>11</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Console\Commands</package>
@@ -435,10 +413,10 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>88.4</crap>
-      <complexity>40</complexity>
-      <coverage>68.84</coverage>
-      <crapLoad>13</crapLoad>
+      <crap>92.08</crap>
+      <complexity>41</complexity>
+      <coverage>68.79</coverage>
+      <crapLoad>14</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Console\Commands</package>
