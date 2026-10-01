@@ -188,7 +188,7 @@ class TestMakeCommand extends GeneratorCommand
     ];
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      */
     public function prepareModule(array $options): void {}
 
