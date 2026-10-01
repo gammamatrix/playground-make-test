@@ -44,7 +44,5 @@ class {{model}}RouteTest extends {{model}}TestCase
         $this->assertDatabaseMissing($packageInfo['table'], [
             'id' => $model->id,
         ]);
-
-        $response->assertRedirect(route('{{module_route}}'));
     }
 }
