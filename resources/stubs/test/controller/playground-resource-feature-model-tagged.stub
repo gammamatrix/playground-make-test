@@ -10,7 +10,7 @@ namespace {{namespace}}\Http\Controllers\{{user_handler}};
 
 use {{namespace}}\Http\Controllers\{{model}}TestCase;
 use Playground\Models\User;
-use Playground\Task\Models\{{model}};
+use {{model_fqdn}};
 
 /**
  * \{{namespace}}\Http\Controllers\{{user_handler}}\{{model}}RouteTest

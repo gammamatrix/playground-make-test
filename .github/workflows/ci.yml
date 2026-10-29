@@ -73,11 +73,10 @@ jobs:
           php_version: "8.4"
           php_extensions: intl
           version: 2.x
-      - uses: php-actions/phpunit@v3
+      - uses: php-actions/phpunit@v4
         env:
           XDEBUG_MODE: coverage
         with:
-          version: "13.3"
           php_version: "8.4"
           php_extensions: intl xdebug
           configuration: phpunit-ci.xml

@@ -367,7 +367,9 @@ trait BuildPackages
 
         if (! in_array($type, [
             'playground-api-controller-playground-case',
+            'playground-api-controller-revision-case',
             'playground-resource-controller-playground-case',
+            'playground-resource-controller-revision-case',
         ])) {
             $this->buildClass_uses_add(sprintf(
                 'Tests\Feature\%1$s\TestCase as BaseTestCase',
@@ -416,10 +418,10 @@ trait BuildPackages
 
         $this->addResourceTraits();
 
-        if ($revision) {
-            $this->addRevisionProperties();
-            $this->addRevisionMethods();
-        }
+        //        if ($revision) {
+        //            $this->addRevisionProperties();
+        //            $this->addRevisionMethods();
+        //        }
 
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -476,6 +478,21 @@ trait BuildPackages
         return $this;
     }
 
+    public function addRevisionActionsForModel(): self
+    {
+        $this->searches['revision_actions'] = <<<'PHP_CODE'
+
+    protected int $status_code_json_guest_restore_revision = 401;
+
+    protected int $status_code_guest_json_revision = 401;
+
+    protected int $status_code_guest_json_revisions = 401;
+
+PHP_CODE;
+
+        return $this;
+    }
+
     public function addRevisionPropertiesForModel(
         string $fqdn,
         string $variable
@@ -496,50 +513,50 @@ PHP_CODE;
         return $this;
     }
 
-    public function addRevisionProperties(): self
-    {
-        $this->searches['revision_properties'] = <<<'PHP_CODE'
-
-    /**
-     * @var class-string<Model>
-     */
-    public string $fqdnRevision = Model::class;
-
-    public string $revisionId = 'revision_id';
-
-    public string $revisionRouteParameter = 'revision';
-
-PHP_CODE;
-
-        return $this;
-    }
-
-    public function addRevisionMethods(): self
-    {
-        $this->searches['revision_methods'] = <<<'PHP_CODE'
-
-    /**
-     * @return class-string<Model>
-     */
-    public function getGetFqdnRevision(): string
-    {
-        return $this->fqdnRevision;
-    }
-
-    public function getRevisionId(): string
-    {
-        return $this->revisionId;
-    }
-
-    public function getRevisionRouteParameter(): string
-    {
-        return $this->revisionRouteParameter;
-    }
-
-PHP_CODE;
-
-        return $this;
-    }
+    //    public function addRevisionProperties(): self
+    //    {
+    //        $this->searches['revision_properties'] = <<<'PHP_CODE'
+    //
+    //    /**
+    //     * @var class-string<Model>
+    //     */
+    //    public string $fqdnRevision = Model::class;
+    //
+    //    public string $revisionId = 'revision_id';
+    //
+    //    public string $revisionRouteParameter = 'revision';
+    //
+    // PHP_CODE;
+    //
+    //        return $this;
+    //    }
+    //
+    //    public function addRevisionMethods(): self
+    //    {
+    //        $this->searches['revision_methods'] = <<<'PHP_CODE'
+    //
+    //    /**
+    //     * @return class-string<Model>
+    //     */
+    //    public function getGetFqdnRevision(): string
+    //    {
+    //        return $this->fqdnRevision;
+    //    }
+    //
+    //    public function getRevisionId(): string
+    //    {
+    //        return $this->revisionId;
+    //    }
+    //
+    //    public function getRevisionRouteParameter(): string
+    //    {
+    //        return $this->revisionRouteParameter;
+    //    }
+    //
+    // PHP_CODE;
+    //
+    //        return $this;
+    //    }
 
     /**
      * @param  array<string, mixed>  $options
@@ -561,8 +578,13 @@ PHP_CODE;
         if (in_array($model_type, [
             'playground-model',
         ])) {
-            $extends = 'PlaygroundCase';
-            // $extends_use = '';
+            if (array_key_exists('revision', $this->model?->attributes() ?? [])) {
+                $extends = 'RevisionTestCase';
+                // $extends_use = '';
+            } else {
+                $extends = 'PlaygroundCase';
+                // $extends_use = '';
+            }
         } elseif (in_array($model_type, [
             'playground-model-linked',
             'playground-model-tagged',
@@ -651,7 +673,10 @@ PHP_CODE;
         //    // '$this->options()' => $this->options(),
         // ]);
 
-        if ($revision) {
+        if ($revision
+            && array_key_exists('revision', $this->model?->attributes() ?? [])
+        ) {
+            $this->addRevisionActionsForModel();
             $this->addRevisionPropertiesForModel(
                 $this->parseClassInput($fqdn),
                 $model_variable
