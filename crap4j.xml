@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-10-01 18:03:15</timestamp>
+  <timestamp>2026-10-29 21:24:59</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>45</methodCount>
-    <crapMethodCount>9</crapMethodCount>
-    <crapLoad>106</crapLoad>
-    <totalCrap>1535.9</totalCrap>
-    <crapMethodPercent>20</crapMethodPercent>
+    <methodCount>44</methodCount>
+    <crapMethodCount>8</crapMethodCount>
+    <crapLoad>99</crapLoad>
+    <totalCrap>1548.76</totalCrap>
+    <crapMethodPercent>18.18</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -204,10 +204,10 @@
       <methodName>prepareOptionsForControllerTestCase</methodName>
       <methodSignature>prepareOptionsForControllerTestCase(array $options, string $type): void</methodSignature>
       <fullMethod>prepareOptionsForControllerTestCase(array $options, string $type): void</fullMethod>
-      <crap>56</crap>
-      <complexity>7</complexity>
+      <crap>42</crap>
+      <complexity>6</complexity>
       <coverage>0</coverage>
-      <crapLoad>7</crapLoad>
+      <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Building</package>
@@ -223,6 +223,17 @@
     <method>
       <package>Playground\Make\Test\Building</package>
       <className>Playground\Make\Test\Building\BuildPackages</className>
+      <methodName>addRevisionActionsForModel</methodName>
+      <methodSignature>addRevisionActionsForModel(): self</methodSignature>
+      <fullMethod>addRevisionActionsForModel(): self</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Test\Building</package>
+      <className>Playground\Make\Test\Building\BuildPackages</className>
       <methodName>addRevisionPropertiesForModel</methodName>
       <methodSignature>addRevisionPropertiesForModel(string $fqdn, string $variable): self</methodSignature>
       <fullMethod>addRevisionPropertiesForModel(string $fqdn, string $variable): self</fullMethod>
@@ -234,35 +245,13 @@
     <method>
       <package>Playground\Make\Test\Building</package>
       <className>Playground\Make\Test\Building\BuildPackages</className>
-      <methodName>addRevisionProperties</methodName>
-      <methodSignature>addRevisionProperties(): self</methodSignature>
-      <fullMethod>addRevisionProperties(): self</fullMethod>
-      <crap>2</crap>
-      <complexity>1</complexity>
-      <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Test\Building</package>
-      <className>Playground\Make\Test\Building\BuildPackages</className>
-      <methodName>addRevisionMethods</methodName>
-      <methodSignature>addRevisionMethods(): self</methodSignature>
-      <fullMethod>addRevisionMethods(): self</fullMethod>
-      <crap>2</crap>
-      <complexity>1</complexity>
-      <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Test\Building</package>
-      <className>Playground\Make\Test\Building\BuildPackages</className>
       <methodName>prepareOptionsForControllerModelCase</methodName>
       <methodSignature>prepareOptionsForControllerModelCase(array $options, string $type): void</methodSignature>
       <fullMethod>prepareOptionsForControllerModelCase(array $options, string $type): void</fullMethod>
-      <crap>56</crap>
-      <complexity>7</complexity>
+      <crap>90</crap>
+      <complexity>9</complexity>
       <coverage>0</coverage>
-      <crapLoad>7</crapLoad>
+      <crapLoad>9</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Building</package>
@@ -369,9 +358,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>67.86</crap>
+      <crap>66.64</crap>
       <complexity>35</complexity>
-      <coverage>70.06</coverage>
+      <coverage>70.44</coverage>
       <crapLoad>11</crapLoad>
     </method>
     <method>
@@ -380,9 +369,9 @@
       <methodName>getConfigurationFilename</methodName>
       <methodSignature>getConfigurationFilename(): string</methodSignature>
       <fullMethod>getConfigurationFilename(): string</fullMethod>
-      <crap>46.01</crap>
-      <complexity>18</complexity>
-      <coverage>55.78</coverage>
+      <crap>48.55</crap>
+      <complexity>19</complexity>
+      <coverage>56.58</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -402,9 +391,9 @@
       <methodName>qualifyClass</methodName>
       <methodSignature>qualifyClass($name): string</methodSignature>
       <fullMethod>qualifyClass($name): string</fullMethod>
-      <crap>23.8</crap>
-      <complexity>15</complexity>
-      <coverage>66.06</coverage>
+      <crap>28.55</crap>
+      <complexity>17</complexity>
+      <coverage>65.81</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -413,10 +402,10 @@
       <methodName>getStub</methodName>
       <methodSignature>getStub()</methodSignature>
       <fullMethod>getStub()</fullMethod>
-      <crap>92.08</crap>
+      <crap>81.85</crap>
       <complexity>41</complexity>
-      <coverage>68.79</coverage>
-      <crapLoad>14</crapLoad>
+      <coverage>71.03</coverage>
+      <crapLoad>13</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Test\Console\Commands</package>
@@ -424,9 +413,9 @@
       <methodName>getDefaultNamespace</methodName>
       <methodSignature>getDefaultNamespace($rootNamespace): string</methodSignature>
       <fullMethod>getDefaultNamespace($rootNamespace): string</fullMethod>
-      <crap>12.55</crap>
+      <crap>12.43</crap>
       <complexity>11</complexity>
-      <coverage>76.62</coverage>
+      <coverage>77.22</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -446,9 +435,9 @@
       <methodName>folder</methodName>
       <methodSignature>folder(): string</methodSignature>
       <fullMethod>folder(): string</fullMethod>
-      <crap>35.4</crap>
+      <crap>34.54</crap>
       <complexity>15</complexity>
-      <coverage>55.07</coverage>
+      <coverage>55.71</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
