@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  */{{covers_class}}
 class {{model}}TestCase extends {{extends}}
 {
+    /**
+     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     */
     public string $fqdn = \{{model_fqdn}}::class;
 {{revision_properties}}
     protected int $status_code_json_guest_create = 401;

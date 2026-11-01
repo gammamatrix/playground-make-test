@@ -406,6 +406,19 @@ trait BuildPackages
             $this->searches['extends_use'] = '';
 
             return;
+        } elseif (in_array($type, [
+            'playground-api-controller-revision-case',
+            'playground-resource-controller-revision-case',
+        ])) {
+            $this->c->setOptions([
+                'extends' => 'PlaygroundCase',
+                'extends_use' => '',
+            ]);
+
+            $this->searches['extends'] = 'PlaygroundCase';
+            $this->searches['extends_use'] = '';
+
+            return;
         } else {
             //            $this->c->setOptions([
             //                'extends' => 'PlaygroundCase',

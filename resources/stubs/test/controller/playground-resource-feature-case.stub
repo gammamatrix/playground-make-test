@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 class TestCase extends BaseTestCase
 {
     /**
-     * @var class-string<Model>
+     * @var class-string<\Illuminate\Database\Eloquent\Model>
      */
     public string $fqdn = Model::class;
 
